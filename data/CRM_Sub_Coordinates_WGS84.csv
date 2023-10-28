@@ -1,0 +1,306 @@
+Site Name,Site Code,latitude,longitude
+ABHA - Abham Substation,ABHA,50.4716733,-3.7309283
+ABTH - Aberthaw Substation,ABTH,51.3883366,-3.4032144
+ALDW - Aldwarke Substation,ALDW,53.4455045,-1.320594
+ALVE - Alverdiscott Substation,ALVE,51.0059049,-4.1364787
+AMEM - Amersham Substation,AMEM,51.6651594,-0.65634
+AXMI - Axminster Substation,AXMI,50.7864998,-2.9246377
+BACT - Bacton Substation,BACT,52.660393,0.793521
+BAGB - Baglan Bay Substation,BAGB,51.6169976,-3.8324675
+BARK - Barking Substation,BARK,51.5226033,0.115365
+BARW - Barking West Substation,BARW,51.520169,0.115479
+BEDD - Beddington Substation,BEDD,51.3725629,-0.1264688
+BEDT - Beddington Tee Substation,BEDT,51.37295,-0.12795
+BENR - Bengeworth Road Substation,BENR,51.465772,-0.098387
+BESW - Berkswell Substation,BESW,52.3858536,-1.615489
+BICF - Bickerfen Substation,BICF,52.9308108,-0.2211776
+BIRK - Birkenhead Substation,BIRK,53.3657481,-3.0627474
+BISW - Bishops Wood Substation,BISW,52.3121115,-2.2416907
+BLYT - Blyth Substation,BLYT,55.1411626,-1.5306015
+BODE - Bodelwyddan Substation,BODE,53.25014,-3.4761171
+BOLN - Bolney Substation,BOLN,50.9752306,-0.2350781
+BOTW - Botley Wood Substation,BOTW,50.8845066,-1.2320607
+BRAI - Braintree Substation,BRAI,51.8649112,0.576343
+BRAW - Bradford West Substation,BRAW,53.8105001,-1.8653484
+BRED - Bredbury Substation,BRED,53.4145467,-2.1289257
+BRFO - Bramford Substation,BRFO,52.0713149,1.0621494
+BRIM - Brimsdown Substation,BRIM,51.6635045,-0.0249397
+BRIN - Brinsworth Substation,BRIN,53.4014942,-1.3520318
+BRLE - Bramley Substation,BRLE,51.336092,-1.0773424
+BRWA - Bridgwater Substation,BRWA,51.117323,-2.9689897
+BULL - Bulls Lodge,BULL,51.765916,0.537433
+BURW - Burwell Main Substation,BURW,52.2800743,0.3121167
+BUSH - Bushbury Substation,BUSH,52.6362292,-2.1147683
+BUST - Bustleholme Substation,BUST,52.5528971,-1.9640488
+CAMA - Cambridge Arms Substation,CAMA,51.474513,-2.610276
+CAML - Camblesforth Substation,CAML,53.7294667,-1.0008175
+CANT - Canterbury Substation,CANT,51.2923333,1.0941425
+CAPE - Capenhurst Substation,CAPE,53.2687725,-2.9492216
+CARE - Cardiff East Substation,CARE,51.4947919,-3.1454226
+CARR - Carrington Substation 275kv,CARR,53.4362675,-2.4071607
+CARR - Carrington Substation 400kv,CARR,53.4362675,-2.4071607
+CEFC - Cefn Croes Substation,CEFC,52.412793,-3.755093
+CELL - Cellarhead Substation,CELL,53.0408884,-2.0826093
+CHIC - Chickerell Substation,CHIC,50.6246451,-2.4865271
+CHIL - Chilling Substation,CHIL,50.821745,-1.32857
+CHSI - Chessington Substation,CHSI,51.3441149,-0.3227094
+CHTE - Chesterfield Substation,CHTE,53.2245523,-1.3888986
+Unknown - from ETYS,CHUE,51.490805,0.3119
+CILF - Cilfynydd Substation,CILF,51.6359308,-3.3002428
+CITR - City Road Substation,CITR,51.5301876,-0.0957412
+CLEH - Cleve Hill Substation,CLEH,51.33821,0.9403402
+CLTO - Clacton Substation,CLTO,51.824923,1.180027
+CONQ - Connahs Quay Substation,CONQ,53.2299029,-3.0739134
+COSO - Coryton South Substation,COSO,51.512869,0.5067038
+COTT - Cottam Substation,COTT,53.3007371,-0.7812314
+COVE - Coventry Substation,COVE,52.4564638,-1.4637597
+COWL - Cowley Substation,COWL,51.7115242,-1.1905126
+Unknown - from ETYS,COWT,51.4635,-3.4483
+CREB - Creyke Beck Substation,CREB,53.8006736,-0.4152764
+CULJ - Culham Jet Substation,CULJ,51.661185,-1.2283331
+DAIN - Daines Substation,DAIN,53.4257165,-2.3790951
+DAMC - Damhead Creek Substation,DAMC,51.4243519,0.5986603
+DIDC - Didcot Substation,DIDC,51.6255894,-1.2592372
+DINO - Dinorwig Substation,DINO,53.1214799,-4.1000743
+DISS - Diss Substation,DISS,,
+DRAK - Drakelow Substation,DRAK,52.7737995,-1.6530489
+DRAX - Drax Substation,DRAX,53.73623,-0.9924143
+DUNG - Dungeness Substation,DUNG,50.9149978,0.9474265
+EACS - East Anglia Coastal Substation Substation,EACS,,
+EALI - Ealing Substation,EALI,51.501853,-0.2961377
+EASO - Eaton Socon Substation,EASO,52.214647,-0.3016446
+ECLA - East Claydon Substation,ECLA,51.9262506,-0.907189
+EGGB - Eggborough Substation,EGGB,53.7134214,-1.1297638
+ELLA - Elland Substation,ELLA,53.6938903,-1.8237307
+ELST - Elstree Substation,ELST,51.661503,-0.3453766
+ENDE - Enderby Substation,ENDE,52.5976328,-1.2170178
+EXET - Exeter Substation,EXET,50.7675723,-3.4051929
+FAWL - Fawley Substation,FAWL,50.821745,-1.32857
+FECK - Feckenham Substation,FECK,52.2499244,-1.9719288
+Unknown - from ETYS,FENW,53.63945,-1.102475
+FERRC - Ferrybridge C Substation,FERR,53.7193632,-1.2717852
+FERRA - Ferrybridge A Substation,FERR,53.7178811,-1.2828835
+FERRB - Ferrybridge B Substation,FERR,53.7172745,-1.284908
+FFES - Ffestiniog Substation,FFES,52.9807405,-3.9690136
+FIDF - Fiddlers Ferry Substation,FIDF,53.3712945,-2.6891076
+FLEE - Fleet Substation,FLEE,51.2512879,-0.8833587
+FLIB - Flintshire Bridge Converter Station,FLIB,53.238309,-3.04548
+FOUR - Fourstones Substation,FOUR,55.0118266,-2.1641879
+FOUX - Four Crosses Substation,FOUX,,
+FRIN - Friston North Substation,FRIN,,
+FRIS - Friston Substation,FRIS,,
+FROD - Frodsham Substation,FROD,53.3087308,-2.7159515
+GARF - Gran Fach Substation,GARF,,
+Unknown - from ETYS,GART,53.792859,-1.386689
+GRAI - Grain Substation,GRAI,51.4450543,0.7157852
+GRAN - Grange Substation,GRAN,51.5629203,-3.7539296
+GRAW - Grain West Substation,GRAW,,
+GREN - Grendon Substation,GREN,52.2431171,-0.7289407
+GRIW - Grimsby West Substation,GRIW,53.5652673,-0.152361
+Unknown - from ETYS,GRSA,54.566021,-1.123563
+Unknown - from ETYS,GRSB,54.566021,-1.123563
+GRST2A - Greystones A Substation,GRST,54.5752847,-1.1247447
+GRST2B - Greystones B Substation,GRST,54.574139,-1.1292538
+GRTO - Grangetown Substation,GRTO,54.5805217,-1.1487554
+HACK - Hackney Substation,HACK,51.5589262,-0.0443504
+Unknown - from ETYS,HAMB,53.8788231,-2.9878141
+HAMH - Hams Hall Substation,HAMH,52.5309938,-1.7142918
+HARG - Harker Gis Substation,HARG,,
+HARK - Harker Substation,HARK,54.9410775,-2.9615709
+HARM - Hartmoor Substation,HARM,54.7005081,-1.2920325
+HATL - Hartlepool Substation,HATL,54.6356729,-1.1832389
+HAWP - Hawthorn Pit Substation,HAWP,54.8053626,-1.403082
+HEDO - Hedon Substation,HEDO,53.7475082,-0.2343553
+HEND - Hendon Substation,HEND,51.594816,-0.2582889
+HEYS - Heysham Substation,HEYS,54.032282,-2.8911079
+HIBU - Highbury Substation,HIBU,51.5613916,-0.1136958
+HIGM - High Marnham Substation,HIGM,53.2279517,-0.7957371
+HINP - Hinkley Point  Substation,HINP,51.207773,-3.127703
+HUMR - Humber Refinery Substation,HUMR,53.6384121,-0.2384869
+HURS - Hurst Substation,HURS,51.4326858,0.1546016
+HUTT - Hutton Substation,HUTT,54.2975133,-2.6709277
+IMPP - Imperial Park Substation,IMPP,51.5479116,-3.0309116
+INCE - Ince Substation,INCE,53.2777592,-2.8111899
+INDQ - Indian Queens Substation,INDQ,50.3949742,-4.8989176
+IROA - Iron Acton Substation,IROA,51.5698042,-2.4807198
+IRON - Ironbridge Substation,IRON,52.6319814,-2.514286
+Islington,ISLI,51.5494141,-0.1146162
+IVER - Iver Substation,IVER,51.5441265,-0.4988656
+JORD - Jordanthorpe Substation,JORD,53.3294925,-1.4580429
+KEAD - Keadby Substation,KEAD,53.5980619,-0.756208
+KEAR - Kearsley Substation,KEAR,53.5373491,-2.3584675
+KEMS - Kemsley Substation,KEMS,51.368296,0.7414657
+KENG - Kensal Green Substation,KENG,51.5262136,-0.2240412
+KIBY - Kirkby Substation,KIBY,53.4692134,-2.8477432
+KILL - Killingholme Substation,KILL,53.6557283,-0.2572151
+KINO - Kingsnorth Substation,KINO,51.4185692,0.5983932
+KIRK - Kirkstall Substation,KIRK,53.8062487,-1.598063
+KITW - Kitwell Substation,KITW,52.4307804,-2.0138725
+KLYN - Kings Lynn Substation,KLYN,,
+KNAR - Knaresborough Substation,KNAR,54.0312689,-1.4878477
+LACK - Lackenby Substation,LACK,54.5669706,-1.1317392
+LAGA - Langage Substation,LAGA,50.3890502,-4.0127325
+LALE - Laleham Substation,LALE,51.4237679,-0.4706191
+LAND - Landulph Substation,LAND,50.4450473,-4.2426418
+LEGA - Legacy Substation,LEGA,53.028528,-3.0538035
+LEIB - Leighton Buzzard Substation,LEIB,51.9045457,-0.677664
+LEIS - Leiston Substation,LEIS,52.2080432,1.611175
+LEMR - Lea Marston Substation,LEMR,52.5286693,-1.708762
+LEWE - Lewes Substation,LEWE,,
+LHOR - Little Horsted Substation,LHOR,,
+LISD - Lister Drive Substation,LISD,53.4186288,-2.9241619
+LITB - Little Barford Substation,LITB,,
+LITT - Littlebrook Substation 132,LITT,51.4646736,0.2391929
+LODR - Lodge Road (St Johns Wood),LODR,51.5275172,-0.1695604
+Unknown - from ETYS,LOFI,51.398638,0.298755
+LOFR - Lower Frankton Substation,LOFR,,
+LOFT - Lower Frankton Tee Substation,LOFT,,
+LOVE - Lovedean Substation,LOVE,50.9173848,-1.0400291
+MABL - Mablethorpe Substation,MABL,53.326449,0.264754
+MACC - Macclesfield Substation,MACC,53.2687179,-2.1214552
+MAGA - Margam Substation,MAGA,51.5629203,-3.7539296
+MANN - Mannington Substation,MANN,50.8468865,-1.8960426
+MARH - Market Harborough,MARH,52.464684,-0.885458
+MARV - Marston Vale Substation,MARV,,
+MAWO - Marchwood Substation,MAWO,50.8983521,-1.4402315
+Unknown - from ETYS,MEDB,55.02872,-1.792455
+Unknown - from ETYS,MEDW,51.440122,0.690349
+MELK - Melksham Substation,MELK,51.3945276,-2.1507655
+MIDL - Middleton Substation,MIDL,54.025296,-2.881284
+MILH - Mill Hill Substation,MILH,51.6178861,-0.2085863
+Unknown - from ETYS,MILL,52.037163,-0.525849
+MILP - Milton Park Substation,MILP,,
+MITY - Minety Substation,MITY,51.6077549,-2.0025718
+MONF - Monk Fryston Substation,MONF,53.7563338,-1.2668429
+NECH - Nechells Substation,NECH,52.506843,-1.8523677
+NECT - Necton Substation,NECT,52.669754,0.799292
+NEEP - Neepsend Substation,NEEP,53.4066924,-1.4885035
+NEWX - New Cross Substation,NEWX,51.4846402,-0.0595415
+NFLE - Northfleet East Substation,NFLE,51.4287857,0.330308
+NHYD - North Hyde Substation,NHYD,51.4999248,-0.4113956
+NINF - Ninfield Substation,NINF,50.8814915,0.4477538
+NORL - Norton Lees Substation,NORL,53.3485129,-1.4715193
+NORM - Norwich Substation,NORM,52.5740796,1.2719315
+NORT - Norton Substation,NORT,54.5928419,-1.3672756
+NOTR - Norwich Trowse Substation,NOTR,52.6077544,1.3079125
+NURS - Nursling Substation,NURS,50.9425158,-1.4866557
+OBST - Osbaldwick Tee Substation,OBST,,
+OCKH - Ocker Hill Substation,OCKH,52.5419228,-2.0296509
+OFFE - Offerton Substation,OFFE,54.880798,-1.4579908
+OLDB - Oldbury Substation,OLDB,52.4994363,-2.0230398
+OLDS - Oldbury On Severn Substation,OLDS,51.6472606,-2.5719154
+OSBA - Osbaldwick Substation,OSBA,53.9567936,-1.0225329
+OSBT - Osbaldwick Tee Substation,OSBT,,
+OVER - Overton Substation,OVER,,
+PADI - Padiham Substation 400,PADI,53.7953553,-2.321083
+PAFB - Patford Bridge Substation,PAFB,52.2916052,-1.0552264
+PELH - Pelham Substation,PELH,51.9351431,0.1186843
+PEMB - Pembroke Substation,PEMB,51.6820797,-4.9904617
+PENE - Penwortham East/West Substation,PENE,53.7463378,-2.7566
+PENI - Penisarwaun Substation,PENI,,
+Unknown - from ETYS,PENM,53.290161,-3.574858
+PENN - Penn Substation,PENN,52.5569243,-2.2097993
+PENT - Pentir Substation,PENT,53.1875703,-4.1579717
+PENW - Penwortham West Substation,PENW,53.744952,-2.758149
+PERH - Penrhos Substation,PERH,53.2946706,-4.5985732
+PEWO - Penwortham Substation,PEWO,53.7432543,-2.7561478
+PITS - Pitsmoor Substation,PITS,53.4007401,-1.4437
+POAB - Pont Abraham Substation,POAB,,
+POPP - Poppleton Substation,POPP,53.9750619,-1.1316572
+PORH - Port Ham Substation,PORH,51.8791857,-2.2538966
+POWO - Porters Wood  Substation,POWO,,
+PUDM - Pudding Mill Lane Substation,PUDM,51.531387,-0.014417
+PURI - Puriton Tee Substation,PURI,,
+PYLE - Pyle Substation,PYLE,51.5359037,-3.687792
+Unknown - from ETYS,QUER,54.047049,-2.741793
+RAIN - Rainhill Substation,RAIN,53.4212031,-2.7388516
+RASS - Rassau Substation,RASS,51.808329,-3.226677
+RATS - Ratcliffe On Soar Substation,RATS,52.8637671,-1.2559919
+RAYL - Rayleigh Substation,RAYL,51.5940746,0.5664544
+RAYM - Rayleigh Main Substation,RAYM,51.5936524,0.5685032
+REBR - Redbridge Substation,REBR,51.5885437,0.0429943
+RHIG - Rhigos Substation,RHIG,51.7465632,-3.5449697
+Richborough,RICH,51.31155,1.34414
+ROCH - Rochdale Substation,ROCH,53.6219454,-2.2168146
+ROCK - Rocksavage Substation,ROCK,53.3149759,-2.7249682
+ROWD - Rowdown Substation,ROWD,51.3519169,-0.0035626
+RUGE - Rugeley Substation,RUGE,52.7566748,-1.9149739
+RYEH - Rye House Substation,RYEH,51.7590371,0.0085411
+RYHA - Ryhall Substation,RYHA,52.686609,-0.45843
+SAEN - Salt End North Substation,SAEN,53.7419706,-0.2384976
+SAES - Salt End South Substation,SAES,53.7371555,-0.2428977
+SAFO - Sandford,SAFO,51.339276,-2.841273
+SALH - Saltholme Substation,SALH,54.6055098,-1.2377826
+SALL - Salle Substation,SALL,,
+SASA - St Asaph Substation,SASA,53.251551,-3.477292
+SEAB - Seabank Substation,SEAB,51.5371121,-2.6700204
+SELL - Sellindge Substation,SELL,51.1065066,0.976096
+SHBA - South Humberbank Substation,SHBA,53.6013637,-0.1462557
+SHEC - Sheffield City Substation,SHEC,53.3747289,-1.4786245
+SHEE - Sheerness Substation,SHEE,,
+SHRE - Shrewsbury Substation,SHRE,52.709027,-2.6927825
+SHUR - Shurton Substation,SHUR,51.203884,-3.13685
+SING - Singlewell Substation,SING,51.4050233,0.3923595
+SIZE - Sizewell Substation,SIZE,52.2150044,1.616508
+SJOW - St Johns Wood Substation,SJOW,51.5275172,-0.1695604
+SKLG - Skelton Grange Substation,SKLG,53.7769054,-1.4968681
+SMAN - South Manchester Substation,SMAN,53.4202883,-2.2762848
+SPEN - Spennymoor Substation,SPEN,54.7055445,-1.554805
+SPLN - Spalding North Substation,SPLN,52.8057902,-0.1333199
+SSHI - South Shields Substation,SSHI,54.9733935,-1.4494866
+STAH - Stanah Substation,STAH,53.8788231,-2.9878141
+STAL - Stalybridge Substation,STAL,53.493655,-2.0412602
+STAY - Staythorpe Substation,STAY,53.0774926,-0.868978
+STEN - Stella North Substation,STEN,54.9780659,-1.724499
+STES - Stella South Substation,STES,54.974362,-1.7325261
+STEW - Stella West Substation,STEW,54.9776584,-1.7422205
+STOB - Stoke Bardolph Substation,STOB,52.9597713,-1.0506411
+STSB - Stocksbridge Substation,STSB,53.487747,-1.6019806
+STYC - Staythorpe C Substation,STYC,,
+SUND - Sundon Substation,SUND,51.9363321,-0.5030143
+SWAN - Swansea North Substation,SWAN,51.6894183,-3.9567522
+TADT - Tadcaster Tee Substation,TADT,,
+TAUN - Taunton Substation,TAUN,51.0169663,-3.1551264
+TEMP - Templeborough Substation,TEMP,53.4120603,-1.3858386
+THOM - Thorpe Marsh Substation,THOM,53.5755874,-1.0891464
+THTO - Thornton Substation,THTO,53.900346,-0.8221173
+THUR - Thurcroft Substation,THUR,53.4049216,-1.2685425
+TILB - Tilbury Substation,TILB,51.4602998,0.3937219
+TINP - Tinsley Park Substation,TINP,53.4011496,-1.3946229
+TODP - Tod Point Substation,TODP,54.606486,-1.1166973
+TOTT - Tottenham Substation,TOTT,51.6045153,-0.0476486
+TRAW - Trawsfynydd Substation,TRAW,52.9264028,-3.9454574
+TREM - Tremorfa Substation,TREM,51.4817266,-3.130704
+Unknown - from ETYS,TREU,53.11095,-3.120619
+TWIN - Twinstead Substation,TWIN,,
+TWST - Twinstead Substation,TWST,,
+TYNE - Tynemouth Substation,TYNE,55.0236892,-1.5006349
+UPPB - Upper Boat Substation,UPPB,51.5740518,-3.3004189
+USKM - Uskmouth Substation,USKM,51.547106,-2.9785863
+WALH - Walham Substation,WALH,51.8791857,-2.2538966
+WALP - Walpole Substation,WALP,52.7266087,0.198039
+WALX - Waltham Cross Substation,WALX,51.7148498,-0.0111739
+WARL - Warley Substation,WARL,51.5528382,0.3013681
+WASF - Washway Farm Substation,WASF,53.5626018,-2.8195672
+WATS - Watford South Substation,WATS,51.6430281,-0.4041122
+WBOL - West Boldon Substation,WBOL,54.9401114,-1.4704043
+WBUR - West Burton Substation,WBUR,53.3592,-0.8094313
+WEAV - Weaver Junction Substation,WEAV,53.241712,-2.553899
+WEMA - Weston Marsh Substation,WEMA,,
+WHAM - West Ham Substation,WHAM,51.5196012,0.0007427
+WHGA - Whitegate Substation,WHGA,53.5287802,-2.1672396
+WHSO - Whitson Substation,WHSO,51.5648401,-2.9086721
+WIBA - Wincobank Substation,WIBA,53.4158694,-1.4139102
+WIEN - Willenhall Substation,WIEN,52.5778281,-2.049524
+WILE - Willington East Substation,WILE,52.8556191,-1.5526581
+WILL - Willington Substation,WILL,52.8554027,-1.5467397
+WILT - Wilton Substation,WILT,54.5757588,-1.131802
+WIMB - Wimbledon Substation,WIMB,51.4311053,-0.1891664
+WISD - Willesden Substation,WISD,51.5346202,-0.2571631
+WMEL - West Melton Substation,WMEL,53.5014514,-1.3769872
+WTHU - West Thurrock Substation,WTHU,51.4709407,0.2879999
+WWEY - West Weybridge Substation,WWEY,51.3533945,-0.4795813
+WYLF - Wylfa Substation,WYLF,53.4152234,-4.4802499
+WYMO - Wymondley Substation,WYMO,51.927188,-0.2502763
+YAXL - Yaxley Substation,YAXL,,
+YORK - York North Substation,YORK,,
