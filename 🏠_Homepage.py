@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 st.set_page_config(
-    page_title="DC Power Flow App",
+    page_title="RSAAT",
     page_icon="💡",
     layout="wide"
 )
@@ -12,15 +12,22 @@ with st.container():
     with col2:
         image1 = Image.open('National_Grid_Logo_White.png')
         st.image(image1, use_column_width="always")
+        image1p1 = Image.open('RSAAT_Logo.png')
+        st.image(image1p1, use_column_width="always")
+
 
     with col1:
         with st.container():
-            st.title("Welcome to the DC Power Flow App!")
+            st.title("Rapid System Access Analysis Tool :blue[(RSAAT)]")
+
+        st.text('\n')
+        st.text('\n')
+        st.markdown(":blue[RSAAT has been designed to enable you to run DC Power Flow Analysis and review the results to establish the viability of any network background you have defined.]")
+        st.markdown(":blue[This app has been created by the System Access Team and pulls data from the latest **_TEC Register_**, latest **_Interconnector Register_**, **_FES 2022_** and **_ETYS 2022 (Appendix B)_**, and has been set up for **2027**, however further developments are expected in future which will enable users to specify a year.]")
+        st.markdown(":blue[A diagram has been included below illustrating the mix of tools and services that make RSAAT:]")
+
 st.text('\n')
-st.text('\n')
-st.markdown(":blue[This App has been designed to enable you to run DC power flow analysis and review the results to establish the viability of any network background you have defined.]")
-st.markdown(":blue[The App has been created by the System Access Team and pulls data from the latest **_TEC Register_**, latest **_Interconnector Register_**, **_FES 2022_** and **_ETYS 2022 (Appendix B)_**, and has been set up for **2027**, however further developments are expected in future which will enable users to specify a year.]")
-st.markdown(":blue[A diagram has been included below illustrating the mess of tools and services that make the DC Power Flow App run:]")
+
 with st.container():
     col3, col4 = st.columns([3,2])
     with col3:

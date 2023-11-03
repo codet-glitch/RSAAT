@@ -419,7 +419,7 @@ def create_load_gen(demand_scaling, scale_interconnector, scale_wind, scale_pv, 
     pp.create_sgen(net, bus=23, p_mw=ac_route_1, q_mvar=0, name=".B6 transfer - Blyth + Stella West", type="B6 Transfer", scaling=1, in_service=True, max_p_mw=max_p_mw)
     # create sgen for Western Link
     pp.create_sgen(net, bus=124, p_mw=w_link, q_mvar=0, name=".B6 transfer - Western Link", type="B6 Transfer", scaling=1, in_service=True, max_p_mw=max_p_mw)
-
+    #pp.to_excel(net, 'Net_Data.xlsx', include_empty_tables=True, include_results=True)
     return net
 
 def run_imbalance(net):
