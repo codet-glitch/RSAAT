@@ -8,15 +8,15 @@ st.set_page_config(
     layout="wide"
 )
 
+# add title logo
 with st.container():
     image_rsaat1 = Image.open('RSAAT_Logo.png')
     st.image(image_rsaat1, use_column_width="always")
-
 st.text('\n')
-
 st.divider()
 
-#ex-Configure page
+# ex-Configure page
+# import and run functions from main.py up to "filter_tec_ic_to_recognizables()"
 from main import import_data, manipulate_static_data_sheets, create_static_network_elements, \
     filter_tec_ic_to_recognizables, create_load_gen, run_imbalance, delete_load_gen, run_and_critical
 
@@ -37,16 +37,18 @@ st.session_state.tot_values = [int(float(FES_2022_GSP_Dem['Demand_Summer_Peak'].
                                int(float(TEC_Register_With_Bus.loc[TEC_Register_With_Bus['Gen_Type'] == 'Hydro/Pump', ['MW Connected', 'MW Increase / Decrease']].sum(axis=1).clip(lower=0).sum())),
                                int(float(TEC_Register_With_Bus.loc[TEC_Register_With_Bus['Gen_Type'] == 'Other', ['MW Connected', 'MW Increase / Decrease']].sum(axis=1).clip(lower=0).sum()))]
 
-# future dev is to add SGT into column_data and ensure that trafo outages are translated into outage in run_and_critical in main.py
-# column_data = net.line["name"].tolist() + net.trafo["name"].tolist()
+# FUTURE DEV: add SGT into column_data and ensure that trafo outages are translated into outage in run_and_critical
+# in main.py column_data = net.line["name"].tolist() + net.trafo["name"].tolist()
 column_data = net.line["name"].tolist()
-
 st.text('\n')
 
+# add container for setting network background
 with st.container():
     st.title("Network Background")
     st.text('\n')
     col1, col2 = st.columns([3, 2], gap="large")
+
+    # setting the network background in column 1
     with col1:
         with st.container():
             st.subheader(":blue[Set network conditions]")
@@ -59,7 +61,6 @@ with st.container():
                     outage_list
                 )
 
-            # gen_dem_expander = st.expander("Generation and Demand Background")
             expander_gen = st.expander("Set Generation and Demand")
             with expander_gen:
                 st.subheader("Define generation and demand scaling factors")
@@ -127,7 +128,6 @@ with st.container():
                                 st.session_state.user_input_3 * st.session_state.tot_wind) ** 2 + 0.3758 * st.session_state.user_input_3 * st.session_state.tot_wind - 61.84
                         st.session_state.b6_transfer_mw = st.session_state.b6_transfer_mw_0 if st.session_state.b6_transfer_mw_0 < 6001 else 6000
                         st.write("**B6 transfer (N->S) = {}**".format("" if st.session_state.user_input_3 == "" else "{}GW".format(round(float(st.session_state.b6_transfer_mw) / 1000, 2))))
-
                         st.session_state.text_inputs = [st.session_state.user_input_1,
                                                         st.session_state.user_input_2,
                                                         st.session_state.user_input_3,
@@ -171,6 +171,7 @@ with st.container():
             st.text('\n')
         st.markdown("**:orange[Click _Run DC Power Flow Analysis_ in the sidebar to run all contingencies.]**")
 
+    # reflecting the network background in text in column 2
     with col2:
         with st.container():
             st.subheader(":blue[View network conditions]")
@@ -194,7 +195,7 @@ with st.container():
 
         st.text('\n')
 
-
+# add NG logo and Run button into sidebar
 with st.sidebar:
     image1 = Image.open('National_Grid_Logo_White.png')
     st.image(image1, use_column_width="always")
@@ -223,21 +224,19 @@ with st.sidebar:
         else:
             st.markdown(f":red[Imbalance = **{st.session_state.ext_grid_imb} MW**]")
             st.error("**There is an imbalance > 500MW, please review your scaling factors above.**")
-
-
 st.divider()
 
 
 #ex-Results page
-
 with st.container():
-            st.title("View Results")
-
+    st.title("View Results")
 st.text('\n')
 
+# message if PFA has not been run yet
 if 'line_tx_results_pre_int_sorted' not in st.session_state:
     st.markdown("**:orange[Please come back to view results after running DC Power Flow Analysis.]**")
 
+# if PFA has been run then show results
 else:
     tab1, tab2 = st.tabs(["Post-fault results", "Pre-fault results"])
     with tab1:
