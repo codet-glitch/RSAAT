@@ -2,10 +2,10 @@ import pandapower as pp
 import pandas as pd
 import numpy as np
 import streamlit as st
-import requests
-import json
 import re
-from PIL import Image
+# import requests
+# import json
+# from PIL import Image
 
 @st.cache_data
 def import_data():
