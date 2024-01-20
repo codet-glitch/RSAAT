@@ -10,14 +10,14 @@ st.set_page_config(
 
 # add title logo
 with st.container():
-    image_rsaat1 = Image.open('RSAAT_Logo.png')
+    image_rsaat1 = Image.open('images/RSAAT_Logo.png')
     st.image(image_rsaat1, use_column_width="always")
 st.text('\n')
 st.divider()
 
 # ex-Configure page
 # import and run functions from main.py up to "filter_tec_ic_to_recognizables()"
-from main import import_data, manipulate_static_data_sheets, create_static_network_elements, \
+from rsaat_main.main import import_data, manipulate_static_data_sheets, create_static_network_elements, \
     filter_tec_ic_to_recognizables, create_load_gen, run_imbalance, delete_load_gen, run_and_critical
 
 TEC_Register, IC_Register, FES_2022_GSP_Dem, NGET_Circuits, NGET_Circuit_Changes, NGET_Subs, NGET_Tx, NGET_Tx_Changes, Sub_Coordinates = import_data()
@@ -197,7 +197,7 @@ with st.container():
 
 # add NG logo and Run button into sidebar
 with st.sidebar:
-    image1 = Image.open('National_Grid_Logo_White.png')
+    image1 = Image.open('images/National_Grid_Logo_White.png')
     st.image(image1, use_column_width="always")
     st.text('\n')
     if st.button("⚡  **Run DC Power Flow Analysis**  ⚡"):
