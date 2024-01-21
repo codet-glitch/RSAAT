@@ -6,6 +6,7 @@ from datetime import datetime
 import openpyxl
 import requests
 
+
 class TransformData:
     def __init__(self, api_or_local='local'):
         self.gsp_demand = None
@@ -49,6 +50,10 @@ class TransformData:
         ofto_circuit_changes = (pd.read_excel(etys_file_name, sheet_name="B-2-2d", skiprows=[0])).ffill(axis=0)
         ofto_tx = (pd.read_excel(etys_file_name, sheet_name="B-3-1d", skiprows=[0])).ffill(axis=0)
         ofto_tx_changes = (pd.read_excel(etys_file_name, sheet_name="B-3-2d", skiprows=[0])).ffill(axis=0)
+
+        # TO BE ADDED EVENTUALLY #
+        intra_hvdc = None
+        intra_hvdc_changes = None
 
         network_df_dict_comp = {
             'shet_circuits': shet_circuits,
@@ -167,10 +172,10 @@ class TransformData:
                 self.tec_register = tec_register
                 self.ic_register = ic_register
                 success = True
-            
+
             else:
                 sys.exit()
-            
+
             gsp_demand = pd.read_csv('../data/ETYS23_Appendix G_Dem.csv')
             self.gsp_demand = gsp_demand
 
@@ -198,8 +203,10 @@ class TransformData:
         bus_ids_df = pd.merge(bus_ids_df, all_subs, how='left', left_on=bus_ids_df['Name'].str[:4],
                               right_on=all_subs['Site Code'].str[:4])
         bus_ids_df.drop(columns=['key_0'], inplace=True)
-        bus_ids_df['Full Name'] = bus_ids_df['Site Name'].astype(str) + ' ' + bus_ids_df['Voltage (kV)'].astype(str) + 'kV'
+        bus_ids_df['Full Name'] = bus_ids_df['Site Name'].astype(str) + ' ' + bus_ids_df['Voltage (kV)'].astype(
+            str) + 'kV'
         bus_ids_df.sort_values(by=['Site Name'], inplace=True)
+        bus_ids_df.reset_index(inplace=True, drop=True)
         bus_ids_df.reset_index(inplace=True)
 
         self.bus_ids_df = bus_ids_df
@@ -211,8 +218,12 @@ class TransformData:
     def transform_network_data(self):
         # fix column headers for consistency across circuits and transformers
         for df_name, df in self.network_df_dict_comp.items():
+            df.columns = df.columns.str.strip()
             df.rename(columns={'Node1': 'Node 1',
                                'Node2': 'Node 2',
+                               'OHL Length(km)': 'OHL Length (km)',
+                               'Cable Length(km)': 'Cable Length (km)',
+                               'Rating (MVA)': 'Winter Rating (MVA)',
                                'R (% on 100 MVA)': 'R (% on 100MVA)',
                                'X (% on 100 MVA)': 'X (% on 100MVA)',
                                'B (% on 100 MVA)': 'B (% on 100MVA)'}, inplace=True)
@@ -224,14 +235,23 @@ class TransformData:
         all_comp = pd.concat(self.network_df_dict_comp.values(), ignore_index=True)
 
         # clean data to remove rogue types
-        # columns_to_cleanse = ['R (% on 100MVA)', 'X (% on 100MVA)', 'B (% on 100MVA)'] - not added due to error
         all_comp = all_comp[pd.to_numeric(all_comp['X (% on 100MVA)'], errors='coerce').notnull()]
 
-        all_circuits = all_comp[all_comp['Dataframe'].isin(['nget_circuits', 'shet_circuits', 'spt_circuits', 'ofto_circuits'])]
-        all_circuits_changes = all_comp[all_comp['Dataframe'].isin(['nget_circuit_changes', 'shet_circuit_changes', 'spt_circuit_changes', 'ofto_circuit_changes'])]
-        all_trafo = all_comp[all_comp['Dataframe'].isin(['nget_tx', 'shet_tx', 'spt_tx', 'ofto_tx'])]
-        all_trafo_changes = all_comp[all_comp['Dataframe'].isin(['nget_tx_changes', 'shet_tx_changes', 'spt_tx_changes', 'ofto_tx_changes'])]
-        print('All components list has :' + str((all_comp.shape[0])) + ' components.\n Individual lists have ' + str((all_circuits.shape[0]) + (all_circuits_changes.shape[0]) + (all_trafo.shape[0]) + (all_trafo_changes.shape[0])) + ' components')
+        all_circuits = all_comp[
+            all_comp['Dataframe'].isin(['nget_circuits', 'shet_circuits', 'spt_circuits', 'ofto_circuits'])].dropna(
+            how='all', axis=1)
+        all_circuits_changes = all_comp[all_comp['Dataframe'].isin(
+            ['nget_circuit_changes', 'shet_circuit_changes', 'spt_circuit_changes', 'ofto_circuit_changes'])].dropna(
+            how='all', axis=1)
+        all_trafo = all_comp[all_comp['Dataframe'].isin(['nget_tx', 'shet_tx', 'spt_tx', 'ofto_tx'])].dropna(how='all',
+                                                                                                             axis=1)
+        all_trafo_changes = all_comp[all_comp['Dataframe'].isin(
+            ['nget_tx_changes', 'shet_tx_changes', 'spt_tx_changes', 'ofto_tx_changes'])].dropna(how='all', axis=1)
+        print('All components list has :' + str((all_comp.shape[0])) + ' components.\n Individual lists have ' + str(
+            (all_circuits.shape[0]) + (all_circuits_changes.shape[0]) + (all_trafo.shape[0]) + (
+            all_trafo_changes.shape[0])) + ' components')
+
+        # ADD bus_name bus_id voltage columns
 
         self.all_circuits = all_circuits
         self.all_circuits_changes = all_circuits_changes
@@ -243,28 +263,34 @@ class TransformData:
         self.tec_register = self.tec_register[~self.tec_register["Project Name"].isin(
             ["Drax (Coal)", "Dungeness B", "Hartlepool", "Hinkley Point B", "Uskmouth", "Sutton Bridge",
              "Ratcliffe on Soar", "West Burton A"])]
-        self.tec_register["Generator Name"] = self.tec_register["Project Name"] + " (" + self.tec_register["Customer Name"] + ")"
-        self.tec_register['MW Effective From'] = pd.to_datetime(self.tec_register['MW Effective From'], dayfirst=True,
-                                                           errors='coerce')
+        self.tec_register['Generator Name'] = self.tec_register.apply(
+            lambda row: str(row['Project Name']) + ' (' + str(row['Customer Name']) + ')' if pd.isna(
+                row['Stage']) else str(row['Project Name']) + ' *Stage: ' + str(row['Stage']) + '*' + ' (' + str(
+                row['Customer Name']) + ')', axis=1)
+        self.tec_register['MW Effective From'] = pd.to_datetime(self.tec_register['MW Effective From'], format='%d/%m/%Y', errors='coerce')
         self.tec_register['MW Effective From'] = self.tec_register.apply(
             lambda row: datetime.today() if pd.isna(row['MW Effective From']) and row['Project Status'] == 'Built' else
             row[
                 'MW Effective From'], axis=1)
         self.tec_register.dropna(subset=['MW Effective From'], inplace=True)
-        self.tec_register['MW Effective From'] = self.tec_register['MW Effective From'].dt.strftime('%d-%m-%Y')
+        self.tec_register['MW Effective From'] = self.tec_register['MW Effective From'].dt.date
+        self.tec_register['MW Effective'] = self.tec_register.apply(
+            lambda row: row['Cumulative Total Capacity (MW)'] if pd.isna(row['Stage']) or row['Stage'] == 1 else row[
+                'MW Increase / Decrease'], axis=1)
         self.tec_register.reset_index(drop=True, inplace=True)
 
         # clean IC Register
-        self.ic_register["Generator Name"] = self.ic_register["Project Name"] + " (" + self.ic_register["Connection Site"] + ")"
-        self.ic_register = self.ic_register[self.ic_register["HOST TO"] == "NGET"]
-        self.ic_register['MW Effective From'] = pd.to_datetime(self.ic_register['MW Effective From'], dayfirst=True,
-                                                          errors='coerce')
+        self.ic_register['Generator Name'] = str(self.ic_register['Project Name']) + ' (' + str(
+            self.ic_register['Connection Site']) + ')'
+        self.ic_register['MW Effective From'] = pd.to_datetime(self.ic_register['MW Effective From'], format='%d/%m/%Y',
+                                                               errors='coerce')
         self.ic_register['MW Effective From'] = self.ic_register.apply(
             lambda row: datetime.today() if pd.isna(row['MW Effective From']) and row['Project Status'] == 'Built' else
             row[
                 'MW Effective From'], axis=1)
         self.ic_register.dropna(subset=['MW Effective From'], inplace=True)
-        self.ic_register['MW Effective From'] = self.ic_register['MW Effective From'].dt.strftime('%d-%m-%Y')
+        self.ic_register['MW Effective From'] = self.ic_register['MW Effective From'].dt.date
+        # self.ic_register['MW Effective From'] = self.ic_register['MW Effective From'].dt.strftime('%d-%m-%Y')
         self.ic_register.reset_index(drop=True, inplace=True)
 
         # use loop statement to pick out known substations from Connection Site column using bus_ids_df and populate bus_name and bus_id for TEC and Interconnector units.
@@ -280,7 +306,8 @@ class TransformData:
                     if not (row2['Site Name'] == "" or pd.isnull(row2['Site Name'])):
                         if (bus_site_name.upper() in conn_site.upper()) or (
                                 bus_site_name.replace(" MAIN", "").replace("'", "").replace(" ",
-                                                                                            "").upper() in conn_site.replace(" ", "").replace("'", "").upper()):
+                                                                                            "").upper() in conn_site.replace(
+                            " ", "").replace("'", "").upper()):
                             if tuple((bus_site_name.upper(), bus_id)) not in subs_names_id:
                                 subs_names_id.append(tuple((bus_site_name.upper(), bus_id)))
                     if len(subs_names_id) > 1:
@@ -300,7 +327,6 @@ class TransformData:
                 self.tec_register.at[index1, 'bus_name'] = x
                 self.tec_register.at[index1, 'bus_id'] = list(bus_id_unpacked)
 
-
         # Interconnector Register
         self.ic_register[['bus_name', 'bus_id']] = ""
         for index1, row1 in self.ic_register.iterrows():
@@ -313,7 +339,8 @@ class TransformData:
                     if not (row2['Site Name'] == "" or pd.isnull(row2['Site Name'])):
                         if (bus_site_name.upper() in conn_site.upper()) or (
                                 bus_site_name.replace(" MAIN", "").replace("'", "").replace(" ",
-                                                                                            "").upper() in conn_site.replace(" ", "").replace("'", "").upper()):
+                                                                                            "").upper() in conn_site.replace(
+                            " ", "").replace("'", "").upper()):
                             if tuple((bus_site_name.upper(), bus_id)) not in subs_names_id:
                                 subs_names_id.append(tuple((bus_site_name.upper(), bus_id)))
                     if len(subs_names_id) > 1:
@@ -354,9 +381,6 @@ class TransformData:
                 self.tec_register.at[index, 'Gen_Type'] = "Other"
         self.ic_register['Gen_Type'] = "Interconnector"
 
-        # self.tec_register = tec_register
-        # self.ic_register = ic_register
-
     def transform_demand_data(self):
         # remove non-value rows by filtering the '24/25' column.
         # add substation full names and bus id as separate columns into the GSP demand table.
@@ -377,27 +401,24 @@ class TransformData:
                     self.gsp_demand.at[index1, 'bus_id'] = index2
                     break
 
-        # self.gsp_demand = gsp_demand
-
     def key_stats(self):
         delete = '../delete/'
         self.gsp_demand.to_csv(delete + 'gsp_demand.csv')
         self.ic_register.to_csv(delete + 'ic_register.csv')
         self.tec_register.to_csv(delete + 'tec_register.csv')
-        self.all_trafo_changes.to_csv(delete+'all_trafo_changes.csv')
-        self.all_trafo.to_csv(delete+'all_trafo.csv')
-        self.all_circuits_changes.to_csv(delete+'all_circuits_changes.csv')
-        self.all_circuits.to_csv(delete+'all_circuits.csv')
-        self.bus_ids_df.to_csv(delete+'bus_ids_df.csv')
+        self.all_trafo_changes.to_csv(delete + 'all_trafo_changes.csv')
+        self.all_trafo.to_csv(delete + 'all_trafo.csv')
+        self.all_circuits_changes.to_csv(delete + 'all_circuits_changes.csv')
+        self.all_circuits.to_csv(delete + 'all_circuits.csv')
+        self.bus_ids_df.to_csv(delete + 'bus_ids_df.csv')
+
 
 # if __name__ == "__main__":
-call = TransformData()
-call.import_network_data()
-call.import_tec_ic_demand_data()
-call.create_bus_id()
-call.transform_network_data()
-call.transform_tec_ic_data()
-call.transform_demand_data()
-call.key_stats()
-
-# NEED TO ADD sheet B-5-1 FOR INTRA GB HVDC LINKS
+# call = TransformData()
+# call.import_network_data()
+# call.import_tec_ic_demand_data()
+# call.create_bus_id()
+# call.transform_network_data()
+# call.transform_tec_ic_data()
+# call.transform_demand_data()
+# call.key_stats()
