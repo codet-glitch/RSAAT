@@ -108,19 +108,34 @@ class DefineData(network_data_test.TransformData):
     def create_pandapower_system(self):
         net = pp.create_empty_network()
 
+        # nice to have - add zone information
         for index, row in self.bus_ids_df.iterrows():
-            voltage_level = row["Voltage (kV)"]
-            bus_name = row["Name"]
-            index = row["index"]
-            # geodata = row["geodata"]
-            pp.create_bus(net, vn_kv=voltage_level, name=bus_name, index=index, type="b", zone=None,
-                          in_service=True, max_vm_pu=1.05, min_vm_pu=0.95)
+            voltage_level = row['Voltage (kV)']
+            bus_name = row['Name']
+            index = row['index']
+            type_of_bus = 'b' # “n” - node, “b” - busbar, “m” - muff
+            in_service = True
+            min_bus_v = 0.95
+            max_bus_v = 1.05
+            geodata = None
+            zone = None
+            pp.create_bus(net, vn_kv=voltage_level, name=bus_name, index=index, geodata=geodata, type=type_of_bus, zone=zone,
+                          in_service=in_service, min_vm_pu=min_bus_v, max_vm_pu=max_bus_v)
 
         for index, row in self.all_circuits_year_filtered.iterrows():
-            pass
-            pp.create_line_from_parameters(net, from_bus=, to_bus=, length_km=,
-                                           r_ohm_per_km=, x_ohm_per_km=,
-                                           c_nf_per_km=, max_i_ka=, name=)
+            from_bus = row['Node 1 bus_id']
+            to_bus = row['Node 2 bus_id']
+            length_km = row['OHL Length (km)'] + row['Cable Length (km)']
+            base_voltage = row['Voltage (kV)'] # to be added
+            base_impedance = (base_voltage ** 2) / 100.0
+            r_ohm_per_km = row['R (% on 100MVA)'] * base_impedance / (100 * length_km)
+            x_ohm_per_km = row['X (% on 100 MVA)'] * base_impedance / (100 * length_km)
+            c_nf_per_km = row['']
+            max_i_ka = row['']
+            name = f"{row['Node 1']}-{row['Node 2']}"
+            pp.create_line_from_parameters(net, from_bus=from_bus, to_bus=to_bus, length_km=length_km,
+                                           r_ohm_per_km=r_ohm_per_km, x_ohm_per_km=x_ohm_per_km,
+                                           c_nf_per_km=c_nf_per_km, max_i_ka=max_i_ka, name=name)
 
         for index, row in self.all_circuits_year_filtered.iterrows():
             pass
@@ -170,12 +185,12 @@ class DefineData(network_data_test.TransformData):
         self.gsp_demand_filtered.to_csv(delete + 'gsp_demand_filtered.csv')
 
 
-# if __name__ == "__main__":
-call = DefineData(2028)
-call.filter_network_data()
-call.filter_tec_ic_data()
-call.filter_demand_data()
-call.create_pandapower_system()
-call.get_imbalance()
-call.run_analysis()
-call.key_stats()
+if __name__ == "__main__":
+    call = DefineData(2028)
+    call.filter_network_data()
+    call.filter_tec_ic_data()
+    call.filter_demand_data()
+    call.create_pandapower_system()
+    call.get_imbalance()
+    call.run_analysis()
+    call.key_stats()

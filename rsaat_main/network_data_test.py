@@ -67,11 +67,11 @@ class TransformData:
             'nget_circuits': nget_circuits,
             'nget_circuit_changes': nget_circuit_changes,
             'nget_tx': nget_tx,
-            'nget_tx_changes': nget_tx_changes,
-            'ofto_circuits': ofto_circuits,
-            'ofto_circuit_changes': ofto_circuit_changes,
-            'ofto_tx': ofto_tx,
-            'ofto_tx_changes': ofto_tx_changes
+            'nget_tx_changes': nget_tx_changes
+            # 'ofto_circuits': ofto_circuits,
+            # 'ofto_circuit_changes': ofto_circuit_changes,
+            # 'ofto_tx': ofto_tx,
+            # 'ofto_tx_changes': ofto_tx_changes
         }
 
         network_df_dict_subs = {
@@ -185,37 +185,6 @@ class TransformData:
             sys.exit()
 
     def create_bus_id(self):
-        unique_values_node1 = set()
-        unique_values_node2 = set()
-        for df_name, df in self.network_df_dict_comp.items():
-            unique_values_node1.update((df.iloc[:, 0]).unique())
-            unique_values_node2.update((df.iloc[:, 0]).unique())
-        bus_ids = list(unique_values_node1.union(unique_values_node2))
-
-        for df_name, df in self.network_df_dict_subs.items():
-            df['Region'] = str(df_name[:4])
-
-        all_subs = pd.concat(self.network_df_dict_subs.values(), ignore_index=True)
-
-        # convert bus ids list into dataframe and add full name column and sort subs in alphabetical order.
-        bus_ids_data = {"Name": bus_ids}
-        bus_ids_df = pd.DataFrame(bus_ids_data)
-        bus_ids_df = pd.merge(bus_ids_df, all_subs, how='left', left_on=bus_ids_df['Name'].str[:4],
-                              right_on=all_subs['Site Code'].str[:4])
-        bus_ids_df.drop(columns=['key_0'], inplace=True)
-        bus_ids_df['Full Name'] = bus_ids_df['Site Name'].astype(str) + ' ' + bus_ids_df['Voltage (kV)'].astype(
-            str) + 'kV'
-        bus_ids_df.sort_values(by=['Site Name'], inplace=True)
-        bus_ids_df.reset_index(inplace=True, drop=True)
-        bus_ids_df.reset_index(inplace=True)
-
-        self.bus_ids_df = bus_ids_df
-
-        # ADD CODE TO CREATE a SUBSTATION NAME COLUMN, AS SITE NAME HAS THINGS LIKE '132kV' ON SOME. IF SUBSTATION NAME NOT AVAILABLE THEN USE THE "NAME" COLUMN.
-
-        # """add coordinates to bus_ids dataframe - decided not required and will continue to be handled by Homepage.py"""
-
-    def transform_network_data(self):
         # fix column headers for consistency across circuits and transformers
         for df_name, df in self.network_df_dict_comp.items():
             df.columns = df.columns.str.strip()
@@ -228,6 +197,51 @@ class TransformData:
                                'X (% on 100 MVA)': 'X (% on 100MVA)',
                                'B (% on 100 MVA)': 'B (% on 100MVA)'}, inplace=True)
 
+        unique_values_node1 = set()
+        unique_values_node2 = set()
+        for df_name, df in self.network_df_dict_comp.items():
+            unique_values_node1.update((df.loc[:, 'Node 1']).unique())
+            unique_values_node2.update((df.loc[:, 'Node 2']).unique())
+        bus_ids = list(unique_values_node1.union(unique_values_node2))
+
+        for df_name, df in self.network_df_dict_subs.items():
+            df['Region'] = str(df_name[:4])
+
+        all_subs = pd.concat(self.network_df_dict_subs.values(), ignore_index=True)
+
+        # convert bus ids list into dataframe and add full name column and sort subs in alphabetical order.
+        bus_ids_data = {'Name': bus_ids}
+        bus_ids_df = pd.DataFrame(bus_ids_data)
+
+        dict_voltage = {'1': 132, '2': 275, '3': 33, '4': 400, '5': 11, '6': 66, '7': 25, '8': 22}
+
+        bus_ids_df['voltage'] = bus_ids_df['Name'].str[4].map(dict_voltage)
+
+        # merging on Name and Voltage to avoid merge resulting in duplicates. Only Monk Fryston & Monk Fryston New are_
+        # the duplicates - can be fixed by changing MONF code to like MONN for one of the subs, however this will affect_
+        # how circuits are mapped so that needs to be corrected too.
+        bus_ids_df = pd.merge(bus_ids_df, all_subs, how='left',
+                              left_on=bus_ids_df['Name'].str[:4] + bus_ids_df['voltage'].astype(str),
+                              right_on=all_subs['Site Code'].str[:4] + all_subs['Voltage (kV)'].astype(str))
+
+        bus_ids_df['Site Name'] = bus_ids_df['Site Name'].str.replace(r'\b\S*\d+\S*\b', "", regex=True).str.strip()
+        bus_ids_df = bus_ids_df[pd.to_numeric(bus_ids_df['Voltage (kV)'], errors='coerce').notnull()]
+        try:
+            bus_ids_df.drop(columns=['key_0'], inplace=True)
+        except:
+            pass
+        bus_ids_df['Full Name'] = bus_ids_df['Site Name'].astype(str) + ' ' + bus_ids_df['Voltage (kV)'].astype(
+            str) + 'kV'
+        bus_ids_df.sort_values(by=['Site Name'], inplace=True)
+        bus_ids_df.drop_duplicates(subset='Name', keep='first', inplace=True)
+        bus_ids_df.reset_index(inplace=True, drop=True)
+        bus_ids_df.reset_index(inplace=True)
+
+        self.bus_ids_df = bus_ids_df
+
+        # """add coordinates to bus_ids dataframe - decided not required and will continue to be handled by Homepage.py"""
+
+    def transform_network_data(self):
         for df_name, df in self.network_df_dict_comp.items():
             df['Dataframe'] = str(df_name)
 
@@ -236,22 +250,31 @@ class TransformData:
 
         # clean data to remove rogue types
         all_comp = all_comp[pd.to_numeric(all_comp['X (% on 100MVA)'], errors='coerce').notnull()]
+        all_comp = all_comp[
+            all_comp['Node 1'].isin(self.bus_ids_df['Name']) & all_comp['Node 2'].isin(self.bus_ids_df['Name'])]
+        all_comp.sort_values(by=['Node 1']).reset_index(inplace=True, drop=True)
+
+        # create a mapping from Node name to index and map indices to Node 1 and Node 2 in bus_ids_df; this will add_
+        # bus_id into the all components (i.e. circuit, trafo) lists.
+        node_name_to_index = pd.Series(self.bus_ids_df.index, index=self.bus_ids_df['Name'])
+        node_voltage_to_voltage = pd.Series(self.bus_ids_df['Voltage (kV)'], index=self.bus_ids_df['index'])
+        all_comp['Node 1 bus_id'] = all_comp['Node 1'].map(node_name_to_index)
+        all_comp['Node 2 bus_id'] = all_comp['Node 2'].map(node_name_to_index)
+        all_comp['Voltage (kV) Node 1'] = all_comp['Node 1 bus_id'].map(node_voltage_to_voltage)
+        all_comp['Voltage (kV) Node 2'] = all_comp['Node 2 bus_id'].map(node_voltage_to_voltage)
 
         all_circuits = all_comp[
             all_comp['Dataframe'].isin(['nget_circuits', 'shet_circuits', 'spt_circuits', 'ofto_circuits'])].dropna(
-            how='all', axis=1)
+            how='all', axis=1).reset_index(drop=True)
         all_circuits_changes = all_comp[all_comp['Dataframe'].isin(
             ['nget_circuit_changes', 'shet_circuit_changes', 'spt_circuit_changes', 'ofto_circuit_changes'])].dropna(
-            how='all', axis=1)
-        all_trafo = all_comp[all_comp['Dataframe'].isin(['nget_tx', 'shet_tx', 'spt_tx', 'ofto_tx'])].dropna(how='all',
-                                                                                                             axis=1)
+            how='all', axis=1).reset_index(drop=True)
+        all_trafo = all_comp[all_comp['Dataframe'].isin(['nget_tx', 'shet_tx', 'spt_tx', 'ofto_tx'])].dropna(how='all', axis=1).reset_index(drop=True)
         all_trafo_changes = all_comp[all_comp['Dataframe'].isin(
-            ['nget_tx_changes', 'shet_tx_changes', 'spt_tx_changes', 'ofto_tx_changes'])].dropna(how='all', axis=1)
-        print('All components list has :' + str((all_comp.shape[0])) + ' components.\n Individual lists have ' + str(
-            (all_circuits.shape[0]) + (all_circuits_changes.shape[0]) + (all_trafo.shape[0]) + (
-            all_trafo_changes.shape[0])) + ' components')
-
-        # ADD bus_name bus_id voltage columns
+            ['nget_tx_changes', 'shet_tx_changes', 'spt_tx_changes', 'ofto_tx_changes'])].dropna(how='all', axis=1).reset_index(drop=True)
+        # print('All components list has :' + str((all_comp.shape[0])) + ' components.\n Individual lists have ' + str(
+        #     (all_circuits.shape[0]) + (all_circuits_changes.shape[0]) + (all_trafo.shape[0]) + (
+        #     all_trafo_changes.shape[0])) + ' components')
 
         self.all_circuits = all_circuits
         self.all_circuits_changes = all_circuits_changes
@@ -267,7 +290,8 @@ class TransformData:
             lambda row: str(row['Project Name']) + ' (' + str(row['Customer Name']) + ')' if pd.isna(
                 row['Stage']) else str(row['Project Name']) + ' *Stage: ' + str(row['Stage']) + '*' + ' (' + str(
                 row['Customer Name']) + ')', axis=1)
-        self.tec_register['MW Effective From'] = pd.to_datetime(self.tec_register['MW Effective From'], format='%d/%m/%Y', errors='coerce')
+        self.tec_register['MW Effective From'] = pd.to_datetime(self.tec_register['MW Effective From'],
+                                                                format='%d/%m/%Y', errors='coerce')
         self.tec_register['MW Effective From'] = self.tec_register.apply(
             lambda row: datetime.today() if pd.isna(row['MW Effective From']) and row['Project Status'] == 'Built' else
             row[
@@ -413,12 +437,12 @@ class TransformData:
         self.bus_ids_df.to_csv(delete + 'bus_ids_df.csv')
 
 
-# if __name__ == "__main__":
-# call = TransformData()
-# call.import_network_data()
-# call.import_tec_ic_demand_data()
-# call.create_bus_id()
-# call.transform_network_data()
-# call.transform_tec_ic_data()
-# call.transform_demand_data()
-# call.key_stats()
+if __name__ == "__main__":
+    call = TransformData()
+    call.import_network_data()
+    call.import_tec_ic_demand_data()
+    call.create_bus_id()
+    call.transform_network_data()
+    call.transform_tec_ic_data()
+    call.transform_demand_data()
+    call.key_stats()
