@@ -1,5 +1,5 @@
 ,Unnamed: 0,_id,Customer Name,Project Name,Connection Site,MW Import - Current,MW Export - Current,MW Import - Increase / Decrease,MW Export - Increase / Decrease,MW Import - Total,MW Export - Total,MW Effective From,Project Status,HOST TO,Generator Name,bus_name,bus_id,Gen_Type
-0,2,3,MOYLE INTERCONNECTOR LIMITED*,Auchencrosh (interconnector CCT),Auchencrosh 275kV Substation,270,500,205,0,475,500,2024-01-22,Built,SPT,"0                                 Aminth
+0,2,3,MOYLE INTERCONNECTOR LIMITED*,Auchencrosh (interconnector CCT),Auchencrosh 275kV Substation,270,500,205,0,475,500,2024-01-28,Built,SPT,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -56,7 +56,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",,,Interconnector
-1,3,4,MOYLE INTERCONNECTOR LIMITED*,Auchencrosh (interconnector CCT),Auchencrosh 275kV Substation,475,500,25,0,500,500,2024-01-22,Built,SPT,"0                                 Aminth
+1,3,4,MOYLE INTERCONNECTOR LIMITED*,Auchencrosh (interconnector CCT),Auchencrosh 275kV Substation,475,500,25,0,500,500,2024-01-28,Built,SPT,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -113,7 +113,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",,,Interconnector
-2,4,5,BRITNED DEVELOPMENT LIMITED,Britned,Grain 400kV Substation,1200,1200,0,0,1200,1200,2024-01-22,Built,NGET,"0                                 Aminth
+2,4,5,BRITNED DEVELOPMENT LIMITED,Britned,Grain 400kV Substation,1200,1200,0,0,1200,1200,2024-01-28,Built,NGET,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -170,7 +170,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",GRAIN,"[259, 260]",Interconnector
-3,7,8,EIRGRID INTERCONNECTOR DESIGNATED ACTIVITY COMPANY,East West Interconnector,Deeside 400kV Substation,505,585,0,0,505,585,2024-01-22,Built,NGET,"0                                 Aminth
+3,7,8,EIRGRID INTERCONNECTOR DESIGNATED ACTIVITY COMPANY,East West Interconnector,Deeside 400kV Substation,505,585,0,0,505,585,2024-01-28,Built,NGET,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -227,7 +227,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",,,Interconnector
-4,8,9,ELECLINK LIMITED,ElecLink,Sellindge 400kV Substation,1000,1050,0,0,1000,1050,2024-01-22,Built,NGET,"0                                 Aminth
+4,8,9,ELECLINK LIMITED,ElecLink,Sellindge 400kV Substation,1000,1050,0,0,1000,1050,2024-01-28,Built,NGET,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -284,7 +284,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",SELLINDGE,"[611, 612, 613, 614, 615, 616, 617, 618, 619]",Interconnector
-5,13,14,NATIONAL GRID INTERCONNECTORS LIMITED,IFA Interconnector,Sellindge 400kV Substation,2000,2000,0,0,2000,2000,2024-01-22,Built,NGET,"0                                 Aminth
+5,13,14,NATIONAL GRID INTERCONNECTORS LIMITED,IFA Interconnector,Sellindge 400kV Substation,2000,2000,0,0,2000,2000,2024-01-28,Built,NGET,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -341,7 +341,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",SELLINDGE,"[611, 612, 613, 614, 615, 616, 617, 618, 619]",Interconnector
-6,14,15,NATIONAL GRID IFA 2 LIMITED,IFA2 Interconnector,Chilling 400kV Substation,1100,1150,0,0,1100,1150,2024-01-22,Built,NGET,"0                                 Aminth
+6,14,15,NATIONAL GRID IFA 2 LIMITED,IFA2 Interconnector,Chilling 400kV Substation,1100,1150,0,0,1100,1150,2024-01-28,Built,NGET,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -398,7 +398,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",CHILLING,[145],Interconnector
-7,15,16,MANX UTILITIES,Isle of Man Interconnector,Bispham 132kV Substation,74,74,0,0,74,74,2024-01-22,Built,NGET,"0                                 Aminth
+7,15,16,MANX UTILITIES,Isle of Man Interconnector,Bispham 132kV Substation,74,74,0,0,74,74,2024-01-28,Built,NGET,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -455,7 +455,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",,,Interconnector
-8,18,19,NATIONAL GRID NORTH SEA LINK LIMITED,NS Link,Blyth GSP,1400,1480,0,0,1400,1480,2024-01-22,Built,NGET,"0                                 Aminth
+8,18,19,NATIONAL GRID NORTH SEA LINK LIMITED,NS Link,Blyth GSP,1400,1480,0,0,1400,1480,2024-01-28,Built,NGET,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
@@ -512,7 +512,7 @@ Name: Project Name, dtype: object (0                                            
 26                    Creyke Beck 400kV Substation
 27                     Bicker Fen 400kV Substation
 Name: Connection Site, dtype: object)",BLYTH,"[48, 49, 50, 51, 52, 53, 54]",Interconnector
-9,20,21,NEMO LINK LIMITED,Nemo Link,Richborough 400kV Substation,1020,1046,0,0,1020,1046,2024-01-22,Built,NGET,"0                                 Aminth
+9,20,21,NEMO LINK LIMITED,Nemo Link,Richborough 400kV Substation,1020,1046,0,0,1020,1046,2024-01-28,Built,NGET,"0                                 Aminth
 1                  Aquind Interconnector
 2       Auchencrosh (interconnector CCT)
 3       Auchencrosh (interconnector CCT)
