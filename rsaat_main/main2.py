@@ -126,26 +126,41 @@ class DefineData(network_data_test.TransformData):
                           zone=zone,
                           in_service=in_service, min_vm_pu=min_bus_v, max_vm_pu=max_bus_v)
 
-        for index, row in self.all_circuits_year_filtered[(self.all_circuits_year_filtered['OHL Length (km)'] + self.all_circuits_year_filtered['Cable Length (km)']) != 0].iterrows():
+        for index, row in self.all_circuits_year_filtered.iterrows():
+            # self.all_circuits_year_filtered[(self.all_circuits_year_filtered['OHL Length (km)'] + self.all_circuits_year_filtered['Cable Length (km)']) != 0]
+            name = f"{row['Node 1']}-{row['Node 2']}"
             from_bus = row['Node 1 bus_id']
             to_bus = row['Node 2 bus_id']
-            length_km = row['OHL Length (km)'] + row['Cable Length (km)']
+            length_km = row['OHL Length (km)'] + row['Cable Length (km)'] if row['OHL Length (km)'] + row['Cable Length (km)'] > 0 else 0.0001
             base_voltage = row['Voltage (kV) Node 1']
             base_impedance = (base_voltage ** 2) / 100.0
-            r_ohm_per_km = length_km and (row['R (% on 100MVA)'] * base_impedance / (
-                        100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
-            x_ohm_per_km = length_km and (row['X (% on 100MVA)'] * base_impedance / (
-                        100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
-            # b_ohm_per_km = length_km and (row['B (% on 100MVA)'] * base_impedance / (100 * length_km)) or 0.0001 # divide by 100 to convert % value to per unit value
-            # c_nf_per_km = (b_ohm_per_km * 10**9) / (2 * 3.14159265359 * 50)
-            c_f_per_km = length_km and (
-                        row['B (% on 100MVA)'] / ((base_voltage ** 2) * 2 * 3.14159265359 * 50 * length_km)) or 0.0001
-            c_nf_per_km = c_f_per_km * 10 ** 9
             max_i_ka = row['Summer Rating (MVA)'] / ((3 ** 0.5) * base_voltage)
-            name = f"{row['Node 1']}-{row['Node 2']}"
-            pp.create_line_from_parameters(net, from_bus=from_bus, to_bus=to_bus, length_km=length_km,
-                                           r_ohm_per_km=r_ohm_per_km, x_ohm_per_km=x_ohm_per_km,
-                                           c_nf_per_km=c_nf_per_km, max_i_ka=max_i_ka, name=name)
+            if not any(type in row['Circuit Type'] for type in ['SSSC', 'Series Capacitor', 'Series Reactor']):
+                r_ohm_per_km = length_km and (row['R (% on 100MVA)'] * base_impedance / (
+                            100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
+                x_ohm_per_km = length_km and (row['X (% on 100MVA)'] * base_impedance / (
+                            100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
+                # b_ohm_per_km = length_km and (row['B (% on 100MVA)'] * base_impedance / (100 * length_km)) or 0.0001 # divide by 100 to convert % value to per unit value
+                # c_nf_per_km = (b_ohm_per_km * 10**9) / (2 * 3.14159265359 * 50)
+                c_f_per_km = length_km and (
+                            row['B (% on 100MVA)'] / ((base_voltage ** 2) * 2 * 3.14159265359 * 50 * length_km)) or 0.0001
+                c_nf_per_km = c_f_per_km * 10 ** 9
+                pp.create_line_from_parameters(net, from_bus=from_bus, to_bus=to_bus, length_km=length_km,
+                                               r_ohm_per_km=r_ohm_per_km, x_ohm_per_km=x_ohm_per_km,
+                                               c_nf_per_km=c_nf_per_km, max_i_ka=max_i_ka, name=name)
+            elif any(type in row['Circuit Type'] for type in ['Series Reactor']):
+                r_pu = row['R (% on 100MVA)'] * 100
+                x_pu = row['X (% on 100MVA)'] * 100
+                sn_mva = row['Summer Rating (MVA)']
+                pp.create_impedance(net, from_bus=from_bus, to_bus=to_bus, rft_pu=r_pu, xft_pu=x_pu,
+                                    sn_mva=sn_mva, rtf_pu=r_pu, xtf_pu=x_pu, name=name)
+
+            elif any(type in row['Circuit Type'] for type in ['Series Capacitor']):
+                pass
+
+            elif any(type in row['Circuit Type'] for type in ['SSSC']):
+                pass
+
             # add code to capture and correct obvious parameter outliers
             # net.line.to_csv('line_pp.csv')
 
