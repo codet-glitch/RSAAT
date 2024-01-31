@@ -103,6 +103,7 @@ GRST2A - Greystones A Substation,GRST,54.5752847,-1.1247447
 GRST2B - Greystones B Substation,GRST,54.574139,-1.1292538
 GRTO - Grangetown Substation,GRTO,54.5805217,-1.1487554
 HACK - Hackney Substation,HACK,51.5589262,-0.0443504
+HAKB - Harker Boundary Node,HAKB,55.030361,-3.033059
 Unknown - from ETYS,HAMB,53.8788231,-2.9878141
 HAMH - Hams Hall Substation,HAMH,52.5309938,-1.7142918
 HARG - Harker Gis Substation,HARG,54.942014,-2.962722
@@ -256,6 +257,7 @@ STES - Stella South Substation,STES,54.974362,-1.7325261
 STEW - Stella West Substation,STEW,54.9776584,-1.7422205
 STOB - Stoke Bardolph Substation,STOB,52.9597713,-1.0506411
 STSB - Stocksbridge Substation,STSB,53.487747,-1.6019806
+STWB - Stella West Boundary Node,STWB,55.652386,-2.247632
 STYC - Staythorpe C Substation,STYC,53.0774926,-0.868978
 SUND - Sundon Substation,SUND,51.9363321,-0.5030143
 SWAN - Swansea North Substation,SWAN,51.6894183,-3.9567522
