@@ -1,0 +1,1 @@
+- Ensure rogue lines / buses (i.e. those that are not connected to the main network) are removed or ignored from power flow to avoid errors

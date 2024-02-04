@@ -213,9 +213,13 @@ class TransformData:
         bus_ids_data = {'Name': bus_ids}
         bus_ids_df = pd.DataFrame(bus_ids_data)
 
-        dict_voltage = {'1': 132, '2': 275, '3': 33, '4': 400, '5': 11, '6': 66, '7': 25, '8': 22}
-
+        dict_voltage = {'1': '132', '2': '275', '3': '33', '4': '400', '5': '11', '6': '66', '7': '25', '8': '22'}
         bus_ids_df['voltage'] = bus_ids_df['Name'].str[4].map(dict_voltage)
+
+        def set_voltage_col_to_int(site_df, col_name):
+            site_df[col_name] = pd.to_numeric(site_df[col_name], errors='coerce').fillna(pd.NA).round().astype('Int64')
+        set_voltage_col_to_int(all_subs, 'Voltage (kV)')
+        set_voltage_col_to_int(bus_ids_df, 'voltage')
 
         # merging on Name and Voltage to avoid merge resulting in duplicates. Only Monk Fryston & Monk Fryston New are_
         # the duplicates - can be fixed by changing MONF code to like MONN for one of the subs, however this will affect_
@@ -225,13 +229,13 @@ class TransformData:
                               right_on=all_subs['Site Code'].str[:4] + all_subs['Voltage (kV)'].astype(str))
 
         bus_ids_df['Site Name'] = bus_ids_df['Site Name'].str.replace(r'\b\S*\d+\S*\b', "", regex=True).str.strip()
-        bus_ids_df = bus_ids_df[pd.to_numeric(bus_ids_df['Voltage (kV)'], errors='coerce').notnull()]
+
         try:
             bus_ids_df.drop(columns=['key_0'], inplace=True)
         except:
             pass
-        bus_ids_df['Full Name'] = bus_ids_df['Site Name'].astype(str) + ' ' + bus_ids_df['Voltage (kV)'].astype(
-            str) + 'kV'
+
+        bus_ids_df['Full Name'] = bus_ids_df.apply(lambda row: f"{str(row['Site Name'])} {str(row['Voltage (kV)'])}kV", axis=1)
         bus_ids_df.sort_values(by=['Site Name'], inplace=True)
         bus_ids_df.drop_duplicates(subset='Name', keep='first', inplace=True)
         bus_ids_df.reset_index(inplace=True, drop=True)
@@ -269,9 +273,13 @@ class TransformData:
         all_circuits_changes = all_comp[all_comp['Dataframe'].isin(
             ['nget_circuit_changes', 'shet_circuit_changes', 'spt_circuit_changes', 'ofto_circuit_changes'])].dropna(
             how='all', axis=1).reset_index(drop=True)
-        all_trafo = all_comp[all_comp['Dataframe'].isin(['nget_tx', 'shet_tx', 'spt_tx', 'ofto_tx'])].dropna(how='all', axis=1).reset_index(drop=True)
+        all_trafo = all_comp[all_comp['Dataframe'].isin(['nget_tx', 'shet_tx', 'spt_tx', 'ofto_tx'])].dropna(how='all',
+                                                                                                             axis=1).reset_index(
+            drop=True)
         all_trafo_changes = all_comp[all_comp['Dataframe'].isin(
-            ['nget_tx_changes', 'shet_tx_changes', 'spt_tx_changes', 'ofto_tx_changes'])].dropna(how='all', axis=1).reset_index(drop=True)
+            ['nget_tx_changes', 'shet_tx_changes', 'spt_tx_changes', 'ofto_tx_changes'])].dropna(how='all',
+                                                                                                 axis=1).reset_index(
+            drop=True)
         # print('All components list has :' + str((all_comp.shape[0])) + ' components.\n Individual lists have ' + str(
         #     (all_circuits.shape[0]) + (all_circuits_changes.shape[0]) + (all_trafo.shape[0]) + (
         #     all_trafo_changes.shape[0])) + ' components')
@@ -304,8 +312,7 @@ class TransformData:
         self.tec_register.reset_index(drop=True, inplace=True)
 
         # clean IC Register
-        self.ic_register['Generator Name'] = str(self.ic_register['Project Name']) + ' (' + str(
-            self.ic_register['Connection Site']) + ')'
+        self.ic_register['Generator Name'] = self.ic_register.apply(lambda row: f"{str(row['Project Name'])} ({str(row['Connection Site'])})", axis=1)
         self.ic_register['MW Effective From'] = pd.to_datetime(self.ic_register['MW Effective From'], format='%d/%m/%Y',
                                                                errors='coerce')
         self.ic_register['MW Effective From'] = self.ic_register.apply(
@@ -319,70 +326,38 @@ class TransformData:
 
         # use loop statement to pick out known substations from Connection Site column using bus_ids_df and populate bus_name and bus_id for TEC and Interconnector units.
         # TEC Register first, Interconnector Register second
-        self.tec_register[['bus_name', 'bus_id']] = ""
-        for index1, row1 in self.tec_register.iterrows():
-            conn_site = str(row1['Connection Site']).strip()
-            subs_names_id = []
-            if not (row1['Connection Site'] == "" or pd.isnull(row1['Connection Site'])):
-                for index2, row2 in self.bus_ids_df.iterrows():
-                    bus_site_name = (str(row2['Site Name']).strip()).upper()
-                    bus_id = index2
-                    if not (row2['Site Name'] == "" or pd.isnull(row2['Site Name'])):
-                        if (bus_site_name.upper() in conn_site.upper()) or (
-                                bus_site_name.replace(" MAIN", "").replace("'", "").replace(" ",
-                                                                                            "").upper() in conn_site.replace(
-                            " ", "").replace("'", "").upper()):
-                            if tuple((bus_site_name.upper(), bus_id)) not in subs_names_id:
-                                subs_names_id.append(tuple((bus_site_name.upper(), bus_id)))
-                    if len(subs_names_id) > 1:
-                        for each_subs_1 in subs_names_id:
-                            for each_subs_2 in subs_names_id:
-                                if (each_subs_1[0] != each_subs_2[0]) and (
-                                        each_subs_1[0].upper() in each_subs_2[0].upper()):
-                                    try:
-                                        subs_names_id.remove(each_subs_1)
-                                    except:
-                                        pass
-            if len(subs_names_id) != 0:
-                subs_names_unpacked, bus_id_unpacked = zip(*subs_names_id)
-                subs_names_unpacked = list(set(list(subs_names_unpacked)))
-                subs_names_unpacked.sort()
-                x = ' or '.join(subs_names_unpacked)
-                self.tec_register.at[index1, 'bus_name'] = x
-                self.tec_register.at[index1, 'bus_id'] = list(bus_id_unpacked)
+        def add_bus_details(df, bus_ids_df, register_type):
+            df[['bus_name', 'bus_id']] = ""
+            for index1, row1 in df.iterrows():
+                conn_site = str(row1['Connection Site']).strip()
+                subs_names_id = []
+                if not (row1['Connection Site'] == "" or pd.isnull(row1['Connection Site'])):
+                    for index2, row2 in bus_ids_df.iterrows():
+                        bus_site_name = (str(row2['Site Name']).strip()).upper()
+                        bus_id = index2
+                        if not (row2['Site Name'] == "" or pd.isnull(row2['Site Name'])):
+                            if (bus_site_name.upper() in conn_site.upper()) or (bus_site_name.replace(" MAIN", "").replace("'", "").replace(" ", "").upper() in conn_site.replace(" ", "").replace("'", "").upper()):
+                                if tuple((bus_site_name.upper(), bus_id)) not in subs_names_id:
+                                    subs_names_id.append(tuple((bus_site_name.upper(), bus_id)))
+                        if len(subs_names_id) > 1:
+                            for each_subs_1 in subs_names_id:
+                                for each_subs_2 in subs_names_id:
+                                    if (each_subs_1[0] != each_subs_2[0]) and (
+                                            each_subs_1[0].upper() in each_subs_2[0].upper()):
+                                        try:
+                                            subs_names_id.remove(each_subs_1)
+                                        except:
+                                            pass
+                if len(subs_names_id) != 0:
+                    subs_names_unpacked, bus_id_unpacked = zip(*subs_names_id)
+                    subs_names_unpacked = list(set(list(subs_names_unpacked)))
+                    subs_names_unpacked.sort()
+                    x = ' or '.join(subs_names_unpacked)
+                    df.at[index1, 'bus_name'] = x
+                    df.at[index1, 'bus_id'] = list(bus_id_unpacked)
 
-        # Interconnector Register
-        self.ic_register[['bus_name', 'bus_id']] = ""
-        for index1, row1 in self.ic_register.iterrows():
-            conn_site = str(row1['Connection Site']).strip()
-            subs_names_id = []
-            if not (row1['Connection Site'] == "" or pd.isnull(row1['Connection Site'])):
-                for index2, row2 in self.bus_ids_df.iterrows():
-                    bus_site_name = (str(row2['Site Name']).strip()).upper()
-                    bus_id = index2
-                    if not (row2['Site Name'] == "" or pd.isnull(row2['Site Name'])):
-                        if (bus_site_name.upper() in conn_site.upper()) or (
-                                bus_site_name.replace(" MAIN", "").replace("'", "").replace(" ",
-                                                                                            "").upper() in conn_site.replace(
-                            " ", "").replace("'", "").upper()):
-                            if tuple((bus_site_name.upper(), bus_id)) not in subs_names_id:
-                                subs_names_id.append(tuple((bus_site_name.upper(), bus_id)))
-                    if len(subs_names_id) > 1:
-                        for each_subs_1 in subs_names_id:
-                            for each_subs_2 in subs_names_id:
-                                if (each_subs_1[0] != each_subs_2[0]) and (
-                                        each_subs_1[0].upper() in each_subs_2[0].upper()):
-                                    try:
-                                        subs_names_id.remove(each_subs_1)
-                                    except:
-                                        pass
-            if len(subs_names_id) != 0:
-                subs_names_unpacked, bus_id_unpacked = zip(*subs_names_id)
-                subs_names_unpacked = list(set(list(subs_names_unpacked)))
-                subs_names_unpacked.sort()
-                x = ' or '.join(subs_names_unpacked)
-                self.ic_register.at[index1, 'bus_name'] = x
-                self.ic_register.at[index1, 'bus_id'] = list(bus_id_unpacked)
+        add_bus_details(self.tec_register, self.bus_ids_df, 'tec_register')
+        add_bus_details(self.ic_register, self.bus_ids_df, 'ic_register')
 
         # define the Gen_Type for TEC Register based on Plant Type and Generator Name columns.
         # set all in IC Register to Gen_Type = Interconnector
@@ -416,14 +391,13 @@ class TransformData:
             for index2, row2 in self.bus_ids_df.iterrows():
                 four_char_bus = str(row2['Name'][:4])
                 six_char_bus = str(row2['Name'][:6])
-                if four_char_dem == four_char_bus:
+                if six_char_dem == six_char_bus:
                     self.gsp_demand.at[index1, 'bus_name'] = row2['Full Name']
                     self.gsp_demand.at[index1, 'bus_id'] = index2
                     break
-                elif six_char_dem == six_char_bus:
+                elif four_char_dem == four_char_bus:
                     self.gsp_demand.at[index1, 'bus_name'] = row2['Full Name']
                     self.gsp_demand.at[index1, 'bus_id'] = index2
-                    break
 
     def key_stats(self):
         delete = '../delete/'
