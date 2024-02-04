@@ -19,9 +19,10 @@ class TransformData:
         self.bus_ids_df = None
         self.network_df_dict_subs = None
         self.network_df_dict_comp = None
+
         self.api_or_local = api_or_local
 
-    def import_network_data(self):
+    def import_network_data(self, scotland_reduced):
         sub_coordinates = pd.read_csv('../data/CRM_Sub_Coordinates_WGS84.csv').dropna(inplace=True)
 
         etys_file_name = '../data/Appendix B 2022.xlsx'
@@ -55,31 +56,51 @@ class TransformData:
         intra_hvdc = None
         intra_hvdc_changes = None
 
-        network_df_dict_comp = {
-            'shet_circuits': shet_circuits,
-            'shet_circuit_changes': shet_circuit_changes,
-            'shet_tx': shet_tx,
-            'shet_tx_changes': shet_tx_changes,
-            'spt_circuits': spt_circuits,
-            'spt_circuit_changes': spt_circuit_changes,
-            'spt_tx': spt_tx,
-            'spt_tx_changes': spt_tx_changes,
-            'nget_circuits': nget_circuits,
-            'nget_circuit_changes': nget_circuit_changes,
-            'nget_tx': nget_tx,
-            'nget_tx_changes': nget_tx_changes
-            # 'ofto_circuits': ofto_circuits,
-            # 'ofto_circuit_changes': ofto_circuit_changes,
-            # 'ofto_tx': ofto_tx,
-            # 'ofto_tx_changes': ofto_tx_changes
-        }
+        def define_network_df_dict(scotland_reduced):
+            if not scotland_reduced:
+                network_df_dict_comp = {
+                    'shet_circuits': shet_circuits,
+                    'shet_circuit_changes': shet_circuit_changes,
+                    'shet_tx': shet_tx,
+                    'shet_tx_changes': shet_tx_changes,
+                    'spt_circuits': spt_circuits,
+                    'spt_circuit_changes': spt_circuit_changes,
+                    'spt_tx': spt_tx,
+                    'spt_tx_changes': spt_tx_changes,
+                    'nget_circuits': nget_circuits,
+                    'nget_circuit_changes': nget_circuit_changes,
+                    'nget_tx': nget_tx,
+                    'nget_tx_changes': nget_tx_changes,
+                    # 'ofto_circuits': ofto_circuits,
+                    # 'ofto_circuit_changes': ofto_circuit_changes,
+                    # 'ofto_tx': ofto_tx,
+                    # 'ofto_tx_changes': ofto_tx_changes
+                }
 
-        network_df_dict_subs = {
-            'shet_substations': shet_substations,
-            'spt_substations': spt_substations,
-            'nget_substations': nget_substations,
-            'ofto_substations': ofto_substations,
-        }
+                network_df_dict_subs = {
+                    'shet_substations': shet_substations,
+                    'spt_substations': spt_substations,
+                    'nget_substations': nget_substations,
+                    'ofto_substations': ofto_substations,
+                }
+            else:
+                network_df_dict_comp = {
+                    'nget_circuits': nget_circuits,
+                    'nget_circuit_changes': nget_circuit_changes,
+                    'nget_tx': nget_tx,
+                    'nget_tx_changes': nget_tx_changes
+                }
+
+                network_df_dict_subs = {
+                    'shet_substations': shet_substations,
+                    'spt_substations': spt_substations,
+                    'nget_substations': nget_substations,
+                    'ofto_substations': ofto_substations,
+                }
+
+            return network_df_dict_comp, network_df_dict_subs
+
+        network_df_dict_comp, network_df_dict_subs = define_network_df_dict(scotland_reduced)
 
         # pass the dictionary to subsequent functions
         self.network_df_dict_comp = network_df_dict_comp
@@ -224,9 +245,10 @@ class TransformData:
         # merging on Name and Voltage to avoid merge resulting in duplicates. Only Monk Fryston & Monk Fryston New are_
         # the duplicates - can be fixed by changing MONF code to like MONN for one of the subs, however this will affect_
         # how circuits are mapped so that needs to be corrected too.
+        # blank rows (based on Site Code) are removed - which is expected to include a couple of OFTO sites
         bus_ids_df = pd.merge(bus_ids_df, all_subs, how='left',
                               left_on=bus_ids_df['Name'].str[:4] + bus_ids_df['voltage'].astype(str),
-                              right_on=all_subs['Site Code'].str[:4] + all_subs['Voltage (kV)'].astype(str))
+                              right_on=all_subs['Site Code'].str[:4] + all_subs['Voltage (kV)'].astype(str))[lambda row: row['Site Code'].notna() & (row['Site Code'] != '')]
 
         bus_ids_df['Site Name'] = bus_ids_df['Site Name'].str.replace(r'\b\S*\d+\S*\b', "", regex=True).str.strip()
 
@@ -252,7 +274,7 @@ class TransformData:
         # append network data and future changes
         all_comp = pd.concat(self.network_df_dict_comp.values(), ignore_index=True)
 
-        # clean data to remove rogue types
+        # clean data to remove rogue types and ensure all components are between known substations found in bus_ids_df
         all_comp = all_comp[pd.to_numeric(all_comp['X (% on 100MVA)'], errors='coerce').notnull()]
         all_comp = all_comp[
             all_comp['Node 1'].isin(self.bus_ids_df['Name']) & all_comp['Node 2'].isin(self.bus_ids_df['Name'])]
@@ -380,6 +402,12 @@ class TransformData:
                 self.tec_register.at[index, 'Gen_Type'] = "Other"
         self.ic_register['Gen_Type'] = "Interconnector"
 
+        print('If Scotland reduced:\nTEC Register has match on: ' + str(
+            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name'].ne('').sum()) + ' out of ' + str(
+            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['Project Name'].notna().sum()) + ' generators.')
+        print('If Scotland not reduced:\nTEC Register has match on: ' + str(self.tec_register['bus_name'].ne('').sum())
+              + ' out of ' + str(self.tec_register['Project Name'].notna().sum()) + ' generators.')
+
     def transform_demand_data(self):
         # remove non-value rows by filtering the '24/25' column.
         # add substation full names and bus id as separate columns into the GSP demand table.
@@ -413,7 +441,7 @@ class TransformData:
 
 if __name__ == "__main__":
     call = TransformData()
-    call.import_network_data()
+    call.import_network_data(True)
     call.import_tec_ic_demand_data()
     call.create_bus_id()
     call.transform_network_data()
