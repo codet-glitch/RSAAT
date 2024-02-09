@@ -12,10 +12,13 @@ class TransformData:
         self.gsp_demand = None
         self.ic_register = None
         self.tec_register = None
+        self.ic_reg_sub_map = None
+        self.tec_reg_sub_map = None
         self.all_trafo_changes = None
         self.all_trafo = None
         self.all_circuits_changes = None
         self.all_circuits = None
+        self.all_comp = None
         self.bus_ids_df = None
         self.network_df_dict_subs = None
         self.network_df_dict_comp = None
@@ -23,7 +26,7 @@ class TransformData:
         self.api_or_local = api_or_local
 
     def import_network_data(self, scotland_reduced):
-        sub_coordinates = pd.read_csv('../data/CRM_Sub_Coordinates_WGS84.csv').dropna(inplace=True)
+        sub_coordinates = pd.read_csv('../data/CRM_Sub_Coordinates_WGS84.csv').dropna()
 
         etys_file_name = '../data/Appendix B 2022.xlsx'
 
@@ -52,9 +55,8 @@ class TransformData:
         ofto_tx = (pd.read_excel(etys_file_name, sheet_name="B-3-1d", skiprows=[0])).ffill(axis=0)
         ofto_tx_changes = (pd.read_excel(etys_file_name, sheet_name="B-3-2d", skiprows=[0])).ffill(axis=0)
 
-        # TO BE ADDED EVENTUALLY #
-        intra_hvdc = None
-        intra_hvdc_changes = None
+        # intra_hvdc = None
+        # intra_hvdc_changes = None
 
         def define_network_df_dict(scotland_reduced):
             if not scotland_reduced:
@@ -102,11 +104,16 @@ class TransformData:
 
         network_df_dict_comp, network_df_dict_subs = define_network_df_dict(scotland_reduced)
 
-        # pass the dictionary to subsequent functions
+        # pass the dictionary to subsequent functions.
         self.network_df_dict_comp = network_df_dict_comp
         self.network_df_dict_subs = network_df_dict_subs
 
     def import_tec_ic_demand_data(self):
+        tec_reg_sub_map = pd.read_csv('../data/tec_reg_sub_map.csv')
+        ic_reg_sub_map = pd.read_csv('../data/ic_reg_sub_map.csv')
+        self.tec_reg_sub_map = tec_reg_sub_map
+        self.ic_reg_sub_map = ic_reg_sub_map
+
         try:
             if self.api_or_local == "api":
                 proxies = {
@@ -188,8 +195,8 @@ class TransformData:
 
             elif self.api_or_local == "local":
                 # import TEC and IC data from local path
-                tec_register = pd.read_csv('../data/TEC_Reg.csv')
-                ic_register = pd.read_csv('../data/IC_Reg.csv')
+                tec_register = pd.read_csv('../data/tec-register-02-02-2024_curated.csv')
+                ic_register = pd.read_csv('../data/interconnector-register-02-02-2024_curated.csv')
                 self.tec_register = tec_register
                 self.ic_register = ic_register
                 success = True
@@ -239,6 +246,7 @@ class TransformData:
 
         def set_voltage_col_to_int(site_df, col_name):
             site_df[col_name] = pd.to_numeric(site_df[col_name], errors='coerce').fillna(pd.NA).round().astype('Int64')
+
         set_voltage_col_to_int(all_subs, 'Voltage (kV)')
         set_voltage_col_to_int(bus_ids_df, 'voltage')
 
@@ -248,7 +256,8 @@ class TransformData:
         # blank rows (based on Site Code) are removed - which is expected to include a couple of OFTO sites
         bus_ids_df = pd.merge(bus_ids_df, all_subs, how='left',
                               left_on=bus_ids_df['Name'].str[:4] + bus_ids_df['voltage'].astype(str),
-                              right_on=all_subs['Site Code'].str[:4] + all_subs['Voltage (kV)'].astype(str))[lambda row: row['Site Code'].notna() & (row['Site Code'] != '')]
+                              right_on=all_subs['Site Code'].str[:4] + all_subs['Voltage (kV)'].astype(str))[
+            lambda row: row['Site Code'].notna() & (row['Site Code'] != '')]
 
         bus_ids_df['Site Name'] = bus_ids_df['Site Name'].str.replace(r'\b\S*\d+\S*\b', "", regex=True).str.strip()
 
@@ -257,7 +266,8 @@ class TransformData:
         except:
             pass
 
-        bus_ids_df['Full Name'] = bus_ids_df.apply(lambda row: f"{str(row['Site Name'])} {str(row['Voltage (kV)'])}kV", axis=1)
+        bus_ids_df['Full Name'] = bus_ids_df.apply(lambda row: f"{str(row['Site Name'])} {str(row['Voltage (kV)'])}kV",
+                                                   axis=1)
         bus_ids_df.sort_values(by=['Site Name'], inplace=True)
         bus_ids_df.drop_duplicates(subset='Name', keep='first', inplace=True)
         bus_ids_df.reset_index(inplace=True, drop=True)
@@ -302,84 +312,155 @@ class TransformData:
             ['nget_tx_changes', 'shet_tx_changes', 'spt_tx_changes', 'ofto_tx_changes'])].dropna(how='all',
                                                                                                  axis=1).reset_index(
             drop=True)
-        # print('All components list has :' + str((all_comp.shape[0])) + ' components.\n Individual lists have ' + str(
-        #     (all_circuits.shape[0]) + (all_circuits_changes.shape[0]) + (all_trafo.shape[0]) + (
-        #     all_trafo_changes.shape[0])) + ' components')
 
+        self.all_comp = all_comp
         self.all_circuits = all_circuits
         self.all_circuits_changes = all_circuits_changes
         self.all_trafo = all_trafo
         self.all_trafo_changes = all_trafo_changes
 
     def transform_tec_ic_data(self):
-        # clean TEC Register
-        self.tec_register = self.tec_register[~self.tec_register["Project Name"].isin(
-            ["Drax (Coal)", "Dungeness B", "Hartlepool", "Hinkley Point B", "Uskmouth", "Sutton Bridge",
-             "Ratcliffe on Soar", "West Burton A"])]
-        self.tec_register['Generator Name'] = self.tec_register.apply(
-            lambda row: str(row['Project Name']) + ' (' + str(row['Customer Name']) + ')' if pd.isna(
-                row['Stage']) else str(row['Project Name']) + ' *Stage: ' + str(row['Stage']) + '*' + ' (' + str(
-                row['Customer Name']) + ')', axis=1)
-        self.tec_register['MW Effective From'] = pd.to_datetime(self.tec_register['MW Effective From'],
-                                                                format='%d/%m/%Y', errors='coerce')
-        self.tec_register['MW Effective From'] = self.tec_register.apply(
-            lambda row: datetime.today() if pd.isna(row['MW Effective From']) and row['Project Status'] == 'Built' else
-            row[
-                'MW Effective From'], axis=1)
-        self.tec_register.dropna(subset=['MW Effective From'], inplace=True)
-        self.tec_register['MW Effective From'] = self.tec_register['MW Effective From'].dt.date
-        self.tec_register['MW Effective'] = self.tec_register.apply(
-            lambda row: row['Cumulative Total Capacity (MW)'] if pd.isna(row['Stage']) or row['Stage'] == 1 else row[
-                'MW Increase / Decrease'], axis=1)
-        self.tec_register.reset_index(drop=True, inplace=True)
 
-        # clean IC Register
-        self.ic_register['Generator Name'] = self.ic_register.apply(lambda row: f"{str(row['Project Name'])} ({str(row['Connection Site'])})", axis=1)
-        self.ic_register['MW Effective From'] = pd.to_datetime(self.ic_register['MW Effective From'], format='%d/%m/%Y',
-                                                               errors='coerce')
-        self.ic_register['MW Effective From'] = self.ic_register.apply(
-            lambda row: datetime.today() if pd.isna(row['MW Effective From']) and row['Project Status'] == 'Built' else
-            row[
-                'MW Effective From'], axis=1)
-        self.ic_register.dropna(subset=['MW Effective From'], inplace=True)
-        self.ic_register['MW Effective From'] = self.ic_register['MW Effective From'].dt.date
-        # self.ic_register['MW Effective From'] = self.ic_register['MW Effective From'].dt.strftime('%d-%m-%Y')
-        self.ic_register.reset_index(drop=True, inplace=True)
+        # nominal_date = pd.Timestamp.today().normalize()
+        nominal_date = datetime(2000, 1, 1)
 
-        # use loop statement to pick out known substations from Connection Site column using bus_ids_df and populate bus_name and bus_id for TEC and Interconnector units.
-        # TEC Register first, Interconnector Register second
-        def add_bus_details(df, bus_ids_df, register_type):
-            df[['bus_name', 'bus_id']] = ""
-            for index1, row1 in df.iterrows():
-                conn_site = str(row1['Connection Site']).strip()
-                subs_names_id = []
-                if not (row1['Connection Site'] == "" or pd.isnull(row1['Connection Site'])):
-                    for index2, row2 in bus_ids_df.iterrows():
-                        bus_site_name = (str(row2['Site Name']).strip()).upper()
-                        bus_id = index2
-                        if not (row2['Site Name'] == "" or pd.isnull(row2['Site Name'])):
-                            if (bus_site_name.upper() in conn_site.upper()) or (bus_site_name.replace(" MAIN", "").replace("'", "").replace(" ", "").upper() in conn_site.replace(" ", "").replace("'", "").upper()):
-                                if tuple((bus_site_name.upper(), bus_id)) not in subs_names_id:
-                                    subs_names_id.append(tuple((bus_site_name.upper(), bus_id)))
-                        if len(subs_names_id) > 1:
-                            for each_subs_1 in subs_names_id:
-                                for each_subs_2 in subs_names_id:
+        def format_tec_ic_registers(df, sub_map, bus_ids_df):
+            def merge_sub_map_to_tec(df, sub_map):
+                # merge sub_map and tec/ic_reg
+                sub_map = sub_map[['etys_sub_map', 'Project No']]
+                df = pd.merge(df, sub_map, how='left', on='Project No')
+                return df
+
+            def create_gen_name_col(df):
+                df['Generator Name'] = df['Project Name'] + df['Stage'].fillna('').apply(
+                    lambda x: f" *Stage: {x}*" if x else '') + ' (' + df['Customer Name'] + ')'
+                return df
+
+            def curate_mw_effective_from_date(df):
+                df['MW Effective From'] = pd.to_datetime(df['MW Effective From'], errors='coerce')
+                df.loc[(df['MW Effective From'].isna()) & (
+                        df['Project Status'] == 'Built'), 'MW Effective From'] = nominal_date
+                df['MW Effective From'] = df['MW Effective From'].dt.date
+                return df
+
+            def curate_mw_effective(df):
+                condition = pd.isna(df['Stage']) | (df['Stage'] == 1)
+                try:
+                    df['MW Effective'] = df.where(condition, df['MW Increase / Decrease'], axis=0)[
+                        'Cumulative Total Capacity (MW)']
+                except:
+                    df['MW Effective - Import'] = df.where(condition, df['MW Import - Increase / Decrease'], axis=0)[
+                        'MW Import - Total']
+                    df['MW Effective - Export'] = df.where(condition, df['MW Export - Increase / Decrease'], axis=0)[
+                        'MW Export - Total']
+                df.reset_index(drop=True, inplace=True)
+                return df
+
+            # pick out known substations from Connection Site column using bus_ids_df and populate bus_name_guess and
+            # bus_name and bus_id_guess and bus_id for TEC and Interconnector Registers.
+            def create_bus_name_bus_id_cols(df, bus_ids_df):
+                df[['bus_name_guess', 'bus_id_guess', 'bus_name', 'bus_id']] = ""
+
+                # for bus_name_guess and bus_id_guess
+                for index1, row1 in df.iterrows():
+                    conn_site = str(row1['Connection Site']).strip()
+                    conn_sub = str(row1['etys_sub_map']).strip()
+                    subs_name_id_guess = []
+                    subs_name_id = []
+                    subs_name_id_backup = []
+                    if not (row1['Connection Site'] == "" or pd.isnull(row1['Connection Site'])):
+                        for index2, row2 in bus_ids_df.iterrows():
+                            bus_site_name = (str(row2['Site Name']).strip()).upper()
+                            bus_site_code = (str(row2['Name']).strip()).upper()
+                            bus_id = index2
+                            if not (row2['Site Name'] == "" or pd.isnull(row2['Site Name'])):
+                                if (bus_site_name.upper() in conn_site.upper()) or (
+                                        bus_site_name.replace(" MAIN", "").replace("'", "").replace(" ",
+                                                                                                    "").upper() in
+                                        conn_site.replace(" ", "").replace("'", "").upper()):
+                                    if tuple((bus_site_name.upper(), bus_id)) not in subs_name_id_guess:
+                                        subs_name_id_guess.append(tuple((bus_site_name.upper(), bus_id)))
+                            # for bus_name and bus_id
+                            if conn_sub[:5].upper() in bus_site_code.upper():
+                                if tuple((bus_site_name.upper(), bus_id)) not in subs_name_id:
+                                    subs_name_id.append(tuple((bus_site_name.upper(), bus_id)))
+                            elif conn_sub[:4].upper() in bus_site_code.upper():
+                                if (bus_site_name.upper(), bus_id) not in subs_name_id and (bus_site_name.upper(), bus_id) not in subs_name_id_backup:
+                                    subs_name_id_backup.append(tuple((bus_site_name.upper(), bus_id)))
+
+                        if len(subs_name_id) == 0:
+                            subs_name_id = subs_name_id_backup
+                        else:
+                            pass
+
+                        if len(subs_name_id_guess) > 1:
+                            for each_subs_1 in subs_name_id_guess:
+                                for each_subs_2 in subs_name_id_guess:
                                     if (each_subs_1[0] != each_subs_2[0]) and (
                                             each_subs_1[0].upper() in each_subs_2[0].upper()):
                                         try:
-                                            subs_names_id.remove(each_subs_1)
+                                            subs_name_id_guess.remove(each_subs_1)
                                         except:
                                             pass
-                if len(subs_names_id) != 0:
-                    subs_names_unpacked, bus_id_unpacked = zip(*subs_names_id)
-                    subs_names_unpacked = list(set(list(subs_names_unpacked)))
-                    subs_names_unpacked.sort()
-                    x = ' or '.join(subs_names_unpacked)
-                    df.at[index1, 'bus_name'] = x
-                    df.at[index1, 'bus_id'] = list(bus_id_unpacked)
 
-        add_bus_details(self.tec_register, self.bus_ids_df, 'tec_register')
-        add_bus_details(self.ic_register, self.bus_ids_df, 'ic_register')
+                        if len(subs_name_id) > 1:
+                            for each_subs_1 in subs_name_id:
+                                for each_subs_2 in subs_name_id:
+                                    if (each_subs_1[0] != each_subs_2[0]) and (
+                                            each_subs_1[0].upper() in each_subs_2[0].upper()):
+                                        try:
+                                            subs_name_id_guess.remove(each_subs_1)
+                                        except:
+                                            pass
+
+                    if len(subs_name_id_guess) != 0:
+                        subs_names_unpacked, bus_id_unpacked = zip(*subs_name_id_guess)
+                        subs_names_unpacked = list(set(list(subs_names_unpacked)))
+                        subs_names_unpacked.sort()
+                        x = ' or '.join(subs_names_unpacked)
+                        df.at[index1, 'bus_name_guess'] = x
+                        df.at[index1, 'bus_id_guess'] = list(bus_id_unpacked)
+
+                    if len(subs_name_id) != 0:
+                        subs_names_unpacked, bus_id_unpacked = zip(*subs_name_id)
+                        subs_names_unpacked = list(set(list(subs_names_unpacked)))
+                        subs_names_unpacked.sort()
+                        x = ' or '.join(subs_names_unpacked)
+                        df.at[index1, 'bus_name'] = x
+                        df.at[index1, 'bus_id'] = list(bus_id_unpacked)
+
+                return df
+
+            df = merge_sub_map_to_tec(df, sub_map)
+            df = create_gen_name_col(df)
+            df = curate_mw_effective_from_date(df)
+            df = curate_mw_effective(df)
+            df = create_bus_name_bus_id_cols(df, bus_ids_df)
+            return df
+
+        self.tec_register = format_tec_ic_registers(self.tec_register, self.tec_reg_sub_map, self.bus_ids_df)
+        self.ic_register = format_tec_ic_registers(self.ic_register, self.ic_reg_sub_map, self.bus_ids_df)
+
+        # account for where tec mw inc/dec is not 0 for Built units (ie Built unit is changing TEC in future year)
+        new_rows = []
+
+        def update_cumulative_capacity(row_tec):
+            if row_tec['Project Status'] == 'Built' and row_tec['MW Increase / Decrease'] != 0:
+                row_tec['MW Effective'] = row_tec['MW Connected']
+                new_row = row_tec.copy()
+                row_tec['MW Effective From'] = nominal_date
+                new_row['Generator Name'] = f"{row_tec['Generator Name']}_2"
+                new_row['MW Effective'] = row_tec['MW Increase / Decrease']
+                new_rows.append(new_row)
+            return row_tec
+
+        self.tec_register = self.tec_register.apply(update_cumulative_capacity, axis=1)
+        if new_rows:
+            self.tec_register = pd.concat([self.tec_register, pd.DataFrame(new_rows)], ignore_index=True).reset_index(
+                drop=True)
+
+        self.tec_register['MW Effective From'] = pd.to_datetime(self.tec_register['MW Effective From'])
+        self.tec_register['MW Effective From'] = self.tec_register['MW Effective From'].dt.date
 
         # define the Gen_Type for TEC Register based on Plant Type and Generator Name columns.
         # set all in IC Register to Gen_Type = Interconnector
@@ -401,12 +482,6 @@ class TransformData:
             else:
                 self.tec_register.at[index, 'Gen_Type'] = "Other"
         self.ic_register['Gen_Type'] = "Interconnector"
-
-        print('If Scotland reduced:\nTEC Register has match on: ' + str(
-            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name'].ne('').sum()) + ' out of ' + str(
-            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['Project Name'].notna().sum()) + ' generators.')
-        print('If Scotland not reduced:\nTEC Register has match on: ' + str(self.tec_register['bus_name'].ne('').sum())
-              + ' out of ' + str(self.tec_register['Project Name'].notna().sum()) + ' generators.')
 
     def transform_demand_data(self):
         # remove non-value rows by filtering the '24/25' column.
@@ -438,6 +513,17 @@ class TransformData:
         self.all_circuits.to_csv(delete + 'all_circuits.csv')
         self.bus_ids_df.to_csv(delete + 'bus_ids_df.csv')
 
+        # print statements.
+        print('If Scotland reduced: TEC Register has match on: ' + str(
+            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name_guess'].ne('').sum()) + '/' + str(
+            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name'].ne('').sum()) + ' out of ' + str(
+            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['Project Name'].notna().sum()) + ' generators.\nIf Scotland not reduced: TEC Register has match on: ' + str(
+            self.tec_register['bus_name_guess'].ne('').sum()) + '/' + str(
+            self.tec_register['bus_name'].ne('').sum()) + ' out of ' + str(
+            self.tec_register['Project Name'].notna().sum()) + ' generators.\n')
+        print('All components list has ' + str((self.all_comp.shape[0])) + ' components. Individual lists have ' + str(
+                (self.all_circuits.shape[0]) + (self.all_circuits_changes.shape[0]) + (self.all_trafo.shape[0]) + (
+                self.all_trafo_changes.shape[0])) + ' components')
 
 if __name__ == "__main__":
     call = TransformData()
