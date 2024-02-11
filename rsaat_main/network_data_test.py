@@ -8,12 +8,13 @@ import requests
 
 
 class TransformData:
-    def __init__(self, api_or_local='local'):
+    def __init__(self, api_or_local='local', scotland_reduced=True):
         self.gsp_demand = None
         self.ic_register = None
         self.tec_register = None
         self.ic_reg_sub_map = None
         self.tec_reg_sub_map = None
+        self.ranking_order = None
         self.all_trafo_changes = None
         self.all_trafo = None
         self.all_circuits_changes = None
@@ -24,8 +25,9 @@ class TransformData:
         self.network_df_dict_comp = None
 
         self.api_or_local = api_or_local
+        self.scotland_reduced = scotland_reduced
 
-    def import_network_data(self, scotland_reduced):
+    def import_network_data(self):
         sub_coordinates = pd.read_csv('../data/CRM_Sub_Coordinates_WGS84.csv').dropna()
 
         etys_file_name = '../data/Appendix B 2022.xlsx'
@@ -58,8 +60,8 @@ class TransformData:
         # intra_hvdc = None
         # intra_hvdc_changes = None
 
-        def define_network_df_dict(scotland_reduced):
-            if not scotland_reduced:
+        def define_network_df_dict():
+            if not self.scotland_reduced:
                 network_df_dict_comp = {
                     'shet_circuits': shet_circuits,
                     'shet_circuit_changes': shet_circuit_changes,
@@ -102,7 +104,7 @@ class TransformData:
 
             return network_df_dict_comp, network_df_dict_subs
 
-        network_df_dict_comp, network_df_dict_subs = define_network_df_dict(scotland_reduced)
+        network_df_dict_comp, network_df_dict_subs = define_network_df_dict()
 
         # pass the dictionary to subsequent functions.
         self.network_df_dict_comp = network_df_dict_comp
@@ -111,8 +113,10 @@ class TransformData:
     def import_tec_ic_demand_data(self):
         tec_reg_sub_map = pd.read_csv('../data/tec_reg_sub_map.csv')
         ic_reg_sub_map = pd.read_csv('../data/ic_reg_sub_map.csv')
+        ranking_order = pd.read_csv('../data/Plant_Ranking_Order.csv')
         self.tec_reg_sub_map = tec_reg_sub_map
         self.ic_reg_sub_map = ic_reg_sub_map
+        self.ranking_order = ranking_order
 
         try:
             if self.api_or_local == "api":
@@ -324,11 +328,23 @@ class TransformData:
         # nominal_date = pd.Timestamp.today().normalize()
         nominal_date = datetime(2000, 1, 1)
 
-        def format_tec_ic_registers(df, sub_map, bus_ids_df):
-            def merge_sub_map_to_tec(df, sub_map):
+        def format_tec_ic_registers(df, df_name, sub_map, bus_ids_df, ranking_order):
+            def merge_sub_map_to_tec_ic(df, sub_map):
                 # merge sub_map and tec/ic_reg
                 sub_map = sub_map[['etys_sub_map', 'Project No']]
                 df = pd.merge(df, sub_map, how='left', on='Project No')
+                return df
+
+            def merge_ranking_order_to_tec(df, df_name, ranking_order):
+                # merge ranking_order and tec/ic_reg
+                if 'Plant Type' in df.columns:
+                    df = pd.merge(df, ranking_order, how='left', on='Plant Type')
+                else:
+                    if df_name == 'ic_register':
+                        df['Plant Type'] = 'Interconnector'
+                        df = pd.merge(df, ranking_order, how='left', on='Plant Type')
+                    else:
+                        print(f"Plant Type column not found in {str(df_name)}")
                 return df
 
             def create_gen_name_col(df):
@@ -365,9 +381,7 @@ class TransformData:
                 for index1, row1 in df.iterrows():
                     conn_site = str(row1['Connection Site']).strip()
                     conn_sub = str(row1['etys_sub_map']).strip()
-                    subs_name_id_guess = []
-                    subs_name_id = []
-                    subs_name_id_backup = []
+                    subs_name_id_guess, subs_name_id, subs_name_id_backup, subs_name_id_backup_2 = [], [], [], []
                     if not (row1['Connection Site'] == "" or pd.isnull(row1['Connection Site'])):
                         for index2, row2 in bus_ids_df.iterrows():
                             bus_site_name = (str(row2['Site Name']).strip()).upper()
@@ -381,15 +395,22 @@ class TransformData:
                                     if tuple((bus_site_name.upper(), bus_id)) not in subs_name_id_guess:
                                         subs_name_id_guess.append(tuple((bus_site_name.upper(), bus_id)))
                             # for bus_name and bus_id
-                            if conn_sub[:5].upper() in bus_site_code.upper():
+                            if conn_sub[:6].upper() in bus_site_code.upper():
                                 if tuple((bus_site_name.upper(), bus_id)) not in subs_name_id:
                                     subs_name_id.append(tuple((bus_site_name.upper(), bus_id)))
-                            elif conn_sub[:4].upper() in bus_site_code.upper():
-                                if (bus_site_name.upper(), bus_id) not in subs_name_id and (bus_site_name.upper(), bus_id) not in subs_name_id_backup:
+                            elif conn_sub[:5].upper() in bus_site_code.upper():
+                                if (bus_site_name.upper(), bus_id) not in subs_name_id and (
+                                        bus_site_name.upper(), bus_id) not in subs_name_id_backup:
                                     subs_name_id_backup.append(tuple((bus_site_name.upper(), bus_id)))
+                            elif conn_sub[:4].upper() in bus_site_code.upper():
+                                if (bus_site_name.upper(), bus_id) not in subs_name_id and (
+                                        bus_site_name.upper(), bus_id) not in subs_name_id_backup_2:
+                                    subs_name_id_backup_2.append(tuple((bus_site_name.upper(), bus_id)))
 
                         if len(subs_name_id) == 0:
                             subs_name_id = subs_name_id_backup
+                            if len(subs_name_id) == 0:
+                                subs_name_id = subs_name_id_backup_2
                         else:
                             pass
 
@@ -431,15 +452,18 @@ class TransformData:
 
                 return df
 
-            df = merge_sub_map_to_tec(df, sub_map)
+            df = merge_sub_map_to_tec_ic(df, sub_map)
+            df = merge_ranking_order_to_tec(df, df_name, ranking_order)
             df = create_gen_name_col(df)
             df = curate_mw_effective_from_date(df)
             df = curate_mw_effective(df)
             df = create_bus_name_bus_id_cols(df, bus_ids_df)
             return df
 
-        self.tec_register = format_tec_ic_registers(self.tec_register, self.tec_reg_sub_map, self.bus_ids_df)
-        self.ic_register = format_tec_ic_registers(self.ic_register, self.ic_reg_sub_map, self.bus_ids_df)
+        self.tec_register = format_tec_ic_registers(self.tec_register, 'tec_register', self.tec_reg_sub_map,
+                                                    self.bus_ids_df, self.ranking_order)
+        self.ic_register = format_tec_ic_registers(self.ic_register, 'ic_register', self.ic_reg_sub_map,
+                                                   self.bus_ids_df, self.ranking_order)
 
         # account for where tec mw inc/dec is not 0 for Built units (ie Built unit is changing TEC in future year)
         new_rows = []
@@ -464,6 +488,7 @@ class TransformData:
 
         # define the Gen_Type for TEC Register based on Plant Type and Generator Name columns.
         # set all in IC Register to Gen_Type = Interconnector
+        self.ic_register['Gen_Type'] = "Interconnector"
         self.tec_register['Gen_Type'] = ""
         for index, row in self.tec_register.iterrows():
             if re.search('(?i).*nuclear.*', f"{row['Plant Type']} {row['Generator Name']}"):
@@ -481,7 +506,6 @@ class TransformData:
                 self.tec_register.at[index, 'Gen_Type'] = "BESS / Energy Park"
             else:
                 self.tec_register.at[index, 'Gen_Type'] = "Other"
-        self.ic_register['Gen_Type'] = "Interconnector"
 
     def transform_demand_data(self):
         # remove non-value rows by filtering the '24/25' column.
@@ -517,17 +541,19 @@ class TransformData:
         print('If Scotland reduced: TEC Register has match on: ' + str(
             self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name_guess'].ne('').sum()) + '/' + str(
             self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name'].ne('').sum()) + ' out of ' + str(
-            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['Project Name'].notna().sum()) + ' generators.\nIf Scotland not reduced: TEC Register has match on: ' + str(
+            self.tec_register[self.tec_register['HOST TO'] == 'NGET'][
+                'Project Name'].notna().sum()) + ' generators.\nIf Scotland not reduced: TEC Register has match on: ' + str(
             self.tec_register['bus_name_guess'].ne('').sum()) + '/' + str(
             self.tec_register['bus_name'].ne('').sum()) + ' out of ' + str(
             self.tec_register['Project Name'].notna().sum()) + ' generators.\n')
         print('All components list has ' + str((self.all_comp.shape[0])) + ' components. Individual lists have ' + str(
-                (self.all_circuits.shape[0]) + (self.all_circuits_changes.shape[0]) + (self.all_trafo.shape[0]) + (
+            (self.all_circuits.shape[0]) + (self.all_circuits_changes.shape[0]) + (self.all_trafo.shape[0]) + (
                 self.all_trafo_changes.shape[0])) + ' components')
+
 
 if __name__ == "__main__":
     call = TransformData()
-    call.import_network_data(True)
+    call.import_network_data()
     call.import_tec_ic_demand_data()
     call.create_bus_id()
     call.transform_network_data()

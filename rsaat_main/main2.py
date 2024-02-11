@@ -58,8 +58,8 @@ class DefineData(network_data_test.TransformData):
                             self.all_circuits = pd.concat([self.all_circuits, row_df], ignore_index=True)
                             break
                 else:
-                    print(
-                        f"Warning: Status of row {index} in Circuit Changes data needs checking. Ignored from 'for' loop.")
+                    print(f"Warning: Status of row {index} "
+                          f"in Circuit Changes data needs checking. Ignored from 'for' loop.")
             return self.all_circuits
 
         self.all_circuits_year_filtered = apply_circuit_changes()
@@ -86,8 +86,8 @@ class DefineData(network_data_test.TransformData):
                             self.all_trafo = pd.concat([self.all_trafo, row_df], ignore_index=True)
                             break
                 else:
-                    print("Warning: Status of row " + str(
-                        index) + " in Transformer Changes data needs checking. Ignored from for loop.")
+                    print(f"Warning: Status of row {index} "
+                          f"in Transformer Changes data needs checking. Ignored from 'for' loop.")
             return self.all_trafo
 
         self.all_trafo_year_filtered = apply_trafo_changes()
@@ -111,6 +111,27 @@ class DefineData(network_data_test.TransformData):
         except:
             self.gsp_demand_filtered['demand'] = self.gsp_demand_filtered['26/27'].copy()
         self.gsp_demand_filtered.dropna(subset='demand', inplace=True)
+
+    # code to determine initial dispatch setting for tec and ic
+    def determine_initial_dispatch_setting(self):
+        def calculate_demand_target():
+            if self.scotland_reduced:
+                pass
+            else:
+                pass
+
+        def define_b6_transfer():
+            if self.scotland_reduced:
+                def find_boundary_nodes():
+                    pass
+
+                def add_boundary_nodes():
+                    pass
+            else:
+                pass
+
+        def set_mw_dispatch():
+            pass
 
     # code to make any adjustments to mw_setpoint of tec or reduce demand ahead of creating pandapower model
     def balance_demand_generation(self):
@@ -136,7 +157,7 @@ class DefineData(network_data_test.TransformData):
             voltage_level = row['Voltage (kV)']
             bus_name = row['Name']
             index = row['index']
-            type_of_bus = 'b'  # “n” - node, “b” - busbar, “m” - muff
+            type_of_bus = 'b'  # “n” - node; “b” - busbar; “m” - muff
             in_service = True
             min_bus_v = 0.95
             max_bus_v = 1.05
@@ -148,7 +169,6 @@ class DefineData(network_data_test.TransformData):
 
         # create circuits, impedances and TCSC's for net
         for index, row in self.all_circuits_year_filtered.iterrows():
-            # self.all_circuits_year_filtered[(self.all_circuits_year_filtered['OHL Length (km)'] + self.all_circuits_year_filtered['Cable Length (km)']) != 0]
             name = f"{row['Node 1']}-{row['Node 2']} ({row['Circuit Type']})"
             from_bus = row['Node 1 bus_id']
             to_bus = row['Node 2 bus_id']
@@ -262,6 +282,7 @@ if __name__ == "__main__":
     call.filter_network_data()
     call.filter_tec_ic_data()
     call.filter_demand_data()
+    call.determine_initial_dispatch_setting()
     call.balance_demand_generation()
     call.create_pandapower_system()
     call.get_imbalance()
