@@ -8,13 +8,14 @@ import requests
 
 
 class TransformData:
-    def __init__(self, api_or_local='local', scotland_reduced=True):
+    def __init__(self, api_or_local='local', scotland_reduced=True, consider_ofto=False):
         self.gsp_demand = None
         self.ic_register = None
         self.tec_register = None
         self.ic_reg_sub_map = None
         self.tec_reg_sub_map = None
         self.ranking_order = None
+        self.intra_hvdc = None
         self.all_trafo_changes = None
         self.all_trafo = None
         self.all_circuits_changes = None
@@ -26,9 +27,12 @@ class TransformData:
 
         self.api_or_local = api_or_local
         self.scotland_reduced = scotland_reduced
+        self.consider_ofto = consider_ofto
 
     def import_network_data(self):
         sub_coordinates = pd.read_csv('../data/CRM_Sub_Coordinates_WGS84.csv').dropna()
+        intra_hvdc = pd.read_csv('../data/intra_hvdc_etys_2022_curated.csv').dropna()
+        self.intra_hvdc = intra_hvdc
 
         etys_file_name = '../data/Appendix B 2022.xlsx'
 
@@ -57,50 +61,40 @@ class TransformData:
         ofto_tx = (pd.read_excel(etys_file_name, sheet_name="B-3-1d", skiprows=[0])).ffill(axis=0)
         ofto_tx_changes = (pd.read_excel(etys_file_name, sheet_name="B-3-2d", skiprows=[0])).ffill(axis=0)
 
-        # intra_hvdc = None
-        # intra_hvdc_changes = None
-
         def define_network_df_dict():
+            network_df_dict_comp = {
+                'nget_circuits': nget_circuits,
+                'nget_circuit_changes': nget_circuit_changes,
+                'nget_tx': nget_tx,
+                'nget_tx_changes': nget_tx_changes
+            }
+
+            network_df_dict_subs = {
+                'shet_substations': shet_substations,
+                'spt_substations': spt_substations,
+                'nget_substations': nget_substations,
+                'ofto_substations': ofto_substations,
+            }
+
             if not self.scotland_reduced:
-                network_df_dict_comp = {
-                    'shet_circuits': shet_circuits,
-                    'shet_circuit_changes': shet_circuit_changes,
-                    'shet_tx': shet_tx,
-                    'shet_tx_changes': shet_tx_changes,
-                    'spt_circuits': spt_circuits,
-                    'spt_circuit_changes': spt_circuit_changes,
-                    'spt_tx': spt_tx,
-                    'spt_tx_changes': spt_tx_changes,
-                    'nget_circuits': nget_circuits,
-                    'nget_circuit_changes': nget_circuit_changes,
-                    'nget_tx': nget_tx,
-                    'nget_tx_changes': nget_tx_changes,
-                    # 'ofto_circuits': ofto_circuits,
-                    # 'ofto_circuit_changes': ofto_circuit_changes,
-                    # 'ofto_tx': ofto_tx,
-                    # 'ofto_tx_changes': ofto_tx_changes
-                }
+                network_df_dict_comp.update({
+                'shet_circuits': shet_circuits,
+                'shet_circuit_changes': shet_circuit_changes,
+                'shet_tx': shet_tx,
+                'shet_tx_changes': shet_tx_changes,
+                'spt_circuits': spt_circuits,
+                'spt_circuit_changes': spt_circuit_changes,
+                'spt_tx': spt_tx,
+                'spt_tx_changes': spt_tx_changes
+                })
 
-                network_df_dict_subs = {
-                    'shet_substations': shet_substations,
-                    'spt_substations': spt_substations,
-                    'nget_substations': nget_substations,
-                    'ofto_substations': ofto_substations,
-                }
-            else:
-                network_df_dict_comp = {
-                    'nget_circuits': nget_circuits,
-                    'nget_circuit_changes': nget_circuit_changes,
-                    'nget_tx': nget_tx,
-                    'nget_tx_changes': nget_tx_changes
-                }
-
-                network_df_dict_subs = {
-                    'shet_substations': shet_substations,
-                    'spt_substations': spt_substations,
-                    'nget_substations': nget_substations,
-                    'ofto_substations': ofto_substations,
-                }
+            if self.consider_ofto:
+                network_df_dict_comp.update({
+                    'ofto_circuits': ofto_circuits,
+                    'ofto_circuit_changes': ofto_circuit_changes,
+                    'ofto_tx': ofto_tx,
+                    'ofto_tx_changes': ofto_tx_changes
+                })
 
             return network_df_dict_comp, network_df_dict_subs
 
@@ -133,8 +127,8 @@ class TransformData:
                     NGET_Subs = pd.read_excel(response.content, sheet_name="B-1-1c", skiprows=[0])
                     NGET_Tx = pd.read_excel(response.content, sheet_name="B-3-1c", skiprows=[0])
                     NGET_Tx_Changes = pd.read_excel(response.content, sheet_name="B-3-2c", skiprows=[0])
-                #     NGET_Reactive = pd.read_excel(response.content, sheet_name = "B-4-1c", skiprows=[0])
-                #     NGET_Reactive_Changes = pd.read_excel(response.content, sheet_name = "B-4-2c", skiprows=[0])
+                    NGET_Reactive = pd.read_excel(response.content, sheet_name = "B-4-1c", skiprows=[0])
+                    NGET_Reactive_Changes = pd.read_excel(response.content, sheet_name = "B-4-2c", skiprows=[0])
                 else:
                     print(
                         "Failed to download ETYS Appendix B file from https://www.nationalgrideso.com/document/275586/download")
@@ -488,7 +482,7 @@ class TransformData:
 
         # define the Gen_Type for TEC Register based on Plant Type and Generator Name columns.
         # set all in IC Register to Gen_Type = Interconnector
-        self.ic_register['Gen_Type'] = "Interconnector"
+        self.ic_register[['Gen_Type', 'Plant Type']] = "Interconnector"
         self.tec_register['Gen_Type'] = ""
         for index, row in self.tec_register.iterrows():
             if re.search('(?i).*nuclear.*', f"{row['Plant Type']} {row['Generator Name']}"):
@@ -511,7 +505,7 @@ class TransformData:
         # remove non-value rows by filtering the '24/25' column.
         # add substation full names and bus id as separate columns into the GSP demand table.
         self.gsp_demand = self.gsp_demand[pd.to_numeric(self.gsp_demand['24/25'], errors='coerce').notnull()]
-        self.gsp_demand[['bus_name', 'bus_id']] = ""
+        self.gsp_demand[['region', 'bus_name', 'bus_id']] = ""
         for index1, row1 in self.gsp_demand.iterrows():
             four_char_dem = str(row1['Node'][:4])
             six_char_dem = str(row1['Node'][:6])
@@ -521,14 +515,35 @@ class TransformData:
                 if six_char_dem == six_char_bus:
                     self.gsp_demand.at[index1, 'bus_name'] = row2['Full Name']
                     self.gsp_demand.at[index1, 'bus_id'] = index2
+                    self.gsp_demand.at[index1, 'region'] = row2['Region']
                     break
                 elif four_char_dem == four_char_bus:
                     self.gsp_demand.at[index1, 'bus_name'] = row2['Full Name']
                     self.gsp_demand.at[index1, 'bus_id'] = index2
+                    self.gsp_demand.at[index1, 'region'] = row2['Region']
+
+    def transform_intrahvdc_data(self):
+        self.intra_hvdc[['region', 'bus_name', 'bus_id']] = ""
+        for index1, row1 in self.intra_hvdc.iterrows():
+            four_char_dem = str(row1['NGET_Node'][:4])
+            six_char_dem = str(row1['NGET_Node'][:6])
+            for index2, row2 in self.bus_ids_df.iterrows():
+                four_char_bus = str(row2['Name'][:4])
+                six_char_bus = str(row2['Name'][:6])
+                if six_char_dem == six_char_bus:
+                    self.intra_hvdc.at[index1, 'bus_name'] = row2['Full Name']
+                    self.intra_hvdc.at[index1, 'bus_id'] = index2
+                    self.intra_hvdc.at[index1, 'region'] = row2['Region']
+                    break
+                elif four_char_dem == four_char_bus:
+                    self.intra_hvdc.at[index1, 'bus_name'] = row2['Full Name']
+                    self.intra_hvdc.at[index1, 'bus_id'] = index2
+                    self.intra_hvdc.at[index1, 'region'] = row2['Region']
 
     def key_stats(self):
         delete = '../delete/'
         self.gsp_demand.to_csv(delete + 'gsp_demand.csv')
+        self.intra_hvdc.to_csv(delete + 'intra_hvdc.csv')
         self.ic_register.to_csv(delete + 'ic_register.csv')
         self.tec_register.to_csv(delete + 'tec_register.csv')
         self.all_trafo_changes.to_csv(delete + 'all_trafo_changes.csv')
@@ -559,4 +574,5 @@ if __name__ == "__main__":
     call.transform_network_data()
     call.transform_tec_ic_data()
     call.transform_demand_data()
+    call.transform_intrahvdc_data()
     call.key_stats()

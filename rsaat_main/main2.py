@@ -27,6 +27,7 @@ class DefineData(network_data_test.TransformData):
 
         self.ic_register_year_filtered = None
         self.tec_register_year_filtered = None
+        self.all_gen_register = None
         self.all_trafo_year_filtered = None
         self.all_circuits_year_filtered = None
         self.gsp_demand_filtered = None
@@ -110,39 +111,61 @@ class DefineData(network_data_test.TransformData):
             self.gsp_demand_filtered['demand'] = self.gsp_demand_filtered[selected_column[0]].copy()
         except:
             self.gsp_demand_filtered['demand'] = self.gsp_demand_filtered['26/27'].copy()
-        self.gsp_demand_filtered.dropna(subset='demand', inplace=True)
+        self.gsp_demand_filtered.dropna(subset='demand').reset_index(inplace=True)
+
+    def combine_tec_ic_registers(self):
+        tec_register_year_filtered_ = self.tec_register_year_filtered.rename(columns={'MW Effective': 'MW Effective - Import'})
+        tec_register_year_filtered_['MW Effective - Export'] = 0
+        all_gen_register = pd.concat([tec_register_year_filtered_, self.ic_register_year_filtered], ignore_index=True)
+        all_gen_register = all_gen_register[['Generator Name', 'HOST TO', 'Plant Type', 'Gen_Type', 'Ranking', 'bus_id', 'MW Effective - Import', 'MW Effective - Export']]
+        all_gen_register.sort_values(by='Ranking', inplace=True)
+        all_gen_register.reset_index(drop=True, inplace=True)
+
+        self.all_gen_register = all_gen_register
 
     # code to determine initial dispatch setting for tec and ic
     def determine_initial_dispatch_setting(self):
         def calculate_demand_target():
+            demand_total = self.gsp_demand_filtered['demand'].sum()
+            return demand_total
+
+        def set_gen_mw_dispatch():
+            demand_total = calculate_demand_target()
+            self.all_gen_register['MW Dispatch'] = 0
+            self.all_gen_register['MW Dispatch'] = self.all_gen_register['MW Dispatch'].astype(float)
+            # track the remaining demand.
+            remaining_demand = demand_total
+            for rank in self.all_gen_register['Ranking'].unique():
+                rank_df = self.all_gen_register[self.all_gen_register['Ranking'] == rank]
+                total_effective_for_rank = rank_df['MW Effective - Import'].sum()
+                if remaining_demand >= total_effective_for_rank:
+                    self.all_gen_register.loc[self.all_gen_register['Ranking'] == rank, 'MW Dispatch'] = rank_df['MW Effective - Import']
+                    remaining_demand -= total_effective_for_rank
+                else:
+                    proportion = remaining_demand / total_effective_for_rank
+                    self.all_gen_register.loc[self.all_gen_register['Ranking'] == rank, 'MW Dispatch'] = round(rank_df['MW Effective - Import'] * proportion, 1)
+                    break  # stop processing as demand has been met.
+            # ensure the MW Dispatch values are not higher than MW Effective
+            self.all_gen_register['MW Dispatch'] = self.all_gen_register[['MW Dispatch', 'MW Effective - Import']].min(axis=1)
+
+        set_gen_mw_dispatch()
+
+        def set_b6_transfer():
             if self.scotland_reduced:
                 pass
             else:
                 pass
 
-        def define_b6_transfer():
-            if self.scotland_reduced:
-                def find_boundary_nodes():
-                    pass
-
-                def add_boundary_nodes():
-                    pass
-            else:
-                pass
-
-        def set_mw_dispatch():
-            pass
-
-    # code to make any adjustments to mw_setpoint of tec or reduce demand ahead of creating pandapower model
+    # code to make any adjustments to MW Dispatch of tec or reduce demand ahead of creating pandapower model
     def balance_demand_generation(self):
-        total_generation = self.tec_register_year_filtered['mw_setpoint'].sum() + self.ic_register_year_filtered['mw_setpoint'].sum()
+        total_generation = self.all_gen_register['MW Dispatch'].sum()
         total_demand = self.gsp_demand_filtered['demand'].sum()
         b6_limit = None
         if abs(total_generation-total_demand) > 500:
             if total_generation > total_demand:
                 x = total_generation - total_demand
-                x1 = x / self.tec_register_year_filtered['mw_setpoint'].sum()
-                self.tec_register_year_filtered['mw_setpoint'] += self.tec_register_year_filtered['mw_setpoint'] * x1
+                x1 = x / self.all_gen_register['MW Dispatch'].sum()
+                self.all_gen_register['MW Dispatch'] += self.all_gen_register['MW Dispatch'] * x1
             else:
                 x = total_demand - total_generation
                 x1 = x / self.gsp_demand_filtered['demand'].sum()
@@ -221,38 +244,38 @@ class DefineData(network_data_test.TransformData):
 
         # create generation from tec reg for net
         # NEED TO ENSURE BUS ID IS SORTED IN ORDER OF VOLTAGE OR CORRECT BUS ID IS DEFINED IN BUS_ID COLUMN
-        for index, row in self.tec_register_year_filtered.iterrows():
-            name = f"{row['Generator Name']} (Gen)"
+        for index, row in self.all_gen_register.iterrows():
+            name = f"{row['Generator Name']}"
             bus = row['bus_id'][0]
             type = row['Gen_Type']
-            max_p_mw = row['MW Effective']
+            max_p_mw = row['MW Effective - Import']
             scaling = 1
-            p_mw = abs(row['mw_setpoint'])
+            p_mw = abs(row['MW Dispatch'])
             pp.create_sgen(net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
                            in_service=True, max_p_mw=max_p_mw)
 
         # create generation from ic reg for net
-        for index, row in self.ic_register_year_filtered.iterrows():
-            name = f"{row['Generator Name']} (IC)"
-            bus = row['bus_id'][0]
-            type = row['Gen_Type']
-            scaling = 1
-            p_mw = abs(row['mw_setpoint'])
-            if row['mw_setpoint'] >= 0:
-                max_p_mw = row['MW Import - Total']
-                pp.create_sgen(net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
-                               in_service=True, max_p_mw=max_p_mw)
-            else:
-                max_d_mw = row['MW Export - Total']
-                pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=0, const_z_percent=0, const_i_percent=0, name=name,
-                           scaling=1)
+        # for index, row in self.ic_register_year_filtered.iterrows():
+        #     name = f"{row['Generator Name']} (IC)"
+        #     bus = row['bus_id'][0]
+        #     type = row['Gen_Type']
+        #     scaling = 1
+        #     p_mw = abs(row['mw_setpoint'])
+        #     if row['mw_setpoint'] >= 0:
+        #         max_p_mw = row['MW Import - Total']
+        #         pp.create_sgen(net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
+        #                        in_service=True, max_p_mw=max_p_mw)
+        #     else:
+        #         max_d_mw = row['MW Export - Total']
+        #         pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=0, const_z_percent=0, const_i_percent=0, name=name,
+        #                    scaling=1)
 
         # create demand for net
         for index, row in self.gsp_demand_filtered.iterrows():
             name = f"{row['Node']} (Demand)"
             bus = row['bus_id']
             p_mw = row['demand']
-            q_mvar = p_mw * -0.1 # 10% mvar spill applied based on average winter P/Q ratio
+            q_mvar = p_mw * -0.1 # 10% mvar injection applied based on average winter P/Q ratio
             pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=q_mvar, const_z_percent=0, const_i_percent=0, name=name,
                            scaling=1)
 
@@ -274,7 +297,8 @@ class DefineData(network_data_test.TransformData):
         self.all_trafo_year_filtered.to_csv(delete + 'all_trafo_year_filtered.csv')
         self.all_circuits_year_filtered.to_csv(delete + 'all_circuits_year_filtered.csv')
         self.gsp_demand_filtered.to_csv(delete + 'gsp_demand_filtered.csv')
-        pp.to_excel(self.net, delete + 'net_pp.xlsx')
+        self.all_gen_register.to_csv(delete + 'all_gen_register.csv')
+        # pp.to_excel(self.net, delete + 'net_pp.xlsx')
 
 
 if __name__ == "__main__":
@@ -282,9 +306,10 @@ if __name__ == "__main__":
     call.filter_network_data()
     call.filter_tec_ic_data()
     call.filter_demand_data()
+    call.combine_tec_ic_registers()
     call.determine_initial_dispatch_setting()
-    call.balance_demand_generation()
-    call.create_pandapower_system()
-    call.get_imbalance()
-    call.run_analysis()
+    # call.balance_demand_generation()
+    # call.create_pandapower_system()
+    # call.get_imbalance()
+    # call.run_analysis()
     call.key_stats()
