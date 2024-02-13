@@ -5,6 +5,7 @@ import streamlit as st
 import re
 from datetime import datetime
 import network_data_test
+import ast
 
 
 # import openpyxl
@@ -117,7 +118,7 @@ class DefineData(network_data_test.TransformData):
         tec_register_year_filtered_ = self.tec_register_year_filtered.rename(columns={'MW Effective': 'MW Effective - Import'})
         tec_register_year_filtered_['MW Effective - Export'] = 0
         all_gen_register = pd.concat([tec_register_year_filtered_, self.ic_register_year_filtered], ignore_index=True)
-        all_gen_register = all_gen_register[['Generator Name', 'HOST TO', 'Plant Type', 'Gen_Type', 'Ranking', 'bus_id', 'MW Effective - Import', 'MW Effective - Export']]
+        all_gen_register = all_gen_register[['Generator Name', 'HOST TO', 'Plant Type', 'Gen_Type', 'Ranking', 'Apportion', 'bus_id', 'MW Effective - Import', 'MW Effective - Export']]
         all_gen_register.sort_values(by='Ranking', inplace=True)
         all_gen_register.reset_index(drop=True, inplace=True)
 
@@ -129,25 +130,33 @@ class DefineData(network_data_test.TransformData):
             demand_total = self.gsp_demand_filtered['demand'].sum()
             return demand_total
 
+        # Initialize an empty list for MW Dispatch to later populate with calculated lists
         def set_gen_mw_dispatch():
-            demand_total = calculate_demand_target()
-            self.all_gen_register['MW Dispatch'] = 0
-            self.all_gen_register['MW Dispatch'] = self.all_gen_register['MW Dispatch'].astype(float)
-            # track the remaining demand.
-            remaining_demand = demand_total
-            for rank in self.all_gen_register['Ranking'].unique():
-                rank_df = self.all_gen_register[self.all_gen_register['Ranking'] == rank]
-                total_effective_for_rank = rank_df['MW Effective - Import'].sum()
-                if remaining_demand >= total_effective_for_rank:
-                    self.all_gen_register.loc[self.all_gen_register['Ranking'] == rank, 'MW Dispatch'] = rank_df['MW Effective - Import']
-                    remaining_demand -= total_effective_for_rank
-                else:
-                    proportion = remaining_demand / total_effective_for_rank
-                    self.all_gen_register.loc[self.all_gen_register['Ranking'] == rank, 'MW Dispatch'] = round(rank_df['MW Effective - Import'] * proportion, 1)
-                    break  # stop processing as demand has been met.
-            # ensure the MW Dispatch values are not higher than MW Effective
-            self.all_gen_register['MW Dispatch'] = self.all_gen_register[['MW Dispatch', 'MW Effective - Import']].min(axis=1)
+            def create_max_dispatchable_col(row):
+                values = map(float, row['Apportion'].split(';'))  # Split and convert to float
+                multiplied_values = [value * row['MW Effective - Import'] for value in values]  # Multiply
+                return multiplied_values
+            self.all_gen_register['Max Dispatchable'] = self.all_gen_register.apply(create_max_dispatchable_col, axis=1)
 
+            number_scenarios = len(self.all_gen_register['Apportion'].iloc[0].split(';'))
+            self.all_gen_register['MW Dispatch'] = [[0] * number_scenarios for _ in range(len(self.all_gen_register))]
+
+            for num in range(number_scenarios):
+                demand_total = calculate_demand_target()
+                remaining_demand = demand_total
+                for rank in sorted(self.all_gen_register['Ranking'].unique()):
+                    rank_df = self.all_gen_register[self.all_gen_register['Ranking'] == rank]
+                    total_effective_for_scenario = rank_df['Max Dispatchable'].apply(lambda x: x[num]).sum()
+                    if remaining_demand >= total_effective_for_scenario:
+                        for index, row in rank_df.iterrows():
+                            self.all_gen_register.at[index, 'MW Dispatch'][num] = row['Max Dispatchable'][num]
+                        remaining_demand -= total_effective_for_scenario
+                    else:
+                        proportion = remaining_demand / total_effective_for_scenario
+                        for index, row in rank_df.iterrows():
+                            dispatch_value = round(row['MW Effective - Import'] * proportion, 1)
+                            self.all_gen_register.at[index, 'MW Dispatch'][num] = dispatch_value
+                        break  # stop processing as demand has been met.
         set_gen_mw_dispatch()
 
         def set_b6_transfer():

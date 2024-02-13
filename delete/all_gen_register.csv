@@ -1,521 +1,520 @@
-,Generator Name,HOST TO,Plant Type,Gen_Type,Ranking,bus_id,MW Effective - Import,MW Effective - Export,MW Dispatch
-0,Viking Link Denmark Interconnector (NATIONAL GRID VIKING LINK LIMITED),NGET,Interconnector,Interconnector,0,[43],1500.0,1500,1500.0
-1,The Superconnection (ASC ENERGY LIMITED),NGET,Interconnector,Interconnector,0,"[170, 172]",1000.0,1000,1000.0
-2,Aquind Interconnector (AQUIND LIMITED),NGET,Interconnector,Interconnector,0,[421],2000.0,2075,2000.0
-3,Britned (BRITNED DEVELOPMENT LIMITED),NGET,Interconnector,Interconnector,0,[260],1200.0,1200,1200.0
-4,Continental Link (NATIONAL GRID INTERCONNECTOR HOLDINGS LIMITED),NGET,Interconnector,Interconnector,0,"[170, 172]",1800.0,1800,1800.0
-5,East West Interconnector (EIRGRID INTERCONNECTOR DESIGNATED ACTIVITY COMPANY),NGET,Interconnector,Interconnector,0,[153],505.0,585,505.0
-6,FAB Link Interconnector (FAB LINK LIMITED),NGET,Interconnector,Interconnector,0,[216],1250.0,1310,1250.0
-7,Greenlink (GREENLINK INTERCONNECTOR LIMITED),NGET,Interconnector,Interconnector,0,[531],504.0,524,504.0
-8,IFA Interconnector (NATIONAL GRID INTERCONNECTORS LIMITED),NGET,Interconnector,Interconnector,0,"[615, 616, 617, 619, 620, 621]",1988.0,1988,1988.0
-9,IFA2 Interconnector (NATIONAL GRID IFA 2 LIMITED),NGET,Interconnector,Interconnector,0,[145],1100.0,1150,1100.0
-10,Isle of Man Interconnector (MANX UTILITIES),NGET,Interconnector,Interconnector,0,"[543, 544, 545, 546]",74.0,74,74.0
-11,ElecLink (ELECLINK LIMITED),NGET,Interconnector,Interconnector,0,"[615, 616, 617, 619, 620, 621]",1000.0,1050,1000.0
-12,Lion (EuroLink) (NATIONAL GRID INTERCONNECTOR HOLDINGS LIMITED),NGET,Interconnector,Interconnector,0,"[246, 247, 248, 249, 250]",1600.0,1600,1600.0
-13,MARES (MARESCONNECT LIMITED),NGET,Interconnector,Interconnector,0,[55],750.0,750,750.0
-14,NS Link (NATIONAL GRID NORTH SEA LINK LIMITED),NGET,Interconnector,Interconnector,0,[48],1400.0,1480,1400.0
-15,Nautilus (NATIONAL GRID INTERCONNECTOR HOLDINGS LIMITED),NGET,Interconnector,Interconnector,0,[403],1500.0,1500,1500.0
-16,Nemo Link (NEMO LINK LIMITED),NGET,Interconnector,Interconnector,0,[579],1020.0,1046,1020.0
-17,Kulizumboo Interconnector (KULIZUMBOO LIMITED),NGET,Interconnector,Interconnector,0,[113],700.0,700,700.0
-18,NeuConnect Interconnector (NEUCONNECT BRITAIN LTD),NGET,Interconnector,Interconnector,0,"[261, 262, 263, 264]",1400.0,1470,1400.0
-19,Sheringham Shoal Offshore Wind Farm (SCIRA OFFSHORE ENERGY LIMITED),OFTO,Wind Offshore,Wind,1,"[494, 495, 496, 497]",315.0,0,55.035547778772475
-20,East Anglia Three *Stage: 2.0* (EAST ANGLIA THREE LIMITED),NGET,Wind Offshore,Wind,1,"[69, 70]",100.0,0,17.47160246945158
-21,East Anglia Two (EAST ANGLIA TWO LIMITED),NGET,Wind Offshore,Wind,1,"[246, 247, 248, 249, 250]",860.0,0,150.2557812372836
-22,London Array Offshore Wind Farm (LONDON ARRAY LIMITED),OFTO,Wind Offshore,Wind,1,[152],630.0,0,110.07109555754495
-23,Sofia Offshore Wind Farm *Stage: 1.0* (SOFIA OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,"[170, 172]",132.0,0,23.062515259676086
-24,Sofia Offshore Wind Farm *Stage: 2.0* (SOFIA OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,"[170, 172]",1188.0,0,207.56263733708477
-25,Lincs Offshore Wind Farm (LINCS WIND FARM LIMITED),OFTO,Wind Offshore,Wind,1,[760],265.0,0,46.29974654404669
-26,Lister Drive 275kV (LISTER DRIVE SOLUTIONS LIMITED),NGET,Reactive Compensation,Other,1,"[405, 406]",0.0,0,0.0
-27,Icewind Hinkley Point (Hecate Offshore Wind Limited),NGET,Wind Offshore,Wind,1,[319],1000.0,0,174.7160246945158
-28,Tamar-Landulph (TI PROJECTCO 1 LIMITED),NGET,Reactive Compensation,Other,1,"[392, 393]",0.0,0,0.0
-29,Humber Gateway Offshore Wind Farm (RWE RENEWABLES UK HUMBER WIND LIMITED),OFTO,Wind Offshore,Wind,1,[309],220.0,0,38.43752543279348
-30,Tamar-Hartmoor (TI PROJECTCO 3 LIMITED),NGET,Reactive Compensation,Other,1,[303],0.0,0,0.0
-31,East Anglia Three *Stage: 1.0* (EAST ANGLIA THREE LIMITED),NGET,Wind Offshore,Wind,1,"[69, 70]",1200.0,0,209.65922963341896
-32,Swansea Greener Grid Park - Connection 2 (Swansea Grid Solutions Limited),NGET,Reactive Compensation,BESS / Energy Park,1,"[682, 684, 685, 688]",0.0,0,0.0
-33,Erebus (BLUE GEM WIND LIMITED),NGET,Wind Offshore,Wind,1,[530],91.0,0,15.899158247200939
-34,East Anglia One North (EAST ANGLIA ONE LIMITED),NGET,Wind Offshore,Wind,1,"[246, 247, 248, 249, 250]",860.0,0,150.2557812372836
-35,Dogger Bank Project A (DOGGERBANK OFFSHORE WIND FARM PROJECT 1 PROJCO LIMITED),NGET,Wind Offshore,Wind,1,"[170, 172]",1200.0,0,209.65922963341896
-36,Sellindge Grid Stability Services (SELLINDGE GRID SERVICES LIMITED),NGET,Reactive Compensation,Other,1,"[615, 616, 617, 619, 620, 621]",0.0,0,0.0
-37,Race Bank Wind Farm (RACE BANK WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,[760],565.0,0,98.71455395240143
-38,Rampion Extension Offshore Wind Farm (RAMPION EXTENSION DEVELOPMENT LIMITED),NGET,Wind Offshore,Wind,1,[57],1200.0,0,209.65922963341896
-39,Rampion Offshore Wind Farm (RAMPION OFFSHORE WIND LIMITED),NGET,Wind Offshore,Wind,1,[57],400.0,0,69.88640987780632
-40,Peak Gen Makro Exeter (PEAK GEN POWER 14 LIMITED),NGET,Reactive Compensation,Other,1,[217],20.0,0,3.4943204938903163
-41,Ormonde Offshore Wind Farm (ORMONDE ENERGY LIMITED),OFTO,Wind Offshore,Wind,1,[312],150.0,0,26.20740370417737
-42,Dogger Bank Project 4 (Dogger Bank B) (DOGGERBANK OFFSHORE WIND FARM PROJECT 2 PROJCO LIMITED),NGET,Wind Offshore,Wind,1,"[170, 172]",1200.0,0,209.65922963341896
-43,Robin Rigg East Offshore Wind Farm (RWE RENEWABLES UK ROBIN RIGG EAST LIMITED),OFTO,Wind Offshore,Wind,1,"[290, 292, 293]",86.0,0,15.025578123728359
-44,Robin Rigg West Offshore Wind Farm (RWE RENEWABLES UK ROBIN RIGG WEST LIMITED),OFTO,Wind Offshore,Wind,1,"[290, 292, 293]",92.0,0,16.073874271895455
-45,Tamar-Richborough (TI PROJECTCO 2 LIMITED),NGET,Reactive Compensation,Other,1,[579],0.0,0,0.0
-46,Codling Park Wind Farm (CODLING WIND PARK III LIMITED),NGET,Wind Offshore,Wind,1,[538],1000.0,0,174.7160246945158
-47,Dogger Bank Project C (DOGGERBANK OFFSHORE WIND FARM PROJECT 3 PROJCO LIMITED),NGET,Wind Offshore,Wind,1,[388],1200.0,0,209.65922963341896
-48,Scira-Dudgeon Extension *Stage: 1.0* (EQUINOR NEW ENERGY LIMITED),NGET,Wind Offshore,Wind,1,[498],719.0,0,125.62082175535686
-49,Merlin Offshore Wind Farm (OFFSHORE WIND LIMITED),NGET,Wind Offshore,Wind,1,"[14, 15]",300.0,0,52.41480740835474
-50,Cilfynydd Grid Stability Services (WP GRID SERVICES 18 LIMITED),NGET,Reactive Compensation,Other,1,[148],0.0,0,0.0
-51,Dudgeon Offshore Wind Farm (DUDGEON OFFSHORE WIND LIMITED),NGET,Wind Offshore,Wind,1,"[466, 467, 468]",400.0,0,69.88640987780632
-52,East Anglia One (EAST ANGLIA ONE LIMITED),NGET,Wind Offshore,Wind,1,"[246, 247, 248, 249, 250]",680.0,0,118.80689679227075
-53,Burbo Bank Extension Offshore Wind Farm (BURBO EXTENSION LTD),NGET,Wind Offshore,Wind,1,[55],258.0,0,45.076734371185076
-54,Hornsea Power Station 2C (SONNINGMAY WIND LIMITED),NGET,Wind Offshore,Wind,1,[371],440.0,0,76.87505086558696
-55,Galloper Wind Farm (GALLOPER WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,[404],348.0,0,60.8011765936915
-56,Hornsea Power Station 4 *Stage: 2.0* (ORSTED HORNSEA PROJECT FOUR LIMITED),NGET,Wind Offshore,Wind,1,"[170, 172]",1100.0,0,192.1876271639674
-57,Walney I Offshore Wind Farm (WALNEY (UK) OFFSHORE WINDFARMS LIMITED),OFTO,Wind Offshore,Wind,1,[442],182.0,0,31.798316494401877
-58,Walpole Grid Services Facility (Conrad (Walpole) Limited),NGET,Reactive Compensation,Other,1,[760],0.0,0,0.0
-59,Hornsea Power Station 1B (HORNSEA 1 LIMITED),NGET,Wind Offshore,Wind,1,[371],400.0,0,69.88640987780632
-60,Hornsea Power Station 1A (HORNSEA 1 LIMITED),NGET,Wind Offshore,Wind,1,[371],400.0,0,69.88640987780632
-61,Westermost Rough Offshore Wind Farm (WESTERMOST ROUGH LIMITED),OFTO,Wind Offshore,Wind,1,[309],206.5,0,36.078859099417514
-62,Walney 4 Offshore Wind Farm (WALNEY EXTENSION LIMITED),NGET,Wind Offshore,Wind,1,[442],330.0,0,57.65628814919022
-63,West of Duddon Sands Offshore Wind Farm (MORECAMBE WIND LIMITED),OFTO,Wind Offshore,Wind,1,[311],382.0,0,66.74152143330504
-64,Gunfleet Sands Offshore Wind Farm (GUNFLEET SANDS LIMITED),OFTO,Wind Offshore,Wind,1,"[68, 71]",99.9,0,17.45413086698213
-65,Gwynt Y Mor Offshore Wind Farm (GWYNT Y MOR OFFSHORE WIND FARM LIMITED),OFTO,Wind Offshore,Wind,1,[55],574.0,0,100.28699817465207
-66,Barrow Offshore Wind Farm (BARROW OFFSHORE WIND LIMITED),OFTO,Wind Offshore,Wind,1,"[290, 292, 293]",90.0,0,15.724442222506422
-67,Awel Y Mor Extension *Stage: 2.0* (AWEL Y MOR OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,[55],526.0,0,91.90062898931531
-68,Awel Y Mor Extension *Stage: 1.0* (AWEL Y MOR OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,[55],574.0,0,100.28699817465207
-69,Alverdiscott (XLINKS 1 LTD),NGET,Wind Offshore,Wind,1,"[14, 15]",1800.0,0,314.48884445012845
-70,Gunfleet Sands II Offshore Wind Farm (Gunfleet Sands II Ltd),OFTO,Wind Offshore,Wind,1,"[68, 71]",64.0,0,11.181825580449011
-71,Walney 3 Offshore Wind Farm (WALNEY EXTENSION LIMITED),NGET,Wind Offshore,Wind,1,[442],330.0,0,57.65628814919022
-72,Walney II Offshore Wind Farm (WALNEY (UK) OFFSHORE WINDFARMS LIMITED),OFTO,Wind Offshore,Wind,1,[442],182.0,0,31.798316494401877
-73,Vanguard East *Stage: 2.0* (Norfolk Vanguard East Ltd),NGET,Wind Offshore,Wind,1,"[466, 467, 468]",920.0,0,160.73874271895454
-74,Vanguard East *Stage: 1.0* (Norfolk Vanguard East Ltd),NGET,Wind Offshore,Wind,1,"[466, 467, 468]",400.0,0,69.88640987780632
-75,Hornsea Power Station 4 *Stage: 1.0* (ORSTED HORNSEA PROJECT FOUR LIMITED),NGET,Wind Offshore,Wind,1,"[170, 172]",1500.0,0,262.0740370417737
-76,Hornsea Power Station 3 *Stage: 2.0* (ORSTED HORNSEA PROJECT THREE (UK) LIMITED),NGET,Wind Offshore,Wind,1,[498],750.0,0,131.03701852088685
-77,Vanguard (NORFOLK VANGUARD LIMITED),NGET,Wind Offshore,Wind,1,"[466, 467, 468]",1320.0,0,230.62515259676087
-78,Greater Gabbard Offshore Wind Farm (GREATER GABBARD OFFSHORE WINDS LIMITED),OFTO,Wind Offshore,Wind,1,[404],500.0,0,87.3580123472579
-79,Triton Knoll Offshore Wind Farm (TRITON KNOLL OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,[43],824.0,0,143.96600434828102
-80,Hornsea Power Station 2A (BREESEA LIMITED),NGET,Wind Offshore,Wind,1,[371],440.0,0,76.87505086558696
-81,Hornsea Power Station 3 *Stage: 1.0* (ORSTED HORNSEA PROJECT THREE (UK) LIMITED),NGET,Wind Offshore,Wind,1,[498],2250.0,0,393.11105556266057
-82,TINZ Project Nene 1 (Landulph) (TINZ PROGRAMME 3 PROJECTCO 1 LIMITED),NGET,Reactive Compensation,Other,1,"[392, 393]",1.0,0,0.1747160246945158
-83,Hornsea Power Station 1C (HORNSEA 1 LIMITED),NGET,Wind Offshore,Wind,1,[371],400.0,0,69.88640987780632
-84,Thanet Offshore Wind Farm (THANET OFFSHORE WIND LIMITED),OFTO,Wind Offshore,Wind,1,[580],300.0,0,52.41480740835474
-85,Hornsea Power Station 2B (SOUNDMARK WIND LIMITED),NGET,Wind Offshore,Wind,1,[371],440.0,0,76.87505086558696
-86,TINZ Nene 4 (Richborough) (TINZ PROGRAMME 3 PROJECTCO 4 LIMITED),NGET,Reactive Compensation,Other,1,[579],0.0,0,0.0
-87,Port of Mostyn (MOSTYN SEAPOWER LIMITED),NGET,Tidal,Hydro/Pump/Tidal,2,[153],210.0,0,0.0
-88,Menter Mon Morlais Anglesey Marine Energy *Stage: 1.0* (MENTER MON CYF),NGET,Tidal,Hydro/Pump/Tidal,2,[537],40.0,0,0.0
-89,Cwm Dyli (RWE GENERATION UK PLC),NGET,Hydro,Hydro/Pump/Tidal,3,[734],10.0,0,0.0
-90,Dolgarrog (RWE GENERATION UK PLC),NGET,Hydro,Hydro/Pump/Tidal,3,[539],39.0,0,0.0
-91,Hinkley Point C *Stage: 1.0* (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,[319],1670.0,0,0.0
-92,Dungeness B (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,[189],1120.0,0,0.0
-93,Hinkley Point B (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,[319],1061.0,0,0.0
-94,Hinkley Point C *Stage: 2.0* (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,[319],1670.0,0,0.0
-95,Hartlepool (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,[301],1207.0,0,0.0
-96,Heysham Power Station (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,[312],2388.0,0,0.0
-97,Sizewell B (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,"[633, 634, 635, 636]",1230.0,0,0.0
-98,Nant Aman (NANT AMAN ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,[578],143.0,0,0.0
-99,Little Hill (BRYN GILWERN ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,"[682, 684, 685, 688]",74.9,0,0.0
-100,Builth Wells (ABEREDW ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,"[682, 684, 685, 688]",133.0,0,0.0
-101,Bryn Glas Energy Park (Bryn Glas Energy Park Limited),NGET,Wind Onshore,Wind,5,"[682, 684, 685, 688]",159.0,0,0.0
-102,Goole Fields Wind Farm (RWE RENEWABLES UK SWINDON LIMITED),NGET,Wind Onshore,Wind,5,"[185, 186]",32.0,0,0.0
-103,Tarenni (TARENNI ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,[578],188.0,0,0.0
-104,Twyn Hywel Cillfynydd (Twyn Hywel Energy Park Ltd),NGET,Wind Onshore,Wind,5,[148],160.0,0,0.0
-105,Moelfre Energy Park (MOELFRE ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,[55],158.4,0,0.0
-106,Eppynt Common (GARREG FAWR ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,"[682, 684, 685, 688]",189.5,0,0.0
-107,Nant Ceiment Energy Park (NANT CEIMENT ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,"[682, 684, 685, 688]",88.4,0,0.0
-108,Lan Fawr Energy Park (LAN FAWR ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,"[682, 684, 685, 688]",246.4,0,0.0
-109,Fron Goch (NANT MITHIL ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,"[682, 684, 685, 688]",252.7,0,0.0
-110,Gwynt Alwen WF (WIND 2 LIMITED),NGET,Wind Onshore,Wind,5,[736],108.0,0,0.0
-111,Pen Y Cymoedd Wind Farm (PEN Y CYMOEDD WIND FARM LIMITED),NGET,Wind Onshore,Wind,5,[578],228.0,0,0.0
-112,BlaenCothi Energy Park (BLAENCOTHI ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,"[682, 684, 685, 688]",145.0,0,0.0
-113,Overhill Wind Farm (ENERGYFARM UK OVERHILL LLP),SPT,Wind Onshore,Wind,5,[520],50.0,0,0.0
-114,Kirkby *Stage: 1.0* (HD001KIR LTD),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,[375],49.9,0,0.0
-115,Peak Gen Southampton (W4B RENEWABLE ENERGY LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,[502],24.0,0,0.0
-116,Chatterley (CONRAD (CHATTERLEY) LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,"[129, 130]",20.0,0,0.0
-117,Grain South Power Station (Grain South Power Limited),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,[259],49.99,0,0.0
-118,Peak Gen Llandarcy (PEAK GEN POWER 5 LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,"[682, 684, 685, 688]",21.0,0,0.0
-119,Grain North Power Station (GRAIN NORTH POWER LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,[259],49.99,0,0.0
-120,VPI Immingham B OCGT (VPI IMMINGHAM B LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,[321],299.0,0,0.0
-121,Peak Gen Fareham (PEAK GEN POWER 13 LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,[502],21.0,0,0.0
-122,CPG Power (ESB ASSET DEVELOPMENT UK LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,"[123, 125, 126, 128]",49.9,0,0.0
-123,Middlewich BEGA (CONRAD (MIDDLEWICH) LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,"[124, 127]",20.0,0,0.0
-124,Drax (Biomass) (DRAX POWER LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,"[185, 186]",1905.0,0,0.0
-125,Holyhead *Stage: 1.0* (Recell Energy Bloom Developments Limited),NGET,Biomass,CCGT/CHP/Biomass,7,[537],150.0,0,0.0
-126,Lynemouth Power Station (LYNEMOUTH POWER LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,"[52, 54]",396.0,0,0.0
-127,Holyhead *Stage: 2.0* (Recell Energy Bloom Developments Limited),NGET,Biomass,CCGT/CHP/Biomass,7,[537],60.0,0,0.0
-128,Tees Renewable Energy Plant (MGT TEESSIDE LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,"[383, 384, 385, 386]",285.0,0,0.0
-129,Tilbury (TILBURY GREEN POWER LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,"[709, 712, 713, 718]",43.0,0,0.0
-130,Glanford (EPR GLANFORD LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,[356],15.0,0,0.0
-131,Thetford (EPR THETFORD LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,"[69, 70]",41.0,0,0.0
-132,Burwell (ENERGY POWER RESOURCES LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,[100],38.0,0,0.0
-133,Indian Queens (INDIAN QUEENS POWER LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[335],140.0,0,0.0
-134,Huntworth (UK POWER RESERVE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[692],10.0,0,0.0
-135,Immingham (VPI IMMINGHAM LLP),NGET,CHP (Combined Heat and Power); Energy Storage System,CCGT/CHP/Biomass,8,[321],1218.0,0,0.0
-136,Sutton Bridge (SUTTON BRIDGE POWER GENERATION),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[760],850.0,0,0.0
-137,JG Pears *Stage: 1.0* (JG PEARS GRID CONNECTION LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,[313],13.0,0,0.0
-138,Plymouth Rock (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,[394],15.08,0,0.0
-139,Trafford Power *Stage: 1.0* (WAINSTONES ENERGY LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[123, 125, 126, 128]",1040.0,0,0.0
-140,JG Pears *Stage: 2.0* (JG PEARS GRID CONNECTION LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,[313],17.0,0,0.0
-141,Water Lane (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,[217],20.88,0,0.0
-142,West Burton B (WEST BURTON B LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Energy Storage System,CCGT/CHP/Biomass,8,"[783, 784]",1333.0,0,0.0
-143,Hirwaun Power Station (HIRWAUN POWER LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[578],299.0,0,0.0
-144,Wilton (SEMBCORP UTILITIES (UK) LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[272],141.0,0,0.0
-145,Derwent (UK UTILITY RESERVE LIMITED)_2,NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,"[829, 830]",162.0,0,0.0
-146,Immingham (VPI IMMINGHAM LLP)_2,NGET,CHP (Combined Heat and Power); Energy Storage System,CCGT/CHP/Biomass,8,[321],50.0,0,0.0
-147,Keadby (KEADBY GENERATION LIMITED)_2,NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[355, 357, 358, 359, 360, 361]",155.0,0,0.0
-148,Medway Power Station (MEDWAY POWER LIMITED)_2,NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[260],175.0,0,0.0
-149,Taylors Lane (UNIPER UK LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[827],140.0,0,0.0
-150,Keadby (KEADBY GENERATION LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[355, 357, 358, 359, 360, 361]",755.0,0,0.0
-151,Staythorpe C (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[663, 664]",1752.0,0,0.0
-152,Keadby II (KEADBY GENERATION LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[355, 357, 358, 359, 360, 361]",893.0,0,0.0
-153,Seabank (SEABANK POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[613, 614]",1234.0,0,0.0
-154,Millbrook Power (MILLBROOK POWER LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[443, 444, 445, 446]",299.0,0,0.0
-155,Saltend (Saltend Cogeneration Company Ltd),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[605],1100.0,0,0.0
-156,Net Zero Teesside Power Project (NET ZERO TEESSIDE POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[725],860.0,0,0.0
-157,Rye House (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[597, 599, 600]",715.0,0,0.0
-158,Rocksavage (ROCKSAVAGE POWER COMPANY LTD),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[586],810.0,0,0.0
-159,Sellafield (NUCLEAR DECOMMISSIONING AUTHORITY),NGET,CHP (Combined Heat and Power),Nuclear,8,[329],155.0,0,0.0
-160,Redfield Road A (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,"[568, 569]",20.88,0,0.0
-161,Norwich (ASHGREEN ENERGY FARM LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[494, 495, 496, 497]",49.5,0,0.0
-162,Redditch (CINERGY GLOBAL POWER (UK) LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[221],29.0,0,0.0
-163,Ratcliffe EMERGE (UNIPER UK LIMITED),NGET,Waste,Other,8,"[568, 569]",49.9,0,0.0
-164,Pembroke Power Station (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[531],2199.0,0,0.0
-165,Peterborough (RIVER NENE POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[759],245.0,0,0.0
-166,Plymouth Main (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,[394],25.52,0,0.0
-167,North Killingholme Power Project (C.GEN KILLINGHOLME LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[371],540.0,0,0.0
-168,Severn Power (SEVERN POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[754, 755, 757]",850.0,0,0.0
-169,Sevington (UK POWER RESERVE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[618, 622, 623]",10.0,0,0.0
-170,SHBEC (EP SHB LIMITED),NGET,Waste,Other,8,[639],83.0,0,0.0
-171,Kemsley (GROVEHURST ENERGY LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,[366],35.8,0,0.0
-172,Killingholme *Stage: 1.0* (UNIPER UK LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[371],600.0,0,0.0
-173,Killingholme *Stage: 2.0* (UNIPER UK LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[371],19.0,0,0.0
-174,Kings Lynn A (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[759],395.0,0,0.0
-175,Langage (EP LANGAGE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[395],905.0,0,0.0
-176,Spalding (SPALDING ENERGY COMPANY LTD),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[646],950.0,0,0.0
-177,South Humber Bank (EP SHB LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[639],1365.0,0,0.0
-178,Solutia (UK POWER RESERVE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[753, 756]",10.0,0,0.0
-179,Little Barford (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[196, 198, 199]",740.0,0,0.0
-180,Lynes Common (RWE COGEN UK (HYTHE) LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[219],49.9,0,0.0
-181,Marchwood (MARCHWOOD POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[429],920.0,0,0.0
-182,Medway Power Station (MEDWAY POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[260],735.0,0,0.0
-183,Shoreham *Stage: 2.0* (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[57],-40.0,0,-40.0
-184,Shoreham *Stage: 1.0* (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[57],460.0,0,0.0
-185,Shoreham (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[57],420.0,0,0.0
-186,Keadby 3 (KEADBY GENERATION LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[355, 357, 358, 359, 360, 361]",910.0,0,0.0
-187,Powersite @ Drakelow (POWERSITE LTD),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[183],380.0,0,0.0
-188,Abedare (UK POWER RESERVE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[752],10.0,0,0.0
-189,Corby (CORBY POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[197, 200]",401.0,0,0.0
-190,Ferrybridge D *Stage: 1.0* (KEADBY GENERATION LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[224, 227, 228, 229, 231]",310.0,0,0.0
-191,Damhead Creek 2 (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[372],1800.0,0,0.0
-192,Cheshire (RWE GENERATION UK PLC),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[116],90.0,0,0.0
-193,Brigg (CBS ENERGY STORAGE ASSETS UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[355, 357, 358, 359, 360, 361]",99.0,0,0.0
-194,Barton Hill (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,"[6, 7]",20.88,0,0.0
-195,Fawley CHP (ESSO PETROLEUM COMPANY LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,[219],158.0,0,0.0
-196,Chickerell (SSE GENERATION LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,"[142, 144]",47.0,0,0.0
-197,Derwent (UK UTILITY RESERVE LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,"[829, 830]",0.0,0,0.0
-198,Didcot A GTs (RWE GENERATION UK PLC),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[178],100.0,0,0.0
-199,Didcot B (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[178],1475.0,0,0.0
-200,Carrington Power Station (CARRINGTON POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[124, 127]",910.0,0,0.0
-201,Cowes (RWE GENERATION UK PLC),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[219],140.0,0,0.0
-202,Damhead Creek (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[373],812.0,0,0.0
-203,Eggborough CCGT and BESS (EGGBOROUGH POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[201, 202]",2450.0,0,0.0
-204,Beech Street/City Road (CITIGEN (LONDON) LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,"[149, 150]",30.0,0,0.0
-205,Enfield (UNIPER UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[94],442.0,0,0.0
-206,Connahs Quay (UNIPER UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[153],1380.0,0,0.0
-207,Great Yarmouth (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[494, 495, 496, 497]",420.0,0,0.0
-208,Green Frog @ Alcoa (VIRIDIS 178 LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[683, 687]",40.0,0,0.0
-209,Green Frog @ Down Barn Farm (VIRIDIS 178 LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[421],20.0,0,0.0
-210,Green Frog @ Goose House Lane (VIRIDIS 178 LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[581, 583]",21.0,0,0.0
-211,Green Frog @ Letchworth (VIRIDIS 178 LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,[845],15.0,0,0.0
-212,Green Frog @ Moorfield Drive (VIRIDIS 178 LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[522],21.0,0,0.0
-213,Grain (UNIPER UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Reactive Compensation,CCGT/CHP/Biomass,8,[260],1517.0,0,0.0
-214,Green Frog @ Rake Lane (VIRIDIS 178 LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[363],21.0,0,0.0
-215,Green frog @ The Drove (VIRIDIS 178 LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[84, 85, 86, 87, 88]",6.0,0,0.0
-216,Green Frog at Lester Way (VIRIDIS 178 LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[164, 166]",12.0,0,0.0
-217,Coryton (CORYTON ENERGY COMPANY LTD),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,[157],800.0,0,0.0
-218,CDCL (UNIPER UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,"[158, 159]",445.0,0,0.0
-219,Cowley Energy Storage (Penso Power Limited),NGET,Energy Storage System,BESS / Energy Park,9,[165],200.0,0,0.0
-220,Cryogenic Battery System (Synchronous) (CRYOBATTERY ONE LIMITED),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,"[123, 125, 126, 128]",49.9,0,0.0
-221,Pond Hill Farm 2 BESS (PD688IRO LTD),NGET,Energy Storage System,BESS / Energy Park,9,[453],47.5,0,0.0
-222,Cowley (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[165],49.9,0,0.0
-223,Bramford (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[69, 70]",57.0,0,0.0
-224,Uskmouth - New Connection (ENSO GREEN HOLDINGS E LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[754, 755, 757]",120.0,0,0.0
-225,Uskmouth *Stage: 1.0* (USKMOUTH ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[753, 756]",230.0,0,0.0
-226,Bramley BESS *Stage: 1.0* (BRAMLEY BESS LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[78],49.995,0,0.0
-227,Coventry (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[161],49.9,0,0.0
-228,Richborough 1 (RICHBOROUGH ENERGY PARK LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[579],50.0,0,0.0
-229,Braintree (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[65, 66]",49.9,0,0.0
-230,Pond Hill Farm 1 (PD688IRO LTD),NGET,Energy Storage System,BESS / Energy Park,9,[453],47.5,0,0.0
-231,Lister Drive Shaw (Carnegie BES Limited),NGET,Energy Storage System,BESS / Energy Park,9,"[405, 406]",57.0,0,0.0
-232,Cuxton 49.5MW BESS (Cuxton Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,[372],49.5,0,0.0
-233,Didcot Road (ARLINGTON ENERGY (DEVELOPMENT) LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[178],300.0,0,0.0
-234,Tees CCPP *Stage: 2.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,[271],210.0,0,0.0
-235,Nursling Tertiary (NURSLING ENERGY TWO LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[501, 503]",49.9,0,0.0
-236,Ocker Hill Tertiary Connection (HD143OCK LTD),NGET,Energy Storage System,BESS / Energy Park,9,"[504, 506]",57.0,0,0.0
-237,Oldbury (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[510, 513]",49.9,0,0.0
-238,Warley (WARLEY BATTERY STORAGE),NGET,Energy Storage System,BESS / Energy Park,9,[769],57.0,0,0.0
-239,Didcot Energy Park (RNA-ENERGY LTD),NGET,Energy Storage System,BESS / Energy Park,9,[178],300.0,0,0.0
-240,Ouse Energy Storage (Ouse Energy Limited),NGET,Energy Storage System,BESS / Energy Park,9,"[367, 368, 369]",249.0,0,0.0
-241,Didcot Battery (DIDCOT BATTERY LIMITED),NGET,Demand; Energy Storage System,BESS / Energy Park,9,[178],100.0,0,0.0
-242,Culham Storage (STATERA ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[175],500.0,0,0.0
-243,Peak Gen Barry (PEAK GEN POWER 6 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[0, 1, 3]",20.0,0,0.0
-244,Pembroke BESS (RWE GENERATION UK PLC),NGET,Energy Storage System,BESS / Energy Park,9,[531],350.0,0,0.0
-245,Walpole (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[760],49.9,0,0.0
-246,Penketh Hall Farm (Net Zero One Limited),NGET,Energy Storage System,BESS / Energy Park,9,[234],249.9,0,0.0
-247,Penwortham (Redscar) (CONRAD (REDSCAR) LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[549],40.0,0,0.0
-248,Richborough 2 (RICHBOROUGH ENERGY PARK LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[579],50.0,0,0.0
-249,Penwortham BESS (Penwortham (BES) Ltd),NGET,Energy Storage System,BESS / Energy Park,9,"[542, 547, 548]",57.0,0,0.0
-250,Pillswood BESS Phase 1 (Harmony (PW) Limited),NGET,Energy Storage System,BESS / Energy Park,9,"[167, 171]",49.9,0,0.0
-251,Pillswood BESS Phase 2 (Harmony (PW) 2 Limited),NGET,Energy Storage System,BESS / Energy Park,9,"[167, 171]",49.9,0,0.0
-252,Bradford West 100MW (24 POWER LTD),NGET,Energy Storage System,BESS / Energy Park,9,[63],100.0,0,0.0
-253,Deeside Power Station (DEESIDE POWER (UK) LIMITED),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,[153],1.0,0,0.0
-254,Penwortham BESS (CSE28 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[542, 547, 548]",57.0,0,0.0
-255,Seabank (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[613, 614]",49.9,0,0.0
-256,Rochdale BESS (Rochdale (BES) Ltd),NGET,Energy Storage System,BESS / Energy Park,9,[584],57.0,0,0.0
-257,SSE Ferrybridge BESS (SSE UTILITY SOLUTIONS LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[225],150.0,0,0.0
-258,SSE Fiddlers Ferry Battery Energy Storage (SSE UTILITY SOLUTIONS LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[234],150.0,0,0.0
-259,St Dennis Hendra (SAMBAR POWER LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[335],47.5,0,0.0
-260,Steel Point (aka Project Lithium) (Skelmersdale Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,"[771, 772]",49.9,0,0.0
-261,Sundon (SUNDON BATTERY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[678, 680]",49.5,0,0.0
-262,Sundon (SUNDON GREEN LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[677],39.9,0,0.0
-263,Sundon Pivoted Power (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[678, 680]",49.9,0,0.0
-264,Broadditch BESS (Harmony BD Ltd),NGET,Energy Storage System,BESS / Energy Park,9,"[483, 485]",11.58,0,0.0
-265,Brook Farm BESS (Brook Farm Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,"[68, 71]",49.9,0,0.0
-266,Swansea Greener Grid Park - Connection 1 *Stage: 1.0* (Swansea Grid Solutions Limited),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,"[682, 684, 685, 688]",12.0,0,0.0
-267,Swansea Greener Grid Park - Connection 1 *Stage: 2.0* (Swansea Grid Solutions Limited),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,"[682, 684, 685, 688]",85.0,0,0.0
-268,Bustleholme (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[107],49.9,0,0.0
-269,Swansea North (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[682, 684, 685, 688]",49.9,0,0.0
-270,Tees CCPP *Stage: 5.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,[271],275.0,0,0.0
-271,Tees CCPP *Stage: 4.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,[271],490.0,0,0.0
-272,Burbo Bank Offshore Wind Farm (ORSTED BURBO (UK) LIMITED),NGET,Energy Storage System; Wind Offshore,Wind,9,[44],90.0,0,0.0
-273,Bumpers Farm BESS phase 2 (Harmony BF Ltd),NGET,Energy Storage System,BESS / Energy Park,9,[17],49.5,0,0.0
-274,Bumpers Farm BESS phase 1 (Harmony BF Ltd),NGET,Energy Storage System,BESS / Energy Park,9,[17],49.5,0,0.0
-275,Tees CCPP *Stage: 1.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,[271],150.0,0,0.0
-276,Spennymoor Greener Grid Park *Stage: 1.0* (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,"[647, 648]",0.0,0,0.0
-277,Spennymoor (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[647, 648]",49.9,0,0.0
-278,Spalding Energy Expansion *Stage: 1.0* (SPALDING ENERGY EXPANSION LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,[646],299.99,0,0.0
-279,Southfields Farm (PD300RON Ltd),NGET,Energy Storage System,BESS / Energy Park,9,[453],47.5,0,0.0
-280,Tottenham (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[726, 729]",49.9,0,0.0
-281,Tollgate 49.5MW BESS (Tollgate Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,"[207, 208, 211]",49.5,0,0.0
-282,Bredbury (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[80],49.9,0,0.0
-283,Clay Tye Farm Phase 2 (Harmony CTF 2 Limited),NGET,Energy Storage System,BESS / Energy Park,9,[768],49.5,0,0.0
-284,Clay Tye Farm Phase 1 (HARMONY CTF LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[768],49.5,0,0.0
-285,Clayhill Farm (ARL O09 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[677],40.0,0,0.0
-286,Weirs Drove *Stage: 1.0* (EAST ANGLIA GRID STORAGE ONE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[101],49.9,0,0.0
-287,Sellindge (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[615, 616, 617, 619, 620, 621]",49.9,0,0.0
-288,Bridgwater 2 (tertiary) - New Conn (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[84, 85, 86, 87, 88]",54.0,0,0.0
-289,CONTEGO  Battery Storage Project (Harmony CS Ltd),NGET,Energy Storage System,BESS / Energy Park,9,"[56, 58]",35.8,0,0.0
-290,Chapel Farm Battery Storage Project (HARMONY CF LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[677],49.5,0,0.0
-291,Cellarhead Home Farm (ECODEV GROUP LTD),NGET,Energy Storage System,BESS / Energy Park,9,"[129, 130]",280.0,0,0.0
-292,Thurrock Power Station (THURROCK POWER LIMITED),NGET,Energy Storage System; Gas Reciprocating,CCGT/CHP/Biomass,9,[714],750.0,0,0.0
-293,Cellarhead 400kV Energy Storage (C & S ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[131],300.0,0,0.0
-294,Sizing John (Rainhill) *Stage: 1.0* (SIZING JOHN LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[564, 565]",57.0,0,0.0
-295,Sizing John (Rainhill) *Stage: 2.0* (SIZING JOHN LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[564, 565]",85.5,0,0.0
-296,Carrington (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[122],57.0,0,0.0
-297,Capenhurst Tertiary Connection (HD888CAP LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[116],57.0,0,0.0
-298,Capenhurst 275KV Substation (ZENOBE CAPENHURST LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[116],100.0,0,0.0
-299,Thorpe Marsh Energy Park (Banks Renewables Limited),NGET,Energy Storage System,BESS / Energy Park,9,"[703, 704]",1400.0,0,0.0
-300,Sheaf Energy (SHEAF ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[579],249.0,0,0.0
-301,Weirs Drove *Stage: 2.0* (EAST ANGLIA GRID STORAGE ONE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[101],30.0,0,0.0
-302,Tees CCPP *Stage: 3.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,[271],340.0,0,0.0
-303,WELBAR ENERGY STORAGE *Stage: 1.0* (WELBAR ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[287],349.9,0,0.0
-304,Wymondley (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[846],57.0,0,0.0
-305,Kemsley (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[367, 368, 369]",49.9,0,0.0
-306,Feckenham Greener Grid Park *Stage: 1.0* (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,[222],12.0,0,0.0
-307,Kingsnorth *Stage: 1.0* (ENSO GREEN HOLDINGS G LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[372],49.9,0,0.0
-308,Kingsnorth *Stage: 2.0* (ENSO GREEN HOLDINGS G LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[372],49.9,0,0.0
-309,Kingsnorth *Stage: 3.0* (ENSO GREEN HOLDINGS G LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[372],20.2,0,0.0
-310,Fairholme BESS (HB411MIN Limited),NGET,Energy Storage System,BESS / Energy Park,9,[453],47.5,0,0.0
-311,Kirkby (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[375],57.0,0,0.0
-312,Lakeside Energy Drax (LAKESIDE ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[187],99.9,0,0.0
-313,Laleham (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[389],49.9,0,0.0
-314,Landulph (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[392, 393]",49.9,0,0.0
-315,Blackpool BESS (Conrad (Blackpool) Limited),NGET,Energy Storage System,BESS / Energy Park,9,[312],25.3,0,0.0
-316,Dinorwig (FIRST HYDRO COMPANY),NGET,Pump Storage,Hydro/Pump/Tidal,9,[179],1644.0,0,0.0
-317,Exeter (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[216],49.9,0,0.0
-318,Lister Battery (formerly Lister Drive) (LISTER BATTERY LTD),NGET,Energy Storage System,BESS / Energy Park,9,"[405, 406]",57.0,0,0.0
-319,Lister Drive (ORSTED ESS MERSEY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[407],20.0,0,0.0
-320,Littlebrook BESS (ECODEV GROUP LTD),NGET,Energy Storage System,BESS / Energy Park,9,[413],300.0,0,0.0
-321,Kearsley (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[365],49.9,0,0.0
-322,Enderby (Akira) (ENDERBY BATTERY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[215],57.0,0,0.0
-323,Ffestiniog (FIRST HYDRO COMPANY),NGET,Pump Storage,Hydro/Pump/Tidal,9,"[232, 233]",360.0,0,0.0
-324,BESS Swan (CSWE 3 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[682, 684, 685, 688]",200.0,0,0.0
-325,Aberthaw Energy (ABERTHAW ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[2],249.0,0,0.0
-326,Axminster (CSE25 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[20],150.0,0,0.0
-327,Axminster (HB825AXM LTD),NGET,Energy Storage System,BESS / Energy Park,9,[20],120.0,0,0.0
-328,GF Upper Boat *Stage: 3.0* (PULSE CLEAN ENERGY SPV FRANKLIN LIMITED),NGET,Energy Storage System; Reactive Compensation,PV,9,"[749, 750]",200.0,0,0.0
-329,GF Upper Boat *Stage: 2.0* (PULSE CLEAN ENERGY SPV FRANKLIN LIMITED),NGET,Energy Storage System; Reactive Compensation,PV,9,"[749, 750]",0.0,0,0.0
-330,GF Upper Boat *Stage: 1.0* (PULSE CLEAN ENERGY SPV FRANKLIN LIMITED),NGET,Energy Storage System; Reactive Compensation,PV,9,"[749, 750]",0.0,0,0.0
-331,Gateway Energy Centre Power Station *Stage: 1.0* (GATEWAY ENERGY CENTRE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[157],450.0,0,0.0
-332,Axminster (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[20],49.9,0,0.0
-333,Hutton Battery Storage (OSSPV001 LIMITED),NGET,Energy Storage System,PV,9,"[326, 327, 328]",10.0,0,0.0
-334,Indian Queens (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[335],47.5,0,0.0
-335,Beddington 1 BESS (Bluestone Energy Ltd),NGET,Energy Storage System,BESS / Energy Park,9,"[32, 34]",240.0,0,0.0
-336,Iron Acton *Stage: 1.0* (HD000ACT LTD),NGET,Energy Storage System,BESS / Energy Park,9,[338],49.9,0,0.0
-337,Iron Acton *Stage: 2.0* (HD000ACT LTD),NGET,Energy Storage System,BESS / Energy Park,9,[338],70.1,0,0.0
-338,Beddington 2 BESS (Bluestone Energy Ltd),NGET,Energy Storage System,BESS / Energy Park,9,"[32, 34]",240.0,0,0.0
-339,Berkswell Energy Storage (Penso Power Limited),NGET,Energy Storage System,BESS / Energy Park,9,[39],200.0,0,0.0
-340,Isenau Eight (Isenau Energy Storage Resources Eight Limited),NGET,Energy Storage System,BESS / Energy Park,9,[307],249.0,0,0.0
-341,Iver (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[345, 347, 348]",49.9,0,0.0
-342,Zenobe Stalybridge Project (ZENOBE ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[656],150.0,0,0.0
-343,Willington (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[831],57.0,0,0.0
-344,Legacy Tertiary Connection (HD639LEG LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[397, 398, 400]",57.0,0,0.0
-345,Mannington Tertiary (MANNINGTON ENERGY CENTRE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[428],47.5,0,0.0
-346,Mill Hill Tertiary Connection (HB333MIL LTD),NGET,Energy Storage System,BESS / Energy Park,9,"[448, 449, 450]",57.0,0,0.0
-347,Lovedean Greener Grid Park (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,[421],49.9,0,0.0
-348,Drax (ENSO GREEN HOLDINGS D LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[185, 186]",190.0,0,0.0
-349,Middleton BESS (Middleton Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,[442],200.0,0,0.0
-350,Bloxwich (BLOXWICH ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[107],41.0,0,0.0
-351,Monets Garden (MONETS GARDEN BATTERY LTD),NGET,Energy Storage System,BESS / Energy Park,9,"[515, 517]",57.0,0,0.0
-352,Monk Fryston Tertiary Connection (HD777FRY LTD),NGET,Energy Storage System,BESS / Energy Park,9,"[459, 460, 461, 462]",57.0,0,0.0
-353,Dollymans Storage (Dollymans Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,[573],99.8,0,0.0
-354,West Weybridge (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[796, 797, 798]",49.9,0,0.0
-355,Minety (HB411MIN Limited),NGET,Energy Storage System,BESS / Energy Park,9,[453],47.5,0,0.0
-356,Mannington (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[428],49.9,0,0.0
-357,Native River (Capenhurst) (NATIVE RIVER LTD),NGET,Energy Storage System,BESS / Energy Park,9,[116],57.0,0,0.0
-358,Bolney (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,[57],49.9,0,0.0
-359,Necton Greener Grid Park *Stage: 1.0* (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,"[466, 467, 468]",0.0,0,0.0
-360,NorthFleet 2 BESS (CSE41 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,[484],300.0,0,0.0
-361,Whitson (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,"[811, 812, 816, 818]",49.9,0,0.0
-362,Whitegate Tertiary Connection (HD144WHI LTD),NGET,Energy Storage System,BESS / Energy Park,9,[810],57.0,0,0.0
-363,Monk Fryston SSE (SSE BATTERY MONK FRYSTON LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[459, 460, 461, 462]",320.0,0,0.0
-364,Dog Trap Lane (HD381GRE Limited),NGET,Energy Storage System,BESS / Energy Park,9,[453],47.5,0,0.0
-365,Newtonwood BESS (NEWTONWOOD ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,"[138, 139]",49.9,0,0.0
-366,Ninfield Greener Grid Park *Stage: 1.0* (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,[481],0.0,0,0.0
-367,Dowlais (VIRIDIS 178 LIMITED),NGET,Thermal,Other,10,[752],21.0,0,0.0
-368,Drax (Coal) (DRAX POWER LIMITED),NGET,Coal,Other,10,"[185, 186]",2001.0,0,0.0
-369,Ratcliffe on Soar (UNIPER UK LIMITED),NGET,Coal,Other,10,[570],2021.0,0,0.0
-370,Sudmeadow (VIRIDIS 178 LIMITED),NGET,Thermal,Other,10,[557],41.76,0,0.0
-371,Burghfield (SSE GENERATION LIMITED),NGET,Thermal,Other,10,[78],47.0,0,0.0
-372,Enderby Tertiary (CLUMP FARM SOLAR LIMITED),NGET,Thermal,PV,10,[215],57.0,0,0.0
-373,Exeter Main Tertiary (EXETER MAIN BATTERY LIMITED),NGET,Thermal,BESS / Energy Park,10,[216],57.0,0,0.0
-374,Trafalgar Park (VIRIDIS 178 LIMITED),NGET,Thermal,Other,10,"[829, 830]",14.0,0,0.0
-375,Fleet Tertiary (FLEET SOLAR LIMITED),NGET,Thermal,PV,10,[239],47.5,0,0.0
-376,JBM Solar 13 - Melksham (JBM SOLAR PROJECTS 13 LIMITED),NGET,Thermal,PV,10,[441],49.99,0,0.0
-377,Redfield Road B (VIRIDIS 178 LIMITED),NGET,Thermal,Other,10,"[568, 569]",20.88,0,0.0
-378,Beechgreen Energyfarm (BEECHGREEN ENERGYFARM LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[101],49.99,0,0.0
-379,Berkswell (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[39],49.9,0,0.0
-380,Berkswell (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[39],7.1,0,0.0
-381,West Burton *Stage: 2.0* (ENSO GREEN HOLDINGS A LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[781, 782]",49.9,0,0.0
-382,Willington East 1 (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[831],49.9,0,0.0
-383,Axminster - New Connection *Stage: 3.0* (ENSO GREEN HOLDINGS B LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[20],20.2,0,0.0
-384,Thornton Facility *Stage: 1.0* (BALWEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[697, 698, 699, 700]",99.98,0,0.0
-385,West Burton *Stage: 1.0* (ENSO GREEN HOLDINGS A LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[781, 782]",49.9,0,0.0
-386,Waltham Cross BESS (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[762, 763, 765, 766]",57.0,0,0.0
-387,Barking PV BESS & Substation (O&G Solar (SPV 19) Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[23, 25]",99.9,0,0.0
-388,Thornton Facility *Stage: 3.0* (BALWEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[697, 698, 699, 700]",200.0,0,0.0
-389,Axminster - New Connection *Stage: 2.0* (ENSO GREEN HOLDINGS B LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[20],49.9,0,0.0
-390,Axminster - New Connection *Stage: 1.0* (ENSO GREEN HOLDINGS B LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[20],49.9,0,0.0
-391,Warley (tertiary) *Stage: 1.0* (WARLEY GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[769],49.9,0,0.0
-392,Bolney (tertiary) *Stage: 1.0* (BOLNEY GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[57],49.9,0,0.0
-393,Aberthaw (Tertiary) (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[2],57.0,0,0.0
-394,Thornton Facility *Stage: 2.0* (BALWEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[697, 698, 699, 700]",99.98,0,0.0
-395,Thorpe Marsh 1 (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[703, 704]",49.9,0,0.0
-396,West Burton *Stage: 3.0* (ENSO GREEN HOLDINGS A LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[781, 782]",20.2,0,0.0
-397,Thorpe Marsh 1 (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[703, 704]",7.1,0,0.0
-398,Braintree (Tertiary) (CSE22 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,"[65, 66]",49.9,0,0.0
-399,Willington East 1 (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[831],7.1,0,0.0
-400,Willington East 2 (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[831],49.9,0,0.0
-401,Bramford Tertiary *Stage: 1.0* (BRAMFORD GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[69, 70]",49.9,0,0.0
-402,Bramford Tertiary *Stage: 2.0* (BRAMFORD GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[69, 70]",7.1,0,0.0
-403,Willington East 2 (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[831],7.1,0,0.0
-404,Willington Energy Park (RNA-ENERGY LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[831],500.0,0,0.0
-405,Bramley (tertiary) (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[78],57.0,0,0.0
-406,Breach Solar Farm (BURWELL 11 SOLAR LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[101],49.995,0,0.0
-407,Willington Green Energy Centre *Stage: 1.0* (WILLINGTON GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[831],400.0,0,0.0
-408,West Weybridge (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[796, 797, 798]",7.1,0,0.0
-409,West Weybridge (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[796, 797, 798]",49.9,0,0.0
-410,Worset PV & BESS Park (Worcestershire Solar 1 Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[303],37.5,0,0.0
-411,Botley West - Cote Solar Power Station (SOLARFIVE LTD),NGET,PV Array (Photo Voltaic/solar),PV,11,[165],840.0,0,0.0
-412,Blankney Solar *Stage: 1.0* (ACRE LANE ENERGYFARM LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[43],400.0,0,0.0
-413,Bridgwater (tertiary) (BRIDGWATER GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[84, 85, 86, 87, 88]",57.0,0,0.0
-414,BOOM Power Llanbabo Generation (Carrog Storage Facility Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[843],300.0,0,0.0
-415,Wylfa Substation (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[844],120.0,0,0.0
-416,Tillbridge Solar (TILLBRIDGE SOLAR LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[158, 159]",500.0,0,0.0
-417,West Burton Solar Project (WEST BURTON SOLAR PROJECT LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[783, 784]",480.0,0,0.0
-418,Walpole 1 (Tertiary) *Stage: 1.0* (WALPOLE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[760],49.9,0,0.0
-419,Wymondley Solar Farm (AGR SOLAR 4 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[846],49.995,0,0.0
-420,Bird Grove/Rownall (ROWNALL FARM SOLAR LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[131],57.0,0,0.0
-421,Bicker Fen 2 Solar *Stage: 1.0* (AGR SOLAR 3 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[43],49.995,0,0.0
-422,Bicker Fen 1 Solar *Stage: 1.0* (AGR SOLAR 2 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[43],49.995,0,0.0
-423,Walpole 1 (Tertiary) *Stage: 2.0* (WALPOLE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[760],7.1,0,0.0
-424,Walpole 2 (tertiary) (ENSO GREEN HOLDINGS R LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[760],100.0,0,0.0
-425,Bolney (tertiary) *Stage: 2.0* (BOLNEY GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[57],7.1,0,0.0
-426,Warley (tertiary) *Stage: 2.0* (WARLEY GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[769],7.1,0,0.0
-427,Heckington Fen Solar Park (ECOTRICITY GENERATION LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[43],400.0,0,0.0
-428,Swansea North Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[682, 684, 685, 688]",1025.0,0,0.0
-429,Fferm Solar Pentir (LIGHTSOURCE SPV 191 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[538],57.0,0,0.0
-430,Kirkby Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[375],400.0,0,0.0
-431,Exeter Solar PV & BESS (Exeter Storage Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[216],290.0,0,0.0
-432,Legacy Green Energy Centre *Stage: 1.0* (LEGACY GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[397, 398, 400]",400.0,0,0.0
-433,Essendine (MALLARD PASS SOLAR FARM LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,"[601, 602]",240.0,0,0.0
-434,Enderby Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[215],1025.0,0,0.0
-435,Llanwern Phase 1 (GREENFIELDS (T) LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[811, 812, 816, 818]",95.0,0,0.0
-436,Llanwern Phase 2 (FUTURE ENERGY LLANWERN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[811, 812, 816, 818]",190.0,0,0.0
-437,Longfield Solar (LONGFIELD SOLAR ENERGY FARM LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[99],500.0,0,0.0
-438,Lovedean (Tertiary) *Stage: 1.0* (LOVEDEAN GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[421],49.9,0,0.0
-439,Lovedean (Tertiary) *Stage: 2.0* (LOVEDEAN GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[421],7.1,0,0.0
-440,Elstree (tertiary) *Stage: 2.0* (ELSTREE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[206, 213]",7.1,0,0.0
-441,Elstree (tertiary) *Stage: 1.0* (ELSTREE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[206, 213]",49.9,0,0.0
-442,Mannington (BAYWA R.E. UK LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[428],57.0,0,0.0
-443,Eaton Socon Solar (RNA-ENERGY LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[196, 198, 199]",500.0,0,0.0
-444,Melksham  (Tertiary) *Stage: 1.0* (MELKSHAM CALNE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[441],49.9,0,0.0
-445,Melksham  (Tertiary) *Stage: 2.0* (MELKSHAM CALNE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[441],7.1,0,0.0
-446,East Claydon Solar PV (STATERA ENERGY LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[193],500.0,0,0.0
-447,Drakelow Green Energy Centre *Stage: 1.0* (DRAKELOW GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[183],400.0,0,0.0
-448,Kearsley North Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[363],400.0,0,0.0
-449,Minety Tertiary (2) (JBM SOLAR PROJECTS 14 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,"[454, 455]",47.5,0,0.0
-450,Flash Solar Farm *Stage: 1.0* (ELEMENTS GREEN TRENT LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[663, 664]",360.0,0,0.0
-451,Flash Solar Farm *Stage: 3.0* (ELEMENTS GREEN TRENT LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[663, 664]",200.0,0,0.0
-452,Heysham Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[311],400.0,0,0.0
-453,Hams Hall Green Energy Centre *Stage: 1.0* (HAMS HALL GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[287],400.0,0,0.0
-454,High Marnham (Tertiary) (ENSO GREEN HOLDINGS K LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[314, 315]",57.0,0,0.0
-455,Hirfynydd and Mynydd Drumaur (EDF ENERGY RENEWABLES LIMITED),NGET,PV Array (Photo Voltaic/solar); Wind Onshore,Wind,11,"[682, 684, 685, 688]",180.0,0,0.0
-456,Gammidge PV & BESS Park (CS UK HOLDINGS III LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[269],40.9,0,0.0
-457,Frodsham Solar Park (PEEL NRE DEVELOPMENTS LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,"[254, 256]",100.0,0,0.0
-458,Fleet Solar PV (FLEET SOLAR LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[239],57.0,0,0.0
-459,Fleet EGH (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[239],7.1,0,0.0
-460,Fleet EGH (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[239],49.9,0,0.0
-461,Fleet (Tertiary) (CSE23 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[239],47.5,0,0.0
-462,Indian Queens Energy Centre (IQ ENERGY CENTRE LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[335],47.5,0,0.0
-463,Iron Acton *Stage: 1.0* (IRON ACTON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[338],49.9,0,0.0
-464,Iron Acton *Stage: 2.0* (IRON ACTON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[338],49.5,0,0.0
-465,Iron Acton *Stage: 3.0* (IRON ACTON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[338],20.6,0,0.0
-466,Ironbridge - New Connection *Stage: 1.0* (ENSO GREEN HOLDINGS F LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[341],49.9,0,0.0
-467,Ironbridge - New Connection *Stage: 2.0* (ENSO GREEN HOLDINGS F LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[341],49.9,0,0.0
-468,Ironbridge - New Connection *Stage: 3.0* (ENSO GREEN HOLDINGS F LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[341],20.2,0,0.0
-469,JBM Solar 12 - Shrewsbury Solar (JBM SOLAR PROJECTS 12 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[627],49.99,0,0.0
-470,Flash Solar Farm *Stage: 4.0* (ELEMENTS GREEN TRENT LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[663, 664]",200.0,0,0.0
-471,Flash Solar Farm *Stage: 2.0* (ELEMENTS GREEN TRENT LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[663, 664]",40.0,0,0.0
-472,Drakelow (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[183],57.0,0,0.0
-473,Mon Solar Farm (LIGHTSOURCE SPV 204 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[843],240.0,0,0.0
-474,Morgannwg Solar Farm (LIGHTSOURCE SPV 214 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[2],249.0,0,0.0
-475,Rayleigh 2 Tertiary *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[572],49.9,0,0.0
-476,Rayleigh 2 Tertiary *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[572],7.1,0,0.0
-477,Rochester Renewable Project (VATTENFALL WIND POWER LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar); Wind Onshore,Wind,11,[373],60.0,0,0.0
-478,Rosefield (Rosefield Energyfarm Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[193],500.0,0,0.0
-479,Cleve Hill Solar Park (CLEVE HILL SOLAR PARK LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[152],350.0,0,0.0
-480,Rye House (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[593, 594, 595, 596, 598]",49.9,0,0.0
-481,Rye House (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[593, 594, 595, 596, 598]",7.1,0,0.0
-482,Cilfynydd Green Energy Centre *Stage: 1.0* (CILFYNYDD GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[148],400.0,0,0.0
-483,Chickerell Solar PV & BESS (CHICKERELL SOLAR LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[142, 144]",400.0,0,0.0
-484,Cellarhead Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[131],400.0,0,0.0
-485,Somerford (PD813ETY LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[453],47.5,0,0.0
-486,Southfields (PD503HAN LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[453],47.5,0,0.0
-487,Capenhurst (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[116],7.1,0,0.0
-488,Capenhurst (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[116],49.9,0,0.0
-489,Staythorpe (BESS and PV) (SSE STAYTHORPE POWER LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[663, 664]",437.0,0,0.0
-490,Canterbury Tertiary *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[113],7.1,0,0.0
-491,Sulgrave Solar PV (EDF ENERGY RENEWABLES LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,"[194, 195]",129.8,0,0.0
-492,Sunnica (SUNNICA LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[101],500.0,0,0.0
-493,Canterbury Tertiary *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,[113],49.9,0,0.0
-494,Rayleigh 1 Tertiary *Stage: 2.0* (RAYLEIGH GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[572],7.1,0,0.0
-495,Harker Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[295],400.0,0,0.0
-496,Ratcliffe-on-Soar *Stage: 3.0* (ENSO GREEN HOLDINGS C LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[568, 569]",20.2,0,0.0
-497,Ratcliffe-on-Soar *Stage: 2.0* (ENSO GREEN HOLDINGS C LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[568, 569]",49.9,0,0.0
-498,NorthFleet Tertiary (CSE29 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[484],49.9,0,0.0
-499,North Wales Hybrid (SOLAR CENTURY HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[55],53.0,0,0.0
-500,Norton (BAYWA R.E. UK LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[490],57.0,0,0.0
-501,Norton PV and BESS (Darlington Solar 1 Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[490],40.9,0,0.0
-502,Norwich (PIVOTED POWER LLP),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[494, 495, 496, 497]",57.0,0,0.0
-503,Oaklands Farm Solar PV (BAYWA R.E. UK LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[182],162.3,0,0.0
-504,Old Flatts Farm (Net Zero One Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[96, 97]",750.0,0,0.0
-505,One Earth Solar Farm (ONE EARTH SOLAR FARM LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[314, 315]",500.0,0,0.0
-506,Bushbury Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[103],480.0,0,0.0
-507,Rayleigh 1 Tertiary *Stage: 1.0* (RAYLEIGH GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[572],49.9,0,0.0
-508,Pembroke (spare bay) (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[530],120.0,0,0.0
-509,Pembroke BESS and Solar Station (Renesola Hercules Energy 1 Ltd),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[531],99.9,0,0.0
-510,Penwortham Green Energy Centre *Stage: 1.0* (PENWORTHAM GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[542, 547, 548]",400.0,0,0.0
-511,Daines Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[176],480.0,0,0.0
-512,Plas Power Estate North Tertiary (LIGHTSOURCE SPV 192 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[397, 398, 400]",57.0,0,0.0
-513,Project Yare (ASHGREEN ENERGY FARM LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[498],49.5,0,0.0
-514,Cowley (Tertiary) *Stage: 2.0* (COWLEY BALDON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[165],7.1,0,0.0
-515,Cowley (Tertiary) *Stage: 1.0* (COWLEY BALDON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,[165],49.9,0,0.0
-516,Ratcliffe-on-Soar *Stage: 1.0* (ENSO GREEN HOLDINGS C LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,"[568, 569]",49.9,0,0.0
-517,Peak Gen BEGA (PEAK GEN POWER 2 LIMITED),NGET,Oil & AGT (Advanced Gas Turbine),CCGT/CHP/Biomass,12,[759],20.5,0,0.0
-518,Peak Gen Havant (PEAK GEN POWER 18 LIMITED),NGET,Oil & AGT (Advanced Gas Turbine),CCGT/CHP/Biomass,12,"[420, 422]",21.0,0,0.0
-519,Peak Gen Bracknell (PEAK GEN POWER 11 LIMITED),NGET,Oil & AGT (Advanced Gas Turbine),CCGT/CHP/Biomass,12,"[237, 238]",20.0,0,0.0
+,Generator Name,HOST TO,Plant Type,Gen_Type,Ranking,Apportion,bus_id,MW Effective - Import,MW Effective - Export,MW Dispatch,Max Dispatchable
+0,Viking Link Denmark Interconnector (NATIONAL GRID VIKING LINK LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[43],1500.0,1500,"[1500.0, 0.0, -750.0]","[1500.0, 0.0, -750.0]"
+1,The Superconnection (ASC ENERGY LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,"[167, 169]",1000.0,1000,"[1000.0, 0.0, -500.0]","[1000.0, 0.0, -500.0]"
+2,Aquind Interconnector (AQUIND LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[420],2000.0,2075,"[2000.0, 0.0, -1000.0]","[2000.0, 0.0, -1000.0]"
+3,Britned (BRITNED DEVELOPMENT LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[260],1200.0,1200,"[1200.0, 0.0, -600.0]","[1200.0, 0.0, -600.0]"
+4,Continental Link (NATIONAL GRID INTERCONNECTOR HOLDINGS LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,"[167, 169]",1800.0,1800,"[1800.0, 0.0, -900.0]","[1800.0, 0.0, -900.0]"
+5,East West Interconnector (EIRGRID INTERCONNECTOR DESIGNATED ACTIVITY COMPANY),NGET,Interconnector,Interconnector,0,1;0;-0.5,[156],505.0,585,"[505.0, 0.0, -252.5]","[505.0, 0.0, -252.5]"
+6,FAB Link Interconnector (FAB LINK LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[216],1250.0,1310,"[1250.0, 0.0, -625.0]","[1250.0, 0.0, -625.0]"
+7,Greenlink (GREENLINK INTERCONNECTOR LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[530],504.0,524,"[504.0, 0.0, -252.0]","[504.0, 0.0, -252.0]"
+8,IFA Interconnector (NATIONAL GRID INTERCONNECTORS LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,"[617, 618, 619, 620, 621, 623]",1988.0,1988,"[1988.0, 0.0, -994.0]","[1988.0, 0.0, -994.0]"
+9,IFA2 Interconnector (NATIONAL GRID IFA 2 LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[145],1100.0,1150,"[1100.0, 0.0, -550.0]","[1100.0, 0.0, -550.0]"
+10,Isle of Man Interconnector (MANX UTILITIES),NGET,Interconnector,Interconnector,0,1;0;-0.5,"[542, 546, 547, 548]",74.0,74,"[74.0, 0.0, -37.0]","[74.0, 0.0, -37.0]"
+11,ElecLink (ELECLINK LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,"[617, 618, 619, 620, 621, 623]",1000.0,1050,"[1000.0, 0.0, -500.0]","[1000.0, 0.0, -500.0]"
+12,Lion (EuroLink) (NATIONAL GRID INTERCONNECTOR HOLDINGS LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,"[246, 247, 248, 249, 250]",1600.0,1600,"[1600.0, 0.0, -800.0]","[1600.0, 0.0, -800.0]"
+13,MARES (MARESCONNECT LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[55],750.0,750,"[750.0, 0.0, -375.0]","[750.0, 0.0, -375.0]"
+14,NS Link (NATIONAL GRID NORTH SEA LINK LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[53],1400.0,1480,"[1400.0, 0.0, -700.0]","[1400.0, 0.0, -700.0]"
+15,Nautilus (NATIONAL GRID INTERCONNECTOR HOLDINGS LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[403],1500.0,1500,"[1500.0, 0.0, -750.0]","[1500.0, 0.0, -750.0]"
+16,Nemo Link (NEMO LINK LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[579],1020.0,1046,"[1020.0, 0.0, -510.0]","[1020.0, 0.0, -510.0]"
+17,Kulizumboo Interconnector (KULIZUMBOO LIMITED),NGET,Interconnector,Interconnector,0,1;0;-0.5,[112],700.0,700,"[700.0, 0.0, -350.0]","[700.0, 0.0, -350.0]"
+18,NeuConnect Interconnector (NEUCONNECT BRITAIN LTD),NGET,Interconnector,Interconnector,0,1;0;-0.5,"[261, 262, 263, 264]",1400.0,1470,"[1400.0, 0.0, -700.0]","[1400.0, 0.0, -700.0]"
+19,Sheringham Shoal Offshore Wind Farm (SCIRA OFFSHORE ENERGY LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,"[494, 495, 496, 498]",315.0,0,"[55.0, 259.1, 315.0]","[315.0, 315.0, 315.0]"
+20,East Anglia Three *Stage: 1.0* (EAST ANGLIA THREE LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[69, 71]",1200.0,0,"[209.7, 987.2, 1200.0]","[1200.0, 1200.0, 1200.0]"
+21,East Anglia Three *Stage: 2.0* (EAST ANGLIA THREE LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[69, 71]",100.0,0,"[17.5, 82.3, 100.0]","[100.0, 100.0, 100.0]"
+22,East Anglia Two (EAST ANGLIA TWO LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[246, 247, 248, 249, 250]",860.0,0,"[150.3, 707.5, 860.0]","[860.0, 860.0, 860.0]"
+23,London Array Offshore Wind Farm (LONDON ARRAY LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[152],630.0,0,"[110.1, 518.3, 630.0]","[630.0, 630.0, 630.0]"
+24,Sofia Offshore Wind Farm *Stage: 1.0* (SOFIA OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[167, 169]",132.0,0,"[23.1, 108.6, 132.0]","[132.0, 132.0, 132.0]"
+25,Sofia Offshore Wind Farm *Stage: 2.0* (SOFIA OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[167, 169]",1188.0,0,"[207.6, 977.3, 1188.0]","[1188.0, 1188.0, 1188.0]"
+26,Erebus (BLUE GEM WIND LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[531],91.0,0,"[15.9, 74.9, 91.0]","[91.0, 91.0, 91.0]"
+27,Lincs Offshore Wind Farm (LINCS WIND FARM LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[759],265.0,0,"[46.3, 218.0, 265.0]","[265.0, 265.0, 265.0]"
+28,Humber Gateway Offshore Wind Farm (RWE RENEWABLES UK HUMBER WIND LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[309],220.0,0,"[38.4, 181.0, 220.0]","[220.0, 220.0, 220.0]"
+29,Tamar-Hartmoor (TI PROJECTCO 3 LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,[303],0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+30,Swansea Greener Grid Park - Connection 2 (Swansea Grid Solutions Limited),NGET,Reactive Compensation,BESS / Energy Park,1,1;1;1,"[682, 685, 686, 687]",0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+31,East Anglia One North (EAST ANGLIA ONE LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[246, 247, 248, 249, 250]",860.0,0,"[150.3, 707.5, 860.0]","[860.0, 860.0, 860.0]"
+32,Icewind Hinkley Point (Hecate Offshore Wind Limited),NGET,Wind Offshore,Wind,1,1;1;1,[317],1000.0,0,"[174.7, 822.6, 1000.0]","[1000.0, 1000.0, 1000.0]"
+33,Lister Drive 275kV (LISTER DRIVE SOLUTIONS LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,"[405, 407]",0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+34,East Anglia One (EAST ANGLIA ONE LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[246, 247, 248, 249, 250]",680.0,0,"[118.8, 559.4, 680.0]","[680.0, 680.0, 680.0]"
+35,Robin Rigg West Offshore Wind Farm (RWE RENEWABLES UK ROBIN RIGG WEST LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,"[289, 293, 295]",92.0,0,"[16.1, 75.7, 92.0]","[92.0, 92.0, 92.0]"
+36,Sellindge Grid Stability Services (SELLINDGE GRID SERVICES LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,"[617, 618, 619, 620, 621, 623]",0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+37,Gwynt Y Mor Offshore Wind Farm (GWYNT Y MOR OFFSHORE WIND FARM LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[55],574.0,0,"[100.3, 472.2, 574.0]","[574.0, 574.0, 574.0]"
+38,Race Bank Wind Farm (RACE BANK WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[759],565.0,0,"[98.7, 464.8, 565.0]","[565.0, 565.0, 565.0]"
+39,Rampion Extension Offshore Wind Farm (RAMPION EXTENSION DEVELOPMENT LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[56],1200.0,0,"[209.7, 987.2, 1200.0]","[1200.0, 1200.0, 1200.0]"
+40,Rampion Offshore Wind Farm (RAMPION OFFSHORE WIND LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[56],400.0,0,"[69.9, 329.1, 400.0]","[400.0, 400.0, 400.0]"
+41,Peak Gen Makro Exeter (PEAK GEN POWER 14 LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,[217],20.0,0,"[3.5, 16.5, 20.0]","[20.0, 20.0, 20.0]"
+42,Ormonde Offshore Wind Farm (ORMONDE ENERGY LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[312],150.0,0,"[26.2, 123.4, 150.0]","[150.0, 150.0, 150.0]"
+43,Dogger Bank Project 4 (Dogger Bank B) (DOGGERBANK OFFSHORE WIND FARM PROJECT 2 PROJCO LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[167, 169]",1200.0,0,"[209.7, 987.2, 1200.0]","[1200.0, 1200.0, 1200.0]"
+44,Robin Rigg East Offshore Wind Farm (RWE RENEWABLES UK ROBIN RIGG EAST LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,"[289, 293, 295]",86.0,0,"[15.0, 70.7, 86.0]","[86.0, 86.0, 86.0]"
+45,Tamar-Landulph (TI PROJECTCO 1 LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,"[392, 394]",0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+46,Dogger Bank Project A (DOGGERBANK OFFSHORE WIND FARM PROJECT 1 PROJCO LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[167, 169]",1200.0,0,"[209.7, 987.2, 1200.0]","[1200.0, 1200.0, 1200.0]"
+47,Codling Park Wind Farm (CODLING WIND PARK III LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[539],1000.0,0,"[174.7, 822.6, 1000.0]","[1000.0, 1000.0, 1000.0]"
+48,Dogger Bank Project C (DOGGERBANK OFFSHORE WIND FARM PROJECT 3 PROJCO LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[383],1200.0,0,"[209.7, 987.2, 1200.0]","[1200.0, 1200.0, 1200.0]"
+49,Scira-Dudgeon Extension *Stage: 1.0* (EQUINOR NEW ENERGY LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[497],719.0,0,"[125.6, 591.5, 719.0]","[719.0, 719.0, 719.0]"
+50,Merlin Offshore Wind Farm (OFFSHORE WIND LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[13, 15]",300.0,0,"[52.4, 246.8, 300.0]","[300.0, 300.0, 300.0]"
+51,Cilfynydd Grid Stability Services (WP GRID SERVICES 18 LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,[148],0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+52,Dudgeon Offshore Wind Farm (DUDGEON OFFSHORE WIND LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[466, 467, 468]",400.0,0,"[69.9, 329.1, 400.0]","[400.0, 400.0, 400.0]"
+53,Tamar-Richborough (TI PROJECTCO 2 LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,[579],0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+54,Hornsea Power Station 2C (SONNINGMAY WIND LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[371],440.0,0,"[76.9, 362.0, 440.0]","[440.0, 440.0, 440.0]"
+55,Hornsea Power Station 4 *Stage: 2.0* (ORSTED HORNSEA PROJECT FOUR LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[167, 169]",1100.0,0,"[192.2, 904.9, 1100.0]","[1100.0, 1100.0, 1100.0]"
+56,Alverdiscott (XLINKS 1 LTD),NGET,Wind Offshore,Wind,1,1;1;1,"[13, 15]",1800.0,0,"[314.5, 1480.7, 1800.0]","[1800.0, 1800.0, 1800.0]"
+57,Awel Y Mor Extension *Stage: 1.0* (AWEL Y MOR OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[55],574.0,0,"[100.3, 472.2, 574.0]","[574.0, 574.0, 574.0]"
+58,Awel Y Mor Extension *Stage: 2.0* (AWEL Y MOR OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[55],526.0,0,"[91.9, 432.7, 526.0]","[526.0, 526.0, 526.0]"
+59,Barrow Offshore Wind Farm (BARROW OFFSHORE WIND LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,"[289, 293, 295]",90.0,0,"[15.7, 74.0, 90.0]","[90.0, 90.0, 90.0]"
+60,Gunfleet Sands Offshore Wind Farm (GUNFLEET SANDS LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,"[68, 70]",99.9,0,"[17.5, 82.2, 99.9]","[99.9, 99.9, 99.9]"
+61,Gunfleet Sands II Offshore Wind Farm (Gunfleet Sands II Ltd),OFTO,Wind Offshore,Wind,1,1;1;1,"[68, 70]",64.0,0,"[11.2, 52.6, 64.0]","[64.0, 64.0, 64.0]"
+62,West of Duddon Sands Offshore Wind Farm (MORECAMBE WIND LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[311],382.0,0,"[66.7, 314.2, 382.0]","[382.0, 382.0, 382.0]"
+63,Westermost Rough Offshore Wind Farm (WESTERMOST ROUGH LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[309],206.5,0,"[36.1, 169.9, 206.5]","[206.5, 206.5, 206.5]"
+64,Hornsea Power Station 1A (HORNSEA 1 LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[371],400.0,0,"[69.9, 329.1, 400.0]","[400.0, 400.0, 400.0]"
+65,Hornsea Power Station 1B (HORNSEA 1 LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[371],400.0,0,"[69.9, 329.1, 400.0]","[400.0, 400.0, 400.0]"
+66,Walpole Grid Services Facility (Conrad (Walpole) Limited),NGET,Reactive Compensation,Other,1,1;1;1,[759],0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+67,Walney I Offshore Wind Farm (WALNEY (UK) OFFSHORE WINDFARMS LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[442],182.0,0,"[31.8, 149.7, 182.0]","[182.0, 182.0, 182.0]"
+68,Burbo Bank Extension Offshore Wind Farm (BURBO EXTENSION LTD),NGET,Wind Offshore,Wind,1,1;1;1,[55],258.0,0,"[45.1, 212.2, 258.0]","[258.0, 258.0, 258.0]"
+69,Walney 4 Offshore Wind Farm (WALNEY EXTENSION LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[442],330.0,0,"[57.7, 271.5, 330.0]","[330.0, 330.0, 330.0]"
+70,Walney 3 Offshore Wind Farm (WALNEY EXTENSION LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[442],330.0,0,"[57.7, 271.5, 330.0]","[330.0, 330.0, 330.0]"
+71,Walney II Offshore Wind Farm (WALNEY (UK) OFFSHORE WINDFARMS LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[442],182.0,0,"[31.8, 149.7, 182.0]","[182.0, 182.0, 182.0]"
+72,Vanguard East *Stage: 2.0* (Norfolk Vanguard East Ltd),NGET,Wind Offshore,Wind,1,1;1;1,"[466, 467, 468]",920.0,0,"[160.7, 756.8, 920.0]","[920.0, 920.0, 920.0]"
+73,Hornsea Power Station 4 *Stage: 1.0* (ORSTED HORNSEA PROJECT FOUR LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[167, 169]",1500.0,0,"[262.1, 1233.9, 1500.0]","[1500.0, 1500.0, 1500.0]"
+74,Galloper Wind Farm (GALLOPER WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[404],348.0,0,"[60.8, 286.3, 348.0]","[348.0, 348.0, 348.0]"
+75,Hornsea Power Station 3 *Stage: 2.0* (ORSTED HORNSEA PROJECT THREE (UK) LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[497],750.0,0,"[131.0, 617.0, 750.0]","[750.0, 750.0, 750.0]"
+76,Hornsea Power Station 3 *Stage: 1.0* (ORSTED HORNSEA PROJECT THREE (UK) LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[497],2250.0,0,"[393.1, 1850.9, 2250.0]","[2250.0, 2250.0, 2250.0]"
+77,Thanet Offshore Wind Farm (THANET OFFSHORE WIND LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[580],300.0,0,"[52.4, 246.8, 300.0]","[300.0, 300.0, 300.0]"
+78,Greater Gabbard Offshore Wind Farm (GREATER GABBARD OFFSHORE WINDS LIMITED),OFTO,Wind Offshore,Wind,1,1;1;1,[404],500.0,0,"[87.4, 411.3, 500.0]","[500.0, 500.0, 500.0]"
+79,TINZ Nene 4 (Richborough) (TINZ PROGRAMME 3 PROJECTCO 4 LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,[579],0.0,0,"[0.0, 0.0, 0.0]","[0.0, 0.0, 0.0]"
+80,Hornsea Power Station 2B (SOUNDMARK WIND LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[371],440.0,0,"[76.9, 362.0, 440.0]","[440.0, 440.0, 440.0]"
+81,Hornsea Power Station 2A (BREESEA LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[371],440.0,0,"[76.9, 362.0, 440.0]","[440.0, 440.0, 440.0]"
+82,Triton Knoll Offshore Wind Farm (TRITON KNOLL OFFSHORE WIND FARM LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[43],824.0,0,"[144.0, 677.8, 824.0]","[824.0, 824.0, 824.0]"
+83,Hornsea Power Station 1C (HORNSEA 1 LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,[371],400.0,0,"[69.9, 329.1, 400.0]","[400.0, 400.0, 400.0]"
+84,Vanguard (NORFOLK VANGUARD LIMITED),NGET,Wind Offshore,Wind,1,1;1;1,"[466, 467, 468]",1320.0,0,"[230.6, 1085.9, 1320.0]","[1320.0, 1320.0, 1320.0]"
+85,Vanguard East *Stage: 1.0* (Norfolk Vanguard East Ltd),NGET,Wind Offshore,Wind,1,1;1;1,"[466, 467, 468]",400.0,0,"[69.9, 329.1, 400.0]","[400.0, 400.0, 400.0]"
+86,TINZ Project Nene 1 (Landulph) (TINZ PROGRAMME 3 PROJECTCO 1 LIMITED),NGET,Reactive Compensation,Other,1,1;1;1,"[392, 394]",1.0,0,"[0.2, 0.8, 1.0]","[1.0, 1.0, 1.0]"
+87,Menter Mon Morlais Anglesey Marine Energy *Stage: 1.0* (MENTER MON CYF),NGET,Tidal,Hydro/Pump/Tidal,2,1;1;1,[537],40.0,0,"[0, 0, 40.0]","[40.0, 40.0, 40.0]"
+88,Port of Mostyn (MOSTYN SEAPOWER LIMITED),NGET,Tidal,Hydro/Pump/Tidal,2,1;1;1,[156],210.0,0,"[0, 0, 210.0]","[210.0, 210.0, 210.0]"
+89,Dolgarrog (RWE GENERATION UK PLC),NGET,Hydro,Hydro/Pump/Tidal,3,1;1;1,[538],39.0,0,"[0, 0, 39.0]","[39.0, 39.0, 39.0]"
+90,Cwm Dyli (RWE GENERATION UK PLC),NGET,Hydro,Hydro/Pump/Tidal,3,1;1;1,[736],10.0,0,"[0, 0, 10.0]","[10.0, 10.0, 10.0]"
+91,Hinkley Point C *Stage: 2.0* (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,1;1;1,[317],1670.0,0,"[0, 0, 765.8]","[1670.0, 1670.0, 1670.0]"
+92,Hinkley Point C *Stage: 1.0* (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,1;1;1,[317],1670.0,0,"[0, 0, 765.8]","[1670.0, 1670.0, 1670.0]"
+93,Hinkley Point B (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,1;1;1,[317],1061.0,0,"[0, 0, 486.5]","[1061.0, 1061.0, 1061.0]"
+94,Heysham Power Station (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,1;1;1,[312],2388.0,0,"[0, 0, 1095.0]","[2388.0, 2388.0, 2388.0]"
+95,Dungeness B (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,1;1;1,[188],1120.0,0,"[0, 0, 513.6]","[1120.0, 1120.0, 1120.0]"
+96,Hartlepool (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,1;1;1,[301],1207.0,0,"[0, 0, 553.5]","[1207.0, 1207.0, 1207.0]"
+97,Sizewell B (EDF ENERGY NUCLEAR GENERATION LIMITED),NGET,Nuclear,Nuclear,4,1;1;1,"[632, 633, 634, 635]",1230.0,0,"[0, 0, 564.0]","[1230.0, 1230.0, 1230.0]"
+98,Twyn Hywel Cillfynydd (Twyn Hywel Energy Park Ltd),NGET,Wind Onshore,Wind,5,1;1;1,[148],160.0,0,"[0, 0, 0]","[160.0, 160.0, 160.0]"
+99,Little Hill (BRYN GILWERN ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,"[682, 685, 686, 687]",74.9,0,"[0, 0, 0]","[74.9, 74.9, 74.9]"
+100,Bryn Glas Energy Park (Bryn Glas Energy Park Limited),NGET,Wind Onshore,Wind,5,1;1;1,"[682, 685, 686, 687]",159.0,0,"[0, 0, 0]","[159.0, 159.0, 159.0]"
+101,Eppynt Common (GARREG FAWR ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,"[682, 685, 686, 687]",189.5,0,"[0, 0, 0]","[189.5, 189.5, 189.5]"
+102,Goole Fields Wind Farm (RWE RENEWABLES UK SWINDON LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,"[186, 187]",32.0,0,"[0, 0, 0]","[32.0, 32.0, 32.0]"
+103,Tarenni (TARENNI ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,[578],188.0,0,"[0, 0, 0]","[188.0, 188.0, 188.0]"
+104,Builth Wells (ABEREDW ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,"[682, 685, 686, 687]",133.0,0,"[0, 0, 0]","[133.0, 133.0, 133.0]"
+105,Nant Aman (NANT AMAN ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,[578],143.0,0,"[0, 0, 0]","[143.0, 143.0, 143.0]"
+106,Nant Ceiment Energy Park (NANT CEIMENT ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,"[682, 685, 686, 687]",88.4,0,"[0, 0, 0]","[88.4, 88.4, 88.4]"
+107,Lan Fawr Energy Park (LAN FAWR ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,"[682, 685, 686, 687]",246.4,0,"[0, 0, 0]","[246.4, 246.4, 246.4]"
+108,BlaenCothi Energy Park (BLAENCOTHI ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,"[682, 685, 686, 687]",145.0,0,"[0, 0, 0]","[145.0, 145.0, 145.0]"
+109,Moelfre Energy Park (MOELFRE ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,[55],158.4,0,"[0, 0, 0]","[158.4, 158.4, 158.4]"
+110,Fron Goch (NANT MITHIL ENERGY PARK LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,"[682, 685, 686, 687]",252.7,0,"[0, 0, 0]","[252.7, 252.7, 252.7]"
+111,Gwynt Alwen WF (WIND 2 LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,[735],108.0,0,"[0, 0, 0]","[108.0, 108.0, 108.0]"
+112,Pen Y Cymoedd Wind Farm (PEN Y CYMOEDD WIND FARM LIMITED),NGET,Wind Onshore,Wind,5,1;1;1,[578],228.0,0,"[0, 0, 0]","[228.0, 228.0, 228.0]"
+113,CPG Power (ESB ASSET DEVELOPMENT UK LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,"[122, 124, 125, 127]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+114,Peak Gen Southampton (W4B RENEWABLE ENERGY LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,[501],24.0,0,"[0, 0, 0]","[24.0, 24.0, 24.0]"
+115,Chatterley (CONRAD (CHATTERLEY) LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,"[129, 130]",20.0,0,"[0, 0, 0]","[20.0, 20.0, 20.0]"
+116,Kirkby *Stage: 1.0* (HD001KIR LTD),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,[374],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+117,Grain South Power Station (Grain South Power Limited),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,[259],49.99,0,"[0, 0, 0]","[49.99, 49.99, 49.99]"
+118,VPI Immingham B OCGT (VPI IMMINGHAM B LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,[320],299.0,0,"[0, 0, 0]","[299.0, 299.0, 299.0]"
+119,Grain North Power Station (GRAIN NORTH POWER LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,[259],49.99,0,"[0, 0, 0]","[49.99, 49.99, 49.99]"
+120,Peak Gen Llandarcy (PEAK GEN POWER 5 LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,"[682, 685, 686, 687]",21.0,0,"[0, 0, 0]","[21.0, 21.0, 21.0]"
+121,Peak Gen Fareham (PEAK GEN POWER 13 LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,[501],21.0,0,"[0, 0, 0]","[21.0, 21.0, 21.0]"
+122,Middlewich BEGA (CONRAD (MIDDLEWICH) LIMITED),NGET,Gas Reciprocating,CCGT/CHP/Biomass,6,1;1;1,"[123, 128]",20.0,0,"[0, 0, 0]","[20.0, 20.0, 20.0]"
+123,Tees Renewable Energy Plant (MGT TEESSIDE LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,"[384, 385, 386, 387]",285.0,0,"[0, 0, 0]","[285.0, 285.0, 285.0]"
+124,Burwell (ENERGY POWER RESOURCES LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,[100],38.0,0,"[0, 0, 0]","[38.0, 38.0, 38.0]"
+125,Holyhead *Stage: 2.0* (Recell Energy Bloom Developments Limited),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,[537],60.0,0,"[0, 0, 0]","[60.0, 60.0, 60.0]"
+126,Holyhead *Stage: 1.0* (Recell Energy Bloom Developments Limited),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,[537],150.0,0,"[0, 0, 0]","[150.0, 150.0, 150.0]"
+127,Glanford (EPR GLANFORD LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,[357],15.0,0,"[0, 0, 0]","[15.0, 15.0, 15.0]"
+128,Lynemouth Power Station (LYNEMOUTH POWER LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,"[48, 52]",396.0,0,"[0, 0, 0]","[396.0, 396.0, 396.0]"
+129,Tilbury (TILBURY GREEN POWER LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,"[709, 710, 717, 719]",43.0,0,"[0, 0, 0]","[43.0, 43.0, 43.0]"
+130,Thetford (EPR THETFORD LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,"[69, 71]",41.0,0,"[0, 0, 0]","[41.0, 41.0, 41.0]"
+131,Drax (Biomass) (DRAX POWER LIMITED),NGET,Biomass,CCGT/CHP/Biomass,7,1;1;1,"[186, 187]",1905.0,0,"[0, 0, 0]","[1905.0, 1905.0, 1905.0]"
+132,Sutton Bridge (SUTTON BRIDGE POWER GENERATION),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[759],850.0,0,"[0, 0, 0]","[850.0, 850.0, 850.0]"
+133,Huntworth (UK POWER RESERVE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[692],10.0,0,"[0, 0, 0]","[10.0, 10.0, 10.0]"
+134,Immingham (VPI IMMINGHAM LLP),NGET,CHP (Combined Heat and Power); Energy Storage System,CCGT/CHP/Biomass,8,1;1;1,[320],1218.0,0,"[0, 0, 0]","[1218.0, 1218.0, 1218.0]"
+135,JG Pears *Stage: 1.0* (JG PEARS GRID CONNECTION LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,[315],13.0,0,"[0, 0, 0]","[13.0, 13.0, 13.0]"
+136,Indian Queens (INDIAN QUEENS POWER LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[334],140.0,0,"[0, 0, 0]","[140.0, 140.0, 140.0]"
+137,Plymouth Main (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,[393],25.52,0,"[0, 0, 0]","[25.52, 25.52, 25.52]"
+138,Trafford Power *Stage: 1.0* (WAINSTONES ENERGY LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[122, 124, 125, 127]",1040.0,0,"[0, 0, 0]","[1040.0, 1040.0, 1040.0]"
+139,JG Pears *Stage: 2.0* (JG PEARS GRID CONNECTION LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,[315],17.0,0,"[0, 0, 0]","[17.0, 17.0, 17.0]"
+140,Water Lane (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,[217],20.88,0,"[0, 0, 0]","[20.88, 20.88, 20.88]"
+141,West Burton B (WEST BURTON B LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Energy Storage System,CCGT/CHP/Biomass,8,1;1;1,"[782, 783]",1333.0,0,"[0, 0, 0]","[1333.0, 1333.0, 1333.0]"
+142,Hirwaun Power Station (HIRWAUN POWER LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[578],299.0,0,"[0, 0, 0]","[299.0, 299.0, 299.0]"
+143,Wilton (SEMBCORP UTILITIES (UK) LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[272],141.0,0,"[0, 0, 0]","[141.0, 141.0, 141.0]"
+144,Derwent (UK UTILITY RESERVE LIMITED)_2,NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,"[828, 830]",162.0,0,"[0, 0, 0]","[162.0, 162.0, 162.0]"
+145,Immingham (VPI IMMINGHAM LLP)_2,NGET,CHP (Combined Heat and Power); Energy Storage System,CCGT/CHP/Biomass,8,1;1;1,[320],50.0,0,"[0, 0, 0]","[50.0, 50.0, 50.0]"
+146,Keadby (KEADBY GENERATION LIMITED)_2,NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[355, 356, 358, 359, 360, 361]",155.0,0,"[0, 0, 0]","[155.0, 155.0, 155.0]"
+147,Medway Power Station (MEDWAY POWER LIMITED)_2,NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[260],175.0,0,"[0, 0, 0]","[175.0, 175.0, 175.0]"
+148,Taylors Lane (UNIPER UK LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[825],140.0,0,"[0, 0, 0]","[140.0, 140.0, 140.0]"
+149,Keadby (KEADBY GENERATION LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[355, 356, 358, 359, 360, 361]",755.0,0,"[0, 0, 0]","[755.0, 755.0, 755.0]"
+150,Langage (EP LANGAGE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[395],905.0,0,"[0, 0, 0]","[905.0, 905.0, 905.0]"
+151,Keadby II (KEADBY GENERATION LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[355, 356, 358, 359, 360, 361]",893.0,0,"[0, 0, 0]","[893.0, 893.0, 893.0]"
+152,Sellafield (NUCLEAR DECOMMISSIONING AUTHORITY),NGET,CHP (Combined Heat and Power),Nuclear,8,1;1;1,[326],155.0,0,"[0, 0, 0]","[155.0, 155.0, 155.0]"
+153,Seabank (SEABANK POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[612, 614]",1234.0,0,"[0, 0, 0]","[1234.0, 1234.0, 1234.0]"
+154,Millbrook Power (MILLBROOK POWER LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[443, 444, 445, 446]",299.0,0,"[0, 0, 0]","[299.0, 299.0, 299.0]"
+155,Saltend (Saltend Cogeneration Company Ltd),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[605],1100.0,0,"[0, 0, 0]","[1100.0, 1100.0, 1100.0]"
+156,Rye House (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[594, 595, 597]",715.0,0,"[0, 0, 0]","[715.0, 715.0, 715.0]"
+157,Rocksavage (ROCKSAVAGE POWER COMPANY LTD),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[585],810.0,0,"[0, 0, 0]","[810.0, 810.0, 810.0]"
+158,Severn Power (SEVERN POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[753, 756, 757]",850.0,0,"[0, 0, 0]","[850.0, 850.0, 850.0]"
+159,Redfield Road A (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,"[568, 570]",20.88,0,"[0, 0, 0]","[20.88, 20.88, 20.88]"
+160,North Killingholme Power Project (C.GEN KILLINGHOLME LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[371],540.0,0,"[0, 0, 0]","[540.0, 540.0, 540.0]"
+161,Norwich (ASHGREEN ENERGY FARM LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[494, 495, 496, 498]",49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+162,Redditch (CINERGY GLOBAL POWER (UK) LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[222],29.0,0,"[0, 0, 0]","[29.0, 29.0, 29.0]"
+163,Ratcliffe EMERGE (UNIPER UK LIMITED),NGET,Waste,Other,8,1;1;1,"[568, 570]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+164,Pembroke Power Station (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[530],2199.0,0,"[0, 0, 0]","[2199.0, 2199.0, 2199.0]"
+165,Peterborough (RIVER NENE POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[760],245.0,0,"[0, 0, 0]","[245.0, 245.0, 245.0]"
+166,Net Zero Teesside Power Project (NET ZERO TEESSIDE POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[724],860.0,0,"[0, 0, 0]","[860.0, 860.0, 860.0]"
+167,Sevington (UK POWER RESERVE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[615, 616, 622]",10.0,0,"[0, 0, 0]","[10.0, 10.0, 10.0]"
+168,SHBEC (EP SHB LIMITED),NGET,Waste,Other,8,1;1;1,[639],83.0,0,"[0, 0, 0]","[83.0, 83.0, 83.0]"
+169,Shoreham (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[56],420.0,0,"[0, 0, 0]","[420.0, 420.0, 420.0]"
+170,Kemsley (GROVEHURST ENERGY LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,[368],35.8,0,"[0, 0, 0]","[35.8, 35.8, 35.8]"
+171,Killingholme *Stage: 1.0* (UNIPER UK LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[371],600.0,0,"[0, 0, 0]","[600.0, 600.0, 600.0]"
+172,Killingholme *Stage: 2.0* (UNIPER UK LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[371],19.0,0,"[0, 0, 0]","[19.0, 19.0, 19.0]"
+173,Kings Lynn A (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[760],395.0,0,"[0, 0, 0]","[395.0, 395.0, 395.0]"
+174,Plymouth Rock (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,[393],15.08,0,"[0, 0, 0]","[15.08, 15.08, 15.08]"
+175,Staythorpe C (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[663, 664]",1752.0,0,"[0, 0, 0]","[1752.0, 1752.0, 1752.0]"
+176,Spalding (SPALDING ENERGY COMPANY LTD),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[646],950.0,0,"[0, 0, 0]","[950.0, 950.0, 950.0]"
+177,South Humber Bank (EP SHB LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[639],1365.0,0,"[0, 0, 0]","[1365.0, 1365.0, 1365.0]"
+178,Solutia (UK POWER RESERVE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[754, 755]",10.0,0,"[0, 0, 0]","[10.0, 10.0, 10.0]"
+179,Little Barford (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[196, 197, 199]",740.0,0,"[0, 0, 0]","[740.0, 740.0, 740.0]"
+180,Lynes Common (RWE COGEN UK (HYTHE) LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[218],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+181,Marchwood (MARCHWOOD POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[429],920.0,0,"[0, 0, 0]","[920.0, 920.0, 920.0]"
+182,Medway Power Station (MEDWAY POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[260],735.0,0,"[0, 0, 0]","[735.0, 735.0, 735.0]"
+183,Shoreham *Stage: 2.0* (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[56],-40.0,0,"[0, 0, 0]","[-40.0, -40.0, -40.0]"
+184,Shoreham *Stage: 1.0* (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[56],460.0,0,"[0, 0, 0]","[460.0, 460.0, 460.0]"
+185,Keadby 3 (KEADBY GENERATION LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[355, 356, 358, 359, 360, 361]",910.0,0,"[0, 0, 0]","[910.0, 910.0, 910.0]"
+186,Powersite @ Drakelow (POWERSITE LTD),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[183],380.0,0,"[0, 0, 0]","[380.0, 380.0, 380.0]"
+187,Abedare (UK POWER RESERVE LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[749],10.0,0,"[0, 0, 0]","[10.0, 10.0, 10.0]"
+188,Corby (CORBY POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[198, 200]",401.0,0,"[0, 0, 0]","[401.0, 401.0, 401.0]"
+189,Carrington Power Station (CARRINGTON POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[123, 128]",910.0,0,"[0, 0, 0]","[910.0, 910.0, 910.0]"
+190,CDCL (UNIPER UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[158, 159]",445.0,0,"[0, 0, 0]","[445.0, 445.0, 445.0]"
+191,Damhead Creek (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[372],812.0,0,"[0, 0, 0]","[812.0, 812.0, 812.0]"
+192,Beech Street/City Road (CITIGEN (LONDON) LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,"[149, 151]",30.0,0,"[0, 0, 0]","[30.0, 30.0, 30.0]"
+193,Ferrybridge D *Stage: 1.0* (KEADBY GENERATION LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[226, 227, 229, 230, 231]",310.0,0,"[0, 0, 0]","[310.0, 310.0, 310.0]"
+194,Damhead Creek 2 (VPI POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[373],1800.0,0,"[0, 0, 0]","[1800.0, 1800.0, 1800.0]"
+195,Cheshire (RWE GENERATION UK PLC),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[115],90.0,0,"[0, 0, 0]","[90.0, 90.0, 90.0]"
+196,Brigg (CBS ENERGY STORAGE ASSETS UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[355, 356, 358, 359, 360, 361]",99.0,0,"[0, 0, 0]","[99.0, 99.0, 99.0]"
+197,Barton Hill (VIRIDIS 178 LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,"[6, 7]",20.88,0,"[0, 0, 0]","[20.88, 20.88, 20.88]"
+198,Fawley CHP (ESSO PETROLEUM COMPANY LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,[218],158.0,0,"[0, 0, 0]","[158.0, 158.0, 158.0]"
+199,Chickerell (SSE GENERATION LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,"[142, 143]",47.0,0,"[0, 0, 0]","[47.0, 47.0, 47.0]"
+200,Derwent (UK UTILITY RESERVE LIMITED),NGET,CHP (Combined Heat and Power),CCGT/CHP/Biomass,8,1;1;1,"[828, 830]",0.0,0,"[0, 0, 0]","[0.0, 0.0, 0.0]"
+201,Didcot A GTs (RWE GENERATION UK PLC),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[178],100.0,0,"[0, 0, 0]","[100.0, 100.0, 100.0]"
+202,Didcot B (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[178],1475.0,0,"[0, 0, 0]","[1475.0, 1475.0, 1475.0]"
+203,Cowes (RWE GENERATION UK PLC),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[218],140.0,0,"[0, 0, 0]","[140.0, 140.0, 140.0]"
+204,Eggborough CCGT and BESS (EGGBOROUGH POWER LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[201, 202]",2450.0,0,"[0, 0, 0]","[2450.0, 2450.0, 2450.0]"
+205,Green Frog @ Rake Lane (VIRIDIS 178 LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[364],21.0,0,"[0, 0, 0]","[21.0, 21.0, 21.0]"
+206,Green frog @ The Drove (VIRIDIS 178 LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[81, 82, 83, 86, 88]",6.0,0,"[0, 0, 0]","[6.0, 6.0, 6.0]"
+207,Green Frog at Lester Way (VIRIDIS 178 LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[164, 166]",12.0,0,"[0, 0, 0]","[12.0, 12.0, 12.0]"
+208,Green Frog @ Moorfield Drive (VIRIDIS 178 LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[521],21.0,0,"[0, 0, 0]","[21.0, 21.0, 21.0]"
+209,Enfield (UNIPER UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[91],442.0,0,"[0, 0, 0]","[442.0, 442.0, 442.0]"
+210,Green Frog @ Letchworth (VIRIDIS 178 LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[846],15.0,0,"[0, 0, 0]","[15.0, 15.0, 15.0]"
+211,Green Frog @ Down Barn Farm (VIRIDIS 178 LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[420],20.0,0,"[0, 0, 0]","[20.0, 20.0, 20.0]"
+212,Green Frog @ Goose House Lane (VIRIDIS 178 LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[581, 584]",21.0,0,"[0, 0, 0]","[21.0, 21.0, 21.0]"
+213,Great Yarmouth (RWE GENERATION UK PLC),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[494, 495, 496, 498]",420.0,0,"[0, 0, 0]","[420.0, 420.0, 420.0]"
+214,Grain (UNIPER UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine); Reactive Compensation,CCGT/CHP/Biomass,8,1;1;1,[260],1517.0,0,"[0, 0, 0]","[1517.0, 1517.0, 1517.0]"
+215,Connahs Quay (UNIPER UK LIMITED),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[156],1380.0,0,"[0, 0, 0]","[1380.0, 1380.0, 1380.0]"
+216,Green Frog @ Alcoa (VIRIDIS 178 LIMITED),NGET,OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,"[684, 688]",40.0,0,"[0, 0, 0]","[40.0, 40.0, 40.0]"
+217,Coryton (CORYTON ENERGY COMPANY LTD),NGET,CCGT (Combined Cycle Gas Turbine),CCGT/CHP/Biomass,8,1;1;1,[157],800.0,0,"[0, 0, 0]","[800.0, 800.0, 800.0]"
+218,Cowley Energy Storage (Penso Power Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[165],200.0,0,"[0, 0, 0]","[200.0, 200.0, 200.0]"
+219,Pond Hill Farm 2 BESS (PD688IRO LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[453],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+220,Cryogenic Battery System (Synchronous) (CRYOBATTERY ONE LIMITED),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,"[122, 124, 125, 127]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+221,Richborough 1 (RICHBOROUGH ENERGY PARK LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[579],50.0,0,"[0, 0, 0]","[50.0, 50.0, 50.0]"
+222,Uskmouth *Stage: 1.0* (USKMOUTH ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[754, 755]",230.0,0,"[0, 0, 0]","[230.0, 230.0, 230.0]"
+223,Bramford (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[69, 71]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+224,Bramley BESS *Stage: 1.0* (BRAMLEY BESS LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[77],49.995,0,"[0, 0, 0]","[49.995, 49.995, 49.995]"
+225,Pond Hill Farm 1 (PD688IRO LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[453],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+226,Coventry (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[161],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+227,Uskmouth - New Connection (ENSO GREEN HOLDINGS E LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[753, 756, 757]",120.0,0,"[0, 0, 0]","[120.0, 120.0, 120.0]"
+228,Braintree (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[65, 67]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+229,Cowley (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[165],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+230,Lister Drive Shaw (Carnegie BES Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[405, 407]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+231,Cuxton 49.5MW BESS (Cuxton Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[373],49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+232,Weirs Drove *Stage: 2.0* (EAST ANGLIA GRID STORAGE ONE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[101],30.0,0,"[0, 0, 0]","[30.0, 30.0, 30.0]"
+233,Weirs Drove *Stage: 1.0* (EAST ANGLIA GRID STORAGE ONE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[101],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+234,Tees CCPP *Stage: 2.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,1;1;1,[271],210.0,0,"[0, 0, 0]","[210.0, 210.0, 210.0]"
+235,Nursling Tertiary (NURSLING ENERGY TWO LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[502, 503]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+236,Ocker Hill Tertiary Connection (HD143OCK LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[504, 506]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+237,Oldbury (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[511, 512]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+238,Warley (WARLEY BATTERY STORAGE),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[769],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+239,Didcot Battery (DIDCOT BATTERY LIMITED),NGET,Demand; Energy Storage System,BESS / Energy Park,9,1;1;1,[178],100.0,0,"[0, 0, 0]","[100.0, 100.0, 100.0]"
+240,Ouse Energy Storage (Ouse Energy Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[366, 367, 369]",249.0,0,"[0, 0, 0]","[249.0, 249.0, 249.0]"
+241,Culham Storage (STATERA ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[175],500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+242,Peak Gen Barry (PEAK GEN POWER 6 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[0, 2, 3]",20.0,0,"[0, 0, 0]","[20.0, 20.0, 20.0]"
+243,Pembroke BESS (RWE GENERATION UK PLC),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[530],350.0,0,"[0, 0, 0]","[350.0, 350.0, 350.0]"
+244,Walpole (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[759],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+245,Penketh Hall Farm (Net Zero One Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[235],249.9,0,"[0, 0, 0]","[249.9, 249.9, 249.9]"
+246,Penwortham (Redscar) (CONRAD (REDSCAR) LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[549],40.0,0,"[0, 0, 0]","[40.0, 40.0, 40.0]"
+247,Richborough 2 (RICHBOROUGH ENERGY PARK LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[579],50.0,0,"[0, 0, 0]","[50.0, 50.0, 50.0]"
+248,Penwortham BESS (Penwortham (BES) Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[543, 544, 545]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+249,Pillswood BESS Phase 1 (Harmony (PW) Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[172, 173]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+250,Pillswood BESS Phase 2 (Harmony (PW) 2 Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[172, 173]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+251,Bradford West 100MW (24 POWER LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[61],100.0,0,"[0, 0, 0]","[100.0, 100.0, 100.0]"
+252,Deeside Power Station (DEESIDE POWER (UK) LIMITED),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,[156],1.0,0,"[0, 0, 0]","[1.0, 1.0, 1.0]"
+253,Penwortham BESS (CSE28 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[543, 544, 545]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+254,Seabank (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[612, 614]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+255,Rochdale BESS (Rochdale (BES) Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[583],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+256,SSE Ferrybridge BESS (SSE UTILITY SOLUTIONS LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[224],150.0,0,"[0, 0, 0]","[150.0, 150.0, 150.0]"
+257,SSE Fiddlers Ferry Battery Energy Storage (SSE UTILITY SOLUTIONS LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[235],150.0,0,"[0, 0, 0]","[150.0, 150.0, 150.0]"
+258,St Dennis Hendra (SAMBAR POWER LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[334],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+259,Steel Point (aka Project Lithium) (Skelmersdale Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[771, 773]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+260,Sundon (SUNDON BATTERY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[678, 679]",49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+261,Sundon (SUNDON GREEN LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[677],39.9,0,"[0, 0, 0]","[39.9, 39.9, 39.9]"
+262,Sundon Pivoted Power (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[678, 679]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+263,Broadditch BESS (Harmony BD Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[483, 484]",11.58,0,"[0, 0, 0]","[11.58, 11.58, 11.58]"
+264,Brook Farm BESS (Brook Farm Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[68, 70]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+265,Swansea Greener Grid Park - Connection 1 *Stage: 1.0* (Swansea Grid Solutions Limited),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,"[682, 685, 686, 687]",12.0,0,"[0, 0, 0]","[12.0, 12.0, 12.0]"
+266,Swansea Greener Grid Park - Connection 1 *Stage: 2.0* (Swansea Grid Solutions Limited),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,"[682, 685, 686, 687]",85.0,0,"[0, 0, 0]","[85.0, 85.0, 85.0]"
+267,Bustleholme (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[106],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+268,Swansea North (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[682, 685, 686, 687]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+269,Tees CCPP *Stage: 5.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,1;1;1,[271],275.0,0,"[0, 0, 0]","[275.0, 275.0, 275.0]"
+270,Tees CCPP *Stage: 4.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,1;1;1,[271],490.0,0,"[0, 0, 0]","[490.0, 490.0, 490.0]"
+271,Burbo Bank Offshore Wind Farm (ORSTED BURBO (UK) LIMITED),NGET,Energy Storage System; Wind Offshore,Wind,9,1;1;1,[45],90.0,0,"[0, 0, 0]","[90.0, 90.0, 90.0]"
+272,Bumpers Farm BESS phase 2 (Harmony BF Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[17],49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+273,Bumpers Farm BESS phase 1 (Harmony BF Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[17],49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+274,Tees CCPP *Stage: 1.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,1;1;1,[271],150.0,0,"[0, 0, 0]","[150.0, 150.0, 150.0]"
+275,Spennymoor Greener Grid Park *Stage: 1.0* (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,"[647, 649]",0.0,0,"[0, 0, 0]","[0.0, 0.0, 0.0]"
+276,Spennymoor (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[647, 649]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+277,Spalding Energy Expansion *Stage: 1.0* (SPALDING ENERGY EXPANSION LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,1;1;1,[646],299.99,0,"[0, 0, 0]","[299.99, 299.99, 299.99]"
+278,Southfields Farm (PD300RON Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[453],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+279,Tottenham (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[727, 732]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+280,Tollgate 49.5MW BESS (Tollgate Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[207, 210, 212]",49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+281,Bredbury (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[79],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+282,Clay Tye Farm Phase 2 (Harmony CTF 2 Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[768],49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+283,Clay Tye Farm Phase 1 (HARMONY CTF LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[768],49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+284,Clayhill Farm (ARL O09 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[677],40.0,0,"[0, 0, 0]","[40.0, 40.0, 40.0]"
+285,Didcot Road (ARLINGTON ENERGY (DEVELOPMENT) LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[178],300.0,0,"[0, 0, 0]","[300.0, 300.0, 300.0]"
+286,Sellindge (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[617, 618, 619, 620, 621, 623]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+287,Bridgwater 2 (tertiary) - New Conn (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[81, 82, 83, 86, 88]",54.0,0,"[0, 0, 0]","[54.0, 54.0, 54.0]"
+288,CONTEGO  Battery Storage Project (Harmony CS Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[57, 58]",35.8,0,"[0, 0, 0]","[35.8, 35.8, 35.8]"
+289,Chapel Farm Battery Storage Project (HARMONY CF LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[677],49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+290,Cellarhead Home Farm (ECODEV GROUP LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[129, 130]",280.0,0,"[0, 0, 0]","[280.0, 280.0, 280.0]"
+291,Thurrock Power Station (THURROCK POWER LIMITED),NGET,Energy Storage System; Gas Reciprocating,CCGT/CHP/Biomass,9,1;1;1,[718],750.0,0,"[0, 0, 0]","[750.0, 750.0, 750.0]"
+292,Cellarhead 400kV Energy Storage (C & S ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[131],300.0,0,"[0, 0, 0]","[300.0, 300.0, 300.0]"
+293,Sizing John (Rainhill) *Stage: 1.0* (SIZING JOHN LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[564, 565]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+294,Sizing John (Rainhill) *Stage: 2.0* (SIZING JOHN LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[564, 565]",85.5,0,"[0, 0, 0]","[85.5, 85.5, 85.5]"
+295,Carrington (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[126],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+296,Capenhurst Tertiary Connection (HD888CAP LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[115],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+297,Capenhurst 275KV Substation (ZENOBE CAPENHURST LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[115],100.0,0,"[0, 0, 0]","[100.0, 100.0, 100.0]"
+298,Thorpe Marsh Energy Park (Banks Renewables Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[703, 704]",1400.0,0,"[0, 0, 0]","[1400.0, 1400.0, 1400.0]"
+299,Sheaf Energy (SHEAF ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[579],249.0,0,"[0, 0, 0]","[249.0, 249.0, 249.0]"
+300,WELBAR ENERGY STORAGE *Stage: 1.0* (WELBAR ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[285],349.9,0,"[0, 0, 0]","[349.9, 349.9, 349.9]"
+301,Didcot Energy Park (RNA-ENERGY LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[178],300.0,0,"[0, 0, 0]","[300.0, 300.0, 300.0]"
+302,Ninfield Greener Grid Park *Stage: 1.0* (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,[480],0.0,0,"[0, 0, 0]","[0.0, 0.0, 0.0]"
+303,Wymondley (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[845],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+304,Kemsley (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[366, 367, 369]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+305,Feckenham Greener Grid Park *Stage: 1.0* (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,[220],12.0,0,"[0, 0, 0]","[12.0, 12.0, 12.0]"
+306,Fairholme BESS (HB411MIN Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[453],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+307,Kingsnorth *Stage: 1.0* (ENSO GREEN HOLDINGS G LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[373],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+308,Kingsnorth *Stage: 2.0* (ENSO GREEN HOLDINGS G LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[373],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+309,Kingsnorth *Stage: 3.0* (ENSO GREEN HOLDINGS G LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[373],20.2,0,"[0, 0, 0]","[20.2, 20.2, 20.2]"
+310,Kirkby (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[374],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+311,Lakeside Energy Drax (LAKESIDE ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[185],99.9,0,"[0, 0, 0]","[99.9, 99.9, 99.9]"
+312,Laleham (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[389],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+313,Landulph (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[392, 394]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+314,Exeter (Tertiary) (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[216],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+315,NorthFleet 2 BESS (CSE41 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[485],300.0,0,"[0, 0, 0]","[300.0, 300.0, 300.0]"
+316,Legacy Tertiary Connection (HD639LEG LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[397, 399, 400]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+317,Lister Battery (formerly Lister Drive) (LISTER BATTERY LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[405, 407]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+318,Lister Drive (ORSTED ESS MERSEY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[406],20.0,0,"[0, 0, 0]","[20.0, 20.0, 20.0]"
+319,Littlebrook BESS (ECODEV GROUP LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[412],300.0,0,"[0, 0, 0]","[300.0, 300.0, 300.0]"
+320,Kearsley (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[362],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+321,Enderby (Akira) (ENDERBY BATTERY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[215],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+322,Ffestiniog (FIRST HYDRO COMPANY),NGET,Pump Storage,Hydro/Pump/Tidal,9,1;1;1,"[232, 233]",360.0,0,"[0, 0, 0]","[360.0, 360.0, 360.0]"
+323,Iver (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[346, 348, 349]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+324,Aberthaw Energy (ABERTHAW ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[1],249.0,0,"[0, 0, 0]","[249.0, 249.0, 249.0]"
+325,Axminster (CSE25 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[20],150.0,0,"[0, 0, 0]","[150.0, 150.0, 150.0]"
+326,Axminster (HB825AXM LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[20],120.0,0,"[0, 0, 0]","[120.0, 120.0, 120.0]"
+327,GF Upper Boat *Stage: 3.0* (PULSE CLEAN ENERGY SPV FRANKLIN LIMITED),NGET,Energy Storage System; Reactive Compensation,PV,9,1;1;1,"[751, 752]",200.0,0,"[0, 0, 0]","[200.0, 200.0, 200.0]"
+328,GF Upper Boat *Stage: 2.0* (PULSE CLEAN ENERGY SPV FRANKLIN LIMITED),NGET,Energy Storage System; Reactive Compensation,PV,9,1;1;1,"[751, 752]",0.0,0,"[0, 0, 0]","[0.0, 0.0, 0.0]"
+329,GF Upper Boat *Stage: 1.0* (PULSE CLEAN ENERGY SPV FRANKLIN LIMITED),NGET,Energy Storage System; Reactive Compensation,PV,9,1;1;1,"[751, 752]",0.0,0,"[0, 0, 0]","[0.0, 0.0, 0.0]"
+330,Gateway Energy Centre Power Station *Stage: 1.0* (GATEWAY ENERGY CENTRE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[157],450.0,0,"[0, 0, 0]","[450.0, 450.0, 450.0]"
+331,Axminster (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[20],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+332,Hutton Battery Storage (OSSPV001 LIMITED),NGET,Energy Storage System,PV,9,1;1;1,"[327, 328, 329]",10.0,0,"[0, 0, 0]","[10.0, 10.0, 10.0]"
+333,Beddington 1 BESS (Bluestone Energy Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[30, 33]",240.0,0,"[0, 0, 0]","[240.0, 240.0, 240.0]"
+334,Indian Queens (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[334],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+335,Beddington 2 BESS (Bluestone Energy Ltd),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[30, 33]",240.0,0,"[0, 0, 0]","[240.0, 240.0, 240.0]"
+336,Iron Acton *Stage: 1.0* (HD000ACT LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[337],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+337,Iron Acton *Stage: 2.0* (HD000ACT LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[337],70.1,0,"[0, 0, 0]","[70.1, 70.1, 70.1]"
+338,Berkswell Energy Storage (Penso Power Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[41],200.0,0,"[0, 0, 0]","[200.0, 200.0, 200.0]"
+339,BESS Swan (CSWE 3 LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[682, 685, 686, 687]",200.0,0,"[0, 0, 0]","[200.0, 200.0, 200.0]"
+340,Isenau Eight (Isenau Energy Storage Resources Eight Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[306],249.0,0,"[0, 0, 0]","[249.0, 249.0, 249.0]"
+341,Zenobe Stalybridge Project (ZENOBE ENERGY LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[659],150.0,0,"[0, 0, 0]","[150.0, 150.0, 150.0]"
+342,Willington (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[831],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+343,Blackpool BESS (Conrad (Blackpool) Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[312],25.3,0,"[0, 0, 0]","[25.3, 25.3, 25.3]"
+344,Tees CCPP *Stage: 3.0* (SEMBCORP UTILITIES (UK) LIMITED),NGET,Energy Storage System; OCGT (Open Cycle Gas Turbine),CCGT/CHP/Biomass,9,1;1;1,[271],340.0,0,"[0, 0, 0]","[340.0, 340.0, 340.0]"
+345,Monets Garden (MONETS GARDEN BATTERY LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[515, 516]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+346,Monk Fryston SSE (SSE BATTERY MONK FRYSTON LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[457, 458, 460, 462]",320.0,0,"[0, 0, 0]","[320.0, 320.0, 320.0]"
+347,Monk Fryston Tertiary Connection (HD777FRY LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[457, 458, 460, 462]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+348,Whitson (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[811, 813, 814, 817]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+349,Minety (HB411MIN Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[453],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+350,Mill Hill Tertiary Connection (HB333MIL LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[447, 449, 451]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+351,Bolney (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[56],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+352,Middleton BESS (Middleton Energy Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[442],200.0,0,"[0, 0, 0]","[200.0, 200.0, 200.0]"
+353,Drax (ENSO GREEN HOLDINGS D LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[186, 187]",190.0,0,"[0, 0, 0]","[190.0, 190.0, 190.0]"
+354,Bloxwich (BLOXWICH ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[106],41.0,0,"[0, 0, 0]","[41.0, 41.0, 41.0]"
+355,West Weybridge (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[795, 796, 801]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+356,Mannington Tertiary (MANNINGTON ENERGY CENTRE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[427],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+357,Mannington (PIVOTED POWER LLP),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[427],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+358,Dollymans Storage (Dollymans Storage Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[573],99.8,0,"[0, 0, 0]","[99.8, 99.8, 99.8]"
+359,Whitegate Tertiary Connection (HD144WHI LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[810],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+360,Newtonwood BESS (NEWTONWOOD ENERGY STORAGE LIMITED),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,"[138, 140]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+361,Dinorwig (FIRST HYDRO COMPANY),NGET,Pump Storage,Hydro/Pump/Tidal,9,1;1;1,[179],1644.0,0,"[0, 0, 0]","[1644.0, 1644.0, 1644.0]"
+362,Native River (Capenhurst) (NATIVE RIVER LTD),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[115],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+363,Necton Greener Grid Park *Stage: 1.0* (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,"[466, 467, 468]",0.0,0,"[0, 0, 0]","[0.0, 0.0, 0.0]"
+364,Lovedean Greener Grid Park (STATKRAFT UK LTD),NGET,Energy Storage System; Reactive Compensation,BESS / Energy Park,9,1;1;1,[420],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+365,Dog Trap Lane (HD381GRE Limited),NGET,Energy Storage System,BESS / Energy Park,9,1;1;1,[453],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+366,JBM Solar 13 - Melksham (JBM SOLAR PROJECTS 13 LIMITED),NGET,Thermal,PV,10,1;1;1,[439],49.99,0,"[0, 0, 0]","[49.99, 49.99, 49.99]"
+367,Dowlais (VIRIDIS 178 LIMITED),NGET,Thermal,Other,10,1;1;1,[749],21.0,0,"[0, 0, 0]","[21.0, 21.0, 21.0]"
+368,Ratcliffe on Soar (UNIPER UK LIMITED),NGET,Coal,Other,10,1;1;1,[569],2021.0,0,"[0, 0, 0]","[2021.0, 2021.0, 2021.0]"
+369,Burghfield (SSE GENERATION LIMITED),NGET,Thermal,Other,10,1;1;1,[77],47.0,0,"[0, 0, 0]","[47.0, 47.0, 47.0]"
+370,Drax (Coal) (DRAX POWER LIMITED),NGET,Coal,Other,10,1;1;1,"[186, 187]",2001.0,0,"[0, 0, 0]","[2001.0, 2001.0, 2001.0]"
+371,Sudmeadow (VIRIDIS 178 LIMITED),NGET,Thermal,Other,10,1;1;1,[557],41.76,0,"[0, 0, 0]","[41.76, 41.76, 41.76]"
+372,Redfield Road B (VIRIDIS 178 LIMITED),NGET,Thermal,Other,10,1;1;1,"[568, 570]",20.88,0,"[0, 0, 0]","[20.88, 20.88, 20.88]"
+373,Enderby Tertiary (CLUMP FARM SOLAR LIMITED),NGET,Thermal,PV,10,1;1;1,[215],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+374,Exeter Main Tertiary (EXETER MAIN BATTERY LIMITED),NGET,Thermal,BESS / Energy Park,10,1;1;1,[216],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+375,Trafalgar Park (VIRIDIS 178 LIMITED),NGET,Thermal,Other,10,1;1;1,"[828, 830]",14.0,0,"[0, 0, 0]","[14.0, 14.0, 14.0]"
+376,Fleet Tertiary (FLEET SOLAR LIMITED),NGET,Thermal,PV,10,1;1;1,[237],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+377,West Burton *Stage: 1.0* (ENSO GREEN HOLDINGS A LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[781, 784]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+378,Berkswell (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[41],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+379,Aberthaw (Tertiary) (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[1],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+380,Berkswell (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[41],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+381,Beechgreen Energyfarm (BEECHGREEN ENERGYFARM LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[101],49.99,0,"[0, 0, 0]","[49.99, 49.99, 49.99]"
+382,Axminster - New Connection *Stage: 1.0* (ENSO GREEN HOLDINGS B LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[20],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+383,Warley (tertiary) *Stage: 1.0* (WARLEY GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[769],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+384,Thornton Facility *Stage: 2.0* (BALWEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[697, 698, 699, 700]",99.98,0,"[0, 0, 0]","[99.98, 99.98, 99.98]"
+385,Warley (tertiary) *Stage: 2.0* (WARLEY GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[769],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+386,Thornton Facility *Stage: 1.0* (BALWEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[697, 698, 699, 700]",99.98,0,"[0, 0, 0]","[99.98, 99.98, 99.98]"
+387,Axminster - New Connection *Stage: 2.0* (ENSO GREEN HOLDINGS B LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[20],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+388,West Burton *Stage: 2.0* (ENSO GREEN HOLDINGS A LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[781, 784]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+389,Axminster - New Connection *Stage: 3.0* (ENSO GREEN HOLDINGS B LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[20],20.2,0,"[0, 0, 0]","[20.2, 20.2, 20.2]"
+390,Thornton Facility *Stage: 3.0* (BALWEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[697, 698, 699, 700]",200.0,0,"[0, 0, 0]","[200.0, 200.0, 200.0]"
+391,Waltham Cross BESS (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[761, 763, 766, 767]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+392,Barking PV BESS & Substation (O&G Solar (SPV 19) Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[22, 24]",99.9,0,"[0, 0, 0]","[99.9, 99.9, 99.9]"
+393,Bolney (tertiary) *Stage: 1.0* (BOLNEY GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[56],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+394,Thorpe Marsh 1 (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[703, 704]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+395,Willington East 1 (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[831],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+396,Thorpe Marsh 1 (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[703, 704]",7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+397,Braintree (Tertiary) (CSE22 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[65, 67]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+398,Willington East 1 (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[831],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+399,Willington East 2 (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[831],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+400,Willington East 2 (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[831],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+401,Bramford Tertiary *Stage: 1.0* (BRAMFORD GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[69, 71]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+402,Bramford Tertiary *Stage: 2.0* (BRAMFORD GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[69, 71]",7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+403,Bramley (tertiary) (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[77],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+404,Willington Energy Park (RNA-ENERGY LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[831],500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+405,Breach Solar Farm (BURWELL 11 SOLAR LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[101],49.995,0,"[0, 0, 0]","[49.995, 49.995, 49.995]"
+406,West Weybridge (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[795, 796, 801]",7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+407,Willington Green Energy Centre *Stage: 1.0* (WILLINGTON GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[831],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+408,West Weybridge (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[795, 796, 801]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+409,Botley West - Cote Solar Power Station (SOLARFIVE LTD),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[165],840.0,0,"[0, 0, 0]","[840.0, 840.0, 840.0]"
+410,Blankney Solar *Stage: 1.0* (ACRE LANE ENERGYFARM LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[43],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+411,BOOM Power Llanbabo Generation (Carrog Storage Facility Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[844],300.0,0,"[0, 0, 0]","[300.0, 300.0, 300.0]"
+412,Bridgwater (tertiary) (BRIDGWATER GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[81, 82, 83, 86, 88]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+413,Worset PV & BESS Park (Worcestershire Solar 1 Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[303],37.5,0,"[0, 0, 0]","[37.5, 37.5, 37.5]"
+414,Wylfa Substation (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[843],120.0,0,"[0, 0, 0]","[120.0, 120.0, 120.0]"
+415,Tillbridge Solar (TILLBRIDGE SOLAR LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[158, 159]",500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+416,West Burton Solar Project (WEST BURTON SOLAR PROJECT LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[782, 783]",480.0,0,"[0, 0, 0]","[480.0, 480.0, 480.0]"
+417,Walpole 1 (Tertiary) *Stage: 1.0* (WALPOLE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[759],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+418,Wymondley Solar Farm (AGR SOLAR 4 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[845],49.995,0,"[0, 0, 0]","[49.995, 49.995, 49.995]"
+419,Bird Grove/Rownall (ROWNALL FARM SOLAR LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[131],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+420,Bicker Fen 2 Solar *Stage: 1.0* (AGR SOLAR 3 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[43],49.995,0,"[0, 0, 0]","[49.995, 49.995, 49.995]"
+421,Bicker Fen 1 Solar *Stage: 1.0* (AGR SOLAR 2 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[43],49.995,0,"[0, 0, 0]","[49.995, 49.995, 49.995]"
+422,Walpole 1 (Tertiary) *Stage: 2.0* (WALPOLE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[759],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+423,Walpole 2 (tertiary) (ENSO GREEN HOLDINGS R LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[759],100.0,0,"[0, 0, 0]","[100.0, 100.0, 100.0]"
+424,Bolney (tertiary) *Stage: 2.0* (BOLNEY GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[56],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+425,West Burton *Stage: 3.0* (ENSO GREEN HOLDINGS A LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[781, 784]",20.2,0,"[0, 0, 0]","[20.2, 20.2, 20.2]"
+426,Hams Hall Green Energy Centre *Stage: 1.0* (HAMS HALL GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[285],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+427,Swansea North Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[682, 685, 686, 687]",1025.0,0,"[0, 0, 0]","[1025.0, 1025.0, 1025.0]"
+428,Kearsley North Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[364],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+429,Exeter Solar PV & BESS (Exeter Storage Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[216],290.0,0,"[0, 0, 0]","[290.0, 290.0, 290.0]"
+430,Kirkby Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[374],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+431,Legacy Green Energy Centre *Stage: 1.0* (LEGACY GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[397, 399, 400]",400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+432,Essendine (MALLARD PASS SOLAR FARM LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[601, 602]",240.0,0,"[0, 0, 0]","[240.0, 240.0, 240.0]"
+433,Enderby Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[215],1025.0,0,"[0, 0, 0]","[1025.0, 1025.0, 1025.0]"
+434,Llanwern Phase 1 (GREENFIELDS (T) LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[811, 813, 814, 817]",95.0,0,"[0, 0, 0]","[95.0, 95.0, 95.0]"
+435,Llanwern Phase 2 (FUTURE ENERGY LLANWERN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[811, 813, 814, 817]",190.0,0,"[0, 0, 0]","[190.0, 190.0, 190.0]"
+436,Elstree (tertiary) *Stage: 2.0* (ELSTREE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[208, 209]",7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+437,Longfield Solar (LONGFIELD SOLAR ENERGY FARM LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[99],500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+438,Lovedean (Tertiary) *Stage: 1.0* (LOVEDEAN GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[420],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+439,Lovedean (Tertiary) *Stage: 2.0* (LOVEDEAN GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[420],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+440,Elstree (tertiary) *Stage: 1.0* (ELSTREE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[208, 209]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+441,Mannington (BAYWA R.E. UK LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[427],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+442,Eaton Socon Solar (RNA-ENERGY LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[196, 197, 199]",500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+443,East Claydon Solar PV (STATERA ENERGY LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[194],500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+444,Melksham  (Tertiary) *Stage: 1.0* (MELKSHAM CALNE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[439],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+445,Melksham  (Tertiary) *Stage: 2.0* (MELKSHAM CALNE GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[439],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+446,Drakelow Green Energy Centre *Stage: 1.0* (DRAKELOW GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[183],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+447,Fferm Solar Pentir (LIGHTSOURCE SPV 191 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[539],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+448,Drakelow (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[183],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+449,Flash Solar Farm *Stage: 1.0* (ELEMENTS GREEN TRENT LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[663, 664]",360.0,0,"[0, 0, 0]","[360.0, 360.0, 360.0]"
+450,Flash Solar Farm *Stage: 3.0* (ELEMENTS GREEN TRENT LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[663, 664]",200.0,0,"[0, 0, 0]","[200.0, 200.0, 200.0]"
+451,Heckington Fen Solar Park (ECOTRICITY GENERATION LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[43],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+452,Heysham Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[311],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+453,High Marnham (Tertiary) (ENSO GREEN HOLDINGS K LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[313, 314]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+454,Hirfynydd and Mynydd Drumaur (EDF ENERGY RENEWABLES LIMITED),NGET,PV Array (Photo Voltaic/solar); Wind Onshore,Wind,11,1;1;1,"[682, 685, 686, 687]",180.0,0,"[0, 0, 0]","[180.0, 180.0, 180.0]"
+455,Gammidge PV & BESS Park (CS UK HOLDINGS III LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[269],40.9,0,"[0, 0, 0]","[40.9, 40.9, 40.9]"
+456,Frodsham Solar Park (PEEL NRE DEVELOPMENTS LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[254, 256]",100.0,0,"[0, 0, 0]","[100.0, 100.0, 100.0]"
+457,Fleet Solar PV (FLEET SOLAR LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[237],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+458,Fleet EGH (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[237],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+459,Fleet EGH (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[237],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+460,Fleet (Tertiary) (CSE23 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[237],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+461,Flash Solar Farm *Stage: 4.0* (ELEMENTS GREEN TRENT LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[663, 664]",200.0,0,"[0, 0, 0]","[200.0, 200.0, 200.0]"
+462,Indian Queens Energy Centre (IQ ENERGY CENTRE LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[334],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+463,Iron Acton *Stage: 1.0* (IRON ACTON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[337],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+464,Iron Acton *Stage: 2.0* (IRON ACTON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[337],49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+465,Iron Acton *Stage: 3.0* (IRON ACTON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[337],20.6,0,"[0, 0, 0]","[20.6, 20.6, 20.6]"
+466,Ironbridge - New Connection *Stage: 1.0* (ENSO GREEN HOLDINGS F LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[340],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+467,Ironbridge - New Connection *Stage: 2.0* (ENSO GREEN HOLDINGS F LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[340],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+468,Ironbridge - New Connection *Stage: 3.0* (ENSO GREEN HOLDINGS F LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[340],20.2,0,"[0, 0, 0]","[20.2, 20.2, 20.2]"
+469,JBM Solar 12 - Shrewsbury Solar (JBM SOLAR PROJECTS 12 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[627],49.99,0,"[0, 0, 0]","[49.99, 49.99, 49.99]"
+470,Flash Solar Farm *Stage: 2.0* (ELEMENTS GREEN TRENT LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[663, 664]",40.0,0,"[0, 0, 0]","[40.0, 40.0, 40.0]"
+471,Minety Tertiary (2) (JBM SOLAR PROJECTS 14 LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[454, 455]",47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+472,Mon Solar Farm (LIGHTSOURCE SPV 204 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[844],240.0,0,"[0, 0, 0]","[240.0, 240.0, 240.0]"
+473,Morgannwg Solar Farm (LIGHTSOURCE SPV 214 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[1],249.0,0,"[0, 0, 0]","[249.0, 249.0, 249.0]"
+474,Rayleigh 2 Tertiary *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[572],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+475,Rayleigh 2 Tertiary *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[572],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+476,Rochester Renewable Project (VATTENFALL WIND POWER LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar); Wind Onshore,Wind,11,1;1;1,[372],60.0,0,"[0, 0, 0]","[60.0, 60.0, 60.0]"
+477,Rosefield (Rosefield Energyfarm Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[194],500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+478,Cleve Hill Solar Park (CLEVE HILL SOLAR PARK LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[152],350.0,0,"[0, 0, 0]","[350.0, 350.0, 350.0]"
+479,Rye House (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[593, 596, 598, 599, 600]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+480,Rye House (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[593, 596, 598, 599, 600]",7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+481,Cilfynydd Green Energy Centre *Stage: 1.0* (CILFYNYDD GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[148],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+482,Chickerell Solar PV & BESS (CHICKERELL SOLAR LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[142, 143]",400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+483,Cellarhead Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[131],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+484,Somerford (PD813ETY LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[453],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+485,Southfields (PD503HAN LTD),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[453],47.5,0,"[0, 0, 0]","[47.5, 47.5, 47.5]"
+486,Capenhurst (Tertiary) *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[115],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+487,Capenhurst (Tertiary) *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[115],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+488,Staythorpe (BESS and PV) (SSE STAYTHORPE POWER LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[663, 664]",437.0,0,"[0, 0, 0]","[437.0, 437.0, 437.0]"
+489,Canterbury Tertiary *Stage: 2.0* (ENSO GREEN HOLDINGS LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[112],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+490,Sulgrave Solar PV (EDF ENERGY RENEWABLES LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[193, 195]",129.8,0,"[0, 0, 0]","[129.8, 129.8, 129.8]"
+491,Sunnica (SUNNICA LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[101],500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+492,Canterbury Tertiary *Stage: 1.0* (ENSO GREEN HOLDINGS LIMITED),NGET,PV Array (Photo Voltaic/solar),PV,11,1;1;1,[112],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+493,Rayleigh 1 Tertiary *Stage: 2.0* (RAYLEIGH GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[572],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+494,Harker Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[291],400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+495,Ratcliffe-on-Soar *Stage: 3.0* (ENSO GREEN HOLDINGS C LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[568, 570]",20.2,0,"[0, 0, 0]","[20.2, 20.2, 20.2]"
+496,Ratcliffe-on-Soar *Stage: 2.0* (ENSO GREEN HOLDINGS C LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[568, 570]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+497,NorthFleet Tertiary (CSE29 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[485],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+498,North Wales Hybrid (SOLAR CENTURY HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[55],53.0,0,"[0, 0, 0]","[53.0, 53.0, 53.0]"
+499,Norton (BAYWA R.E. UK LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[490],57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+500,Norton PV and BESS (Darlington Solar 1 Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[490],40.9,0,"[0, 0, 0]","[40.9, 40.9, 40.9]"
+501,Norwich (PIVOTED POWER LLP),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[494, 495, 496, 498]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+502,Oaklands Farm Solar PV (BAYWA R.E. UK LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[182],162.3,0,"[0, 0, 0]","[162.3, 162.3, 162.3]"
+503,Old Flatts Farm (Net Zero One Limited),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[96, 98]",750.0,0,"[0, 0, 0]","[750.0, 750.0, 750.0]"
+504,One Earth Solar Farm (ONE EARTH SOLAR FARM LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[313, 314]",500.0,0,"[0, 0, 0]","[500.0, 500.0, 500.0]"
+505,Bushbury Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[103],480.0,0,"[0, 0, 0]","[480.0, 480.0, 480.0]"
+506,Rayleigh 1 Tertiary *Stage: 1.0* (RAYLEIGH GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[572],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+507,Pembroke (spare bay) (ENSO GREEN HOLDINGS LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[531],120.0,0,"[0, 0, 0]","[120.0, 120.0, 120.0]"
+508,Pembroke BESS and Solar Station (Renesola Hercules Energy 1 Ltd),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[530],99.9,0,"[0, 0, 0]","[99.9, 99.9, 99.9]"
+509,Penwortham Green Energy Centre *Stage: 1.0* (PENWORTHAM GREEN ENERGY LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[543, 544, 545]",400.0,0,"[0, 0, 0]","[400.0, 400.0, 400.0]"
+510,Daines Green Energy Centre (INNOVA RENEWABLES LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[176],480.0,0,"[0, 0, 0]","[480.0, 480.0, 480.0]"
+511,Plas Power Estate North Tertiary (LIGHTSOURCE SPV 192 LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[397, 399, 400]",57.0,0,"[0, 0, 0]","[57.0, 57.0, 57.0]"
+512,Project Yare (ASHGREEN ENERGY FARM LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[497],49.5,0,"[0, 0, 0]","[49.5, 49.5, 49.5]"
+513,Cowley (Tertiary) *Stage: 2.0* (COWLEY BALDON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[165],7.1,0,"[0, 0, 0]","[7.1, 7.1, 7.1]"
+514,Cowley (Tertiary) *Stage: 1.0* (COWLEY BALDON GREEN LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,[165],49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+515,Ratcliffe-on-Soar *Stage: 1.0* (ENSO GREEN HOLDINGS C LIMITED),NGET,Energy Storage System; PV Array (Photo Voltaic/solar),PV,11,1;1;1,"[568, 570]",49.9,0,"[0, 0, 0]","[49.9, 49.9, 49.9]"
+516,Peak Gen BEGA (PEAK GEN POWER 2 LIMITED),NGET,Oil & AGT (Advanced Gas Turbine),CCGT/CHP/Biomass,12,1;1;1,[760],20.5,0,"[0, 0, 0]","[20.5, 20.5, 20.5]"
+517,Peak Gen Havant (PEAK GEN POWER 18 LIMITED),NGET,Oil & AGT (Advanced Gas Turbine),CCGT/CHP/Biomass,12,1;1;1,"[421, 422]",21.0,0,"[0, 0, 0]","[21.0, 21.0, 21.0]"
+518,Peak Gen Bracknell (PEAK GEN POWER 11 LIMITED),NGET,Oil & AGT (Advanced Gas Turbine),CCGT/CHP/Biomass,12,1;1;1,"[238, 239]",20.0,0,"[0, 0, 0]","[20.0, 20.0, 20.0]"

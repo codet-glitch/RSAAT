@@ -1,46 +1,46 @@
-﻿Plant Type,Ranking
-Interconnector,0
-Demand; Wind Offshore,1
-Reactive Compensation,1
-Wind Offshore,1
-Tidal,2
-Hydro,3
-Nuclear,4
-Wind Onshore,5
-Gas Reciprocating,6
-Biomass,7
-CCGT (Combined Cycle Gas Turbine),8
-CCGT (Combined Cycle Gas Turbine); Demand,8
-CCGT (Combined Cycle Gas Turbine); Energy Storage System,8
-CCGT (Combined Cycle Gas Turbine); Energy Storage System; OCGT (Open Cycle Gas Turbine),8
-CCGT (Combined Cycle Gas Turbine); Reactive Compensation,8
-CHP (Combined Heat and Power),8
-CHP (Combined Heat and Power); Energy Storage System,8
-OCGT (Open Cycle Gas Turbine),8
-Waste,8
-Demand; Energy Storage System,9
-Demand; Energy Storage System; PV Array (Photo Voltaic/solar),9
-Demand; Energy Storage System; PV Array (Photo Voltaic/solar); Reactive Compensation,9
-Demand; Energy Storage System; Wind Offshore,9
-Energy Storage System,9
-Energy Storage System; Gas Reciprocating,9
-Energy Storage System; Hydro; Nuclear; PV Array (Photo Voltaic/solar); Wind Onshore,9
-Energy Storage System; Nuclear; PV Array (Photo Voltaic/solar); Reactive Compensation; Wind Onshore,9
-Energy Storage System; Nuclear; PV Array (Photo Voltaic/solar); Wind Onshore,9
-Energy Storage System; OCGT (Open Cycle Gas Turbine),9
-Energy Storage System; Reactive Compensation,9
-Energy Storage System; Wind Offshore,9
-Energy Storage System; Wind Onshore,9
-Energy Storage System;Wind Onshore,9
-Pump Storage,9
-Coal,10
-Thermal,10
-Demand; PV Array (Photo Voltaic/solar),11
-Energy Storage System; PV Array (Photo Voltaic/solar),11
-Energy Storage System; PV Array (Photo Voltaic/solar); Reactive Compensation,11
-Energy Storage System; PV Array (Photo Voltaic/solar); Reactive Compensation; Wind Onshore,11
-Energy Storage System; PV Array (Photo Voltaic/solar); Wind Offshore,11
-Energy Storage System; PV Array (Photo Voltaic/solar); Wind Onshore,11
-PV Array (Photo Voltaic/solar),11
-PV Array (Photo Voltaic/solar); Wind Onshore,11
-Oil & AGT (Advanced Gas Turbine),12
+﻿Plant Type,Ranking,Apportion
+Interconnector,0,1;0;-0.5
+Demand; Wind Offshore,1,1;1;1
+Reactive Compensation,1,1;1;1
+Wind Offshore,1,1;1;1
+Tidal,2,1;1;1
+Hydro,3,1;1;1
+Nuclear,4,1;1;1
+Wind Onshore,5,1;1;1
+Gas Reciprocating,6,1;1;1
+Biomass,7,1;1;1
+CCGT (Combined Cycle Gas Turbine),8,1;1;1
+CCGT (Combined Cycle Gas Turbine); Demand,8,1;1;1
+CCGT (Combined Cycle Gas Turbine); Energy Storage System,8,1;1;1
+CCGT (Combined Cycle Gas Turbine); Energy Storage System; OCGT (Open Cycle Gas Turbine),8,1;1;1
+CCGT (Combined Cycle Gas Turbine); Reactive Compensation,8,1;1;1
+CHP (Combined Heat and Power),8,1;1;1
+CHP (Combined Heat and Power); Energy Storage System,8,1;1;1
+OCGT (Open Cycle Gas Turbine),8,1;1;1
+Waste,8,1;1;1
+Demand; Energy Storage System,9,1;1;1
+Demand; Energy Storage System; PV Array (Photo Voltaic/solar),9,1;1;1
+Demand; Energy Storage System; PV Array (Photo Voltaic/solar); Reactive Compensation,9,1;1;1
+Demand; Energy Storage System; Wind Offshore,9,1;1;1
+Energy Storage System,9,1;1;1
+Energy Storage System; Gas Reciprocating,9,1;1;1
+Energy Storage System; Hydro; Nuclear; PV Array (Photo Voltaic/solar); Wind Onshore,9,1;1;1
+Energy Storage System; Nuclear; PV Array (Photo Voltaic/solar); Reactive Compensation; Wind Onshore,9,1;1;1
+Energy Storage System; Nuclear; PV Array (Photo Voltaic/solar); Wind Onshore,9,1;1;1
+Energy Storage System; OCGT (Open Cycle Gas Turbine),9,1;1;1
+Energy Storage System; Reactive Compensation,9,1;1;1
+Energy Storage System; Wind Offshore,9,1;1;1
+Energy Storage System; Wind Onshore,9,1;1;1
+Energy Storage System;Wind Onshore,9,1;1;1
+Pump Storage,9,1;1;1
+Coal,10,1;1;1
+Thermal,10,1;1;1
+Demand; PV Array (Photo Voltaic/solar),11,1;1;1
+Energy Storage System; PV Array (Photo Voltaic/solar),11,1;1;1
+Energy Storage System; PV Array (Photo Voltaic/solar); Reactive Compensation,11,1;1;1
+Energy Storage System; PV Array (Photo Voltaic/solar); Reactive Compensation; Wind Onshore,11,1;1;1
+Energy Storage System; PV Array (Photo Voltaic/solar); Wind Offshore,11,1;1;1
+Energy Storage System; PV Array (Photo Voltaic/solar); Wind Onshore,11,1;1;1
+PV Array (Photo Voltaic/solar),11,1;1;1
+PV Array (Photo Voltaic/solar); Wind Onshore,11,1;1;1
+Oil & AGT (Advanced Gas Turbine),12,1;1;1
