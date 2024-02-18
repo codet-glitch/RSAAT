@@ -347,7 +347,7 @@ class TransformData:
                 return df
 
             def curate_mw_effective_from_date(df):
-                df['MW Effective From'] = pd.to_datetime(df['MW Effective From'], errors='coerce')
+                df['MW Effective From'] = pd.to_datetime(df['MW Effective From'], errors='coerce', format='%d/%m/%Y')
                 df.loc[(df['MW Effective From'].isna()) & (
                         df['Project Status'] == 'Built'), 'MW Effective From'] = nominal_date
                 df['MW Effective From'] = df['MW Effective From'].dt.date
@@ -552,18 +552,18 @@ class TransformData:
         self.all_circuits.to_csv(delete + 'all_circuits.csv')
         self.bus_ids_df.to_csv(delete + 'bus_ids_df.csv')
 
-        # print statements.
-        print('If Scotland reduced: TEC Register has match on: ' + str(
-            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name_guess'].ne('').sum()) + '/' + str(
-            self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name'].ne('').sum()) + ' out of ' + str(
-            self.tec_register[self.tec_register['HOST TO'] == 'NGET'][
-                'Project Name'].notna().sum()) + ' generators.\nIf Scotland not reduced: TEC Register has match on: ' + str(
-            self.tec_register['bus_name_guess'].ne('').sum()) + '/' + str(
-            self.tec_register['bus_name'].ne('').sum()) + ' out of ' + str(
-            self.tec_register['Project Name'].notna().sum()) + ' generators.\n')
-        print('All components list has ' + str((self.all_comp.shape[0])) + ' components. Individual lists have ' + str(
-            (self.all_circuits.shape[0]) + (self.all_circuits_changes.shape[0]) + (self.all_trafo.shape[0]) + (
-                self.all_trafo_changes.shape[0])) + ' components')
+        if __name__ == "__main__":
+            print('If Scotland reduced: TEC Register has match on: ' + str(
+                self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name_guess'].ne('').sum()) + '/' + str(
+                self.tec_register[self.tec_register['HOST TO'] == 'NGET']['bus_name'].ne('').sum()) + ' out of ' + str(
+                self.tec_register[self.tec_register['HOST TO'] == 'NGET'][
+                    'Project Name'].notna().sum()) + ' generators.\nIf Scotland not reduced: TEC Register has match on: ' + str(
+                self.tec_register['bus_name_guess'].ne('').sum()) + '/' + str(
+                self.tec_register['bus_name'].ne('').sum()) + ' out of ' + str(
+                self.tec_register['Project Name'].notna().sum()) + ' generators.\n')
+            print('All components list has ' + str((self.all_comp.shape[0])) + ' components. Individual lists have ' + str(
+                (self.all_circuits.shape[0]) + (self.all_circuits_changes.shape[0]) + (self.all_trafo.shape[0]) + (
+                    self.all_trafo_changes.shape[0])) + ' components')
 
 
 if __name__ == "__main__":

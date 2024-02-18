@@ -223,7 +223,7 @@ class DefineData(network_data_test.TransformData):
                         'HOST TO': 'NGET',
                         'Plant Type': 'B6_Transfer_DC',
                         'Gen_Type': 'B6_Transfer_DC',
-                        'bus_id': row['bus_id'],
+                        'bus_id': [row['bus_id']],
                         'MW Dispatch': row['MW Dispatch']}])], ignore_index=True)
 
             for bus_id in hark_border_nodes_bus_id:
@@ -234,7 +234,7 @@ class DefineData(network_data_test.TransformData):
                     'HOST TO': 'NGET',
                     'Plant Type': 'B6_Transfer_AC',
                     'Gen_Type': 'B6_Transfer_AC',
-                    'bus_id': bus_id,
+                    'bus_id': [bus_id],
                     'MW Dispatch': b6_effective_values_hark}])], ignore_index=True)
 
             for bus_id in stew_border_nodes_bus_id:
@@ -245,7 +245,7 @@ class DefineData(network_data_test.TransformData):
                     'HOST TO': 'NGET',
                     'Plant Type': 'B6_Transfer_AC',
                     'Gen_Type': 'B6_Transfer_AC',
-                    'bus_id': bus_id,
+                    'bus_id': [bus_id],
                     'MW Dispatch': b6_effective_values_stew}])], ignore_index=True)
 
             print('x[0]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[0]).sum())
@@ -352,9 +352,9 @@ class DefineData(network_data_test.TransformData):
                 name = f"{row['Generator Name']}"
                 bus = row['bus_id'][0]
                 type = row['Gen_Type']
-                p_mw = abs(row['MW Dispatch'][0])
+                p_mw = row['MW Dispatch'][0]
                 if p_mw >= 0:
-                    max_p_mw = row['MW Import - Total']
+                    max_p_mw = row['MW Effective - Import'] if isinstance(row['MW Effective - Import'], (int, float)) else 9999
                     pp.create_sgen(self.net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
                                    in_service=True, max_p_mw=max_p_mw)
                 else:
@@ -377,6 +377,8 @@ class DefineData(network_data_test.TransformData):
             create_slack_gen()
             return self.net
 
+        self.net = create_full_network()
+
     def get_imbalance(self):
         pass
 
@@ -393,7 +395,7 @@ class DefineData(network_data_test.TransformData):
         self.all_circuits_year_filtered.to_csv(delete + 'all_circuits_year_filtered.csv')
         self.gsp_demand_filtered.to_csv(delete + 'gsp_demand_filtered.csv')
         self.all_gen_register.to_csv(delete + 'all_gen_register.csv')
-        # pp.to_excel(self.net, delete + 'net_pp.xlsx')
+        pp.to_excel(self.net, delete + 'net_pp.xlsx')
 
 
 if __name__ == "__main__":
@@ -403,7 +405,7 @@ if __name__ == "__main__":
     call.filter_demand_data()
     call.combine_tec_ic_registers()
     call.determine_initial_dispatch_setting()
-    # call.create_pandapower_system()
-    # call.get_imbalance()
-    # call.run_analysis()
+    call.create_pandapower_system()
+    call.get_imbalance()
+    call.run_analysis()
     call.key_stats()

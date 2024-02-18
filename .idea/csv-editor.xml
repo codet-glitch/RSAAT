@@ -45,6 +45,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\delete\all_gen_register.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\delete\gsp_demand_filtered.csv">
           <value>
             <Attribute>
