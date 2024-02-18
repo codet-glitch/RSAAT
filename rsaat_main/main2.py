@@ -198,6 +198,7 @@ class DefineData(network_data_test.TransformData):
             return b6_effective_values
         set_gen_mw_dispatch()
 
+        # NEED TO ADD CODE TO CONSIDER HVDC LINKS ALSO.
         def set_b6_transfer():
             b6_effective_values = set_gen_mw_dispatch()
             # create gens at HARK and STEW border nodes and append to gen_register
