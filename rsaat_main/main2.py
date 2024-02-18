@@ -239,106 +239,126 @@ class DefineData(network_data_test.TransformData):
         set_b6_transfer()
 
     def create_pandapower_system(self):
-        net = pp.create_empty_network()
+        # PERHAPS CREATE CLASS HERE AND PASS SELF.NET
+        def create_net():
+            net = pp.create_empty_network()
+            return net
+        net = create_net()
+        self.net = net
 
+        def create_bus():
         # create bus nodes for net
         # nice to have - add zone information
-        for index, row in self.bus_ids_df.iterrows():
-            voltage_level = row['Voltage (kV)']
-            bus_name = row['Name']
-            index = row['index']
-            type_of_bus = 'b'  # “n” - node; “b” - busbar; “m” - muff
-            in_service = True
-            min_bus_v = 0.95
-            max_bus_v = 1.05
-            geodata = None
-            zone = None
-            pp.create_bus(net, vn_kv=voltage_level, name=bus_name, index=index, geodata=geodata, type=type_of_bus,
-                          zone=zone,
-                          in_service=in_service, min_vm_pu=min_bus_v, max_vm_pu=max_bus_v)
+            for index, row in self.bus_ids_df.iterrows():
+                voltage_level = row['Voltage (kV)']
+                bus_name = row['Name']
+                index = row['index']
+                type_of_bus = 'b'  # “n” - node; “b” - busbar; “m” - muff
+                in_service = True
+                min_bus_v = 0.95
+                max_bus_v = 1.05
+                geodata = None
+                zone = None
+                pp.create_bus(self.net, vn_kv=voltage_level, name=bus_name, index=index, geodata=geodata, type=type_of_bus,
+                              zone=zone,
+                              in_service=in_service, min_vm_pu=min_bus_v, max_vm_pu=max_bus_v)
 
+        def create_lines():
         # create circuits, impedances and TCSC's for net
-        for index, row in self.all_circuits_year_filtered.iterrows():
-            name = f"{row['Node 1']}-{row['Node 2']} ({row['Circuit Type']})"
-            from_bus = row['Node 1 bus_id']
-            to_bus = row['Node 2 bus_id']
-            length_km = row['OHL Length (km)'] + row['Cable Length (km)'] if row['OHL Length (km)'] + row['Cable Length (km)'] > 0 else 1
-            base_voltage = row['Voltage (kV) Node 1']
-            base_impedance = (base_voltage ** 2) / 100.0
-            max_i_ka = row['Summer Rating (MVA)'] / ((3 ** 0.5) * base_voltage)
-            if not any(type in row['Circuit Type'] for type in ['SSSC', 'Series Capacitor', 'Series Reactor', 'Zero Length']):
-                r_ohm_per_km = length_km and (row['R (% on 100MVA)'] * base_impedance / (
-                            100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
-                x_ohm_per_km = length_km and (row['X (% on 100MVA)'] * base_impedance / (
-                            100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
-                c_nf_per_km = length_km and ((
-                            row['B (% on 100MVA)'] / ((base_voltage ** 2) * 2 * 3.14159265359 * 50 * length_km)) * 10 ** 9) or 10
-                pp.create_line_from_parameters(net, from_bus=from_bus, to_bus=to_bus, length_km=length_km,
-                                               r_ohm_per_km=r_ohm_per_km, x_ohm_per_km=x_ohm_per_km,
-                                               c_nf_per_km=c_nf_per_km, max_i_ka=max_i_ka, name=name)
-            elif any(type in row['Circuit Type'] for type in ['Series Reactor', 'Zero Length']):
-                r_pu = row['R (% on 100MVA)'] and row['R (% on 100MVA)'] * 100 or 0.0001
-                x_pu = row['X (% on 100MVA)'] and row['X (% on 100MVA)'] * 100 or 0.0001
-                sn_mva = row['Summer Rating (MVA)']
-                pp.create_impedance(net, from_bus=from_bus, to_bus=to_bus, rft_pu=r_pu, xft_pu=x_pu,
-                                    sn_mva=sn_mva, rtf_pu=r_pu, xtf_pu=x_pu, name=name)
+            for index, row in self.all_circuits_year_filtered.iterrows():
+                name = f"{row['Node 1']}-{row['Node 2']} ({row['Circuit Type']})"
+                from_bus = row['Node 1 bus_id']
+                to_bus = row['Node 2 bus_id']
+                length_km = row['OHL Length (km)'] + row['Cable Length (km)'] if row['OHL Length (km)'] + row['Cable Length (km)'] > 0 else 1
+                base_voltage = row['Voltage (kV) Node 1']
+                base_impedance = (base_voltage ** 2) / 100.0
+                max_i_ka = row['Summer Rating (MVA)'] / ((3 ** 0.5) * base_voltage)
+                if not any(type in row['Circuit Type'] for type in ['SSSC', 'Series Capacitor', 'Series Reactor', 'Zero Length']):
+                    r_ohm_per_km = length_km and (row['R (% on 100MVA)'] * base_impedance / (
+                                100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
+                    x_ohm_per_km = length_km and (row['X (% on 100MVA)'] * base_impedance / (
+                                100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
+                    c_nf_per_km = length_km and ((
+                                row['B (% on 100MVA)'] / ((base_voltage ** 2) * 2 * 3.14159265359 * 50 * length_km)) * 10 ** 9) or 10
+                    pp.create_line_from_parameters(self.net, from_bus=from_bus, to_bus=to_bus, length_km=length_km,
+                                                   r_ohm_per_km=r_ohm_per_km, x_ohm_per_km=x_ohm_per_km,
+                                                   c_nf_per_km=c_nf_per_km, max_i_ka=max_i_ka, name=name)
+                elif any(type in row['Circuit Type'] for type in ['Series Reactor', 'Zero Length']):
+                    r_pu = row['R (% on 100MVA)'] and row['R (% on 100MVA)'] * 100 or 0.0001
+                    x_pu = row['X (% on 100MVA)'] and row['X (% on 100MVA)'] * 100 or 0.0001
+                    sn_mva = row['Summer Rating (MVA)']
+                    pp.create_impedance(self.net, from_bus=from_bus, to_bus=to_bus, rft_pu=r_pu, xft_pu=x_pu,
+                                        sn_mva=sn_mva, rtf_pu=r_pu, xtf_pu=x_pu, name=name)
 
-            elif any(type in row['Circuit Type'] for type in ['Series Capacitor', 'SSSC']):
-                x_l_ohm = 0
-                x_cvar_ohm = (row['X (% on 100MVA)'] * base_impedance /
-                            100) or 0.0001  # divide by 100 to convert % value to per unit value
-                set_p_to_mw = row['Summer Rating (MVA)'] * 0.839
-                thyristor_firing_angle_degree = 55 # 55 degrees (capacitive mode) used as placeholder
-                pp.create.create_tcsc(net, from_bus=from_bus, to_bus=to_bus, x_l_ohm=x_l_ohm, x_cvar_ohm=x_cvar_ohm,
-                                      set_p_to_mw=set_p_to_mw, thyristor_firing_angle_degree=thyristor_firing_angle_degree,
-                                      name=name, controllable=False)
+                elif any(type in row['Circuit Type'] for type in ['Series Capacitor', 'SSSC']):
+                    x_l_ohm = 0
+                    x_cvar_ohm = (row['X (% on 100MVA)'] * base_impedance /
+                                100) or 0.0001  # divide by 100 to convert % value to per unit value
+                    set_p_to_mw = row['Summer Rating (MVA)'] * 0.839
+                    thyristor_firing_angle_degree = 55 # 55 degrees (capacitive mode) used as placeholder
+                    pp.create.create_tcsc(self.net, from_bus=from_bus, to_bus=to_bus, x_l_ohm=x_l_ohm, x_cvar_ohm=x_cvar_ohm,
+                                          set_p_to_mw=set_p_to_mw, thyristor_firing_angle_degree=thyristor_firing_angle_degree,
+                                          name=name, controllable=False)
 
-        # create transformers for net
-        for index, row in self.all_trafo_year_filtered.iterrows():
-            name = f"{row['Node 1']}-{row['Node 2']} (Transformer)"
-            hv_bus = row['Node 1 bus_id']
-            lv_bus = row['Node 2 bus_id']
-            sn_mva = row['Winter Rating (MVA)']
-            vn_hv_kv = row['Voltage (kV) Node 1']
-            vn_lv_kv = row['Voltage (kV) Node 2']
-            vkr_percent = row['R (% on 100MVA)']
-            vk_percent = max(5, min(35, row['X (% on 100MVA)']))
-            pfe_kw = 0
-            i0_percent = 0
-            pp.create_transformer_from_parameters(net, hv_bus=hv_bus, lv_bus=lv_bus, sn_mva=sn_mva,
-                                                  vn_hv_kv=vn_hv_kv, vn_lv_kv=vn_lv_kv, vkr_percent=vkr_percent,
-                                                  vk_percent=vk_percent, pfe_kw=pfe_kw, i0_percent=i0_percent, name=name)
+        def create_transformers():
+            # create transformers for net
+            for index, row in self.all_trafo_year_filtered.iterrows():
+                name = f"{row['Node 1']}-{row['Node 2']} (Transformer)"
+                hv_bus = row['Node 1 bus_id']
+                lv_bus = row['Node 2 bus_id']
+                sn_mva = row['Winter Rating (MVA)']
+                vn_hv_kv = row['Voltage (kV) Node 1']
+                vn_lv_kv = row['Voltage (kV) Node 2']
+                vkr_percent = row['R (% on 100MVA)']
+                vk_percent = max(5, min(35, row['X (% on 100MVA)']))
+                pfe_kw = 0
+                i0_percent = 0
+                pp.create_transformer_from_parameters(self.net, hv_bus=hv_bus, lv_bus=lv_bus, sn_mva=sn_mva,
+                                                      vn_hv_kv=vn_hv_kv, vn_lv_kv=vn_lv_kv, vkr_percent=vkr_percent,
+                                                      vk_percent=vk_percent, pfe_kw=pfe_kw, i0_percent=i0_percent, name=name)
 
-        # create demand for net
-        for index, row in self.gsp_demand_filtered.iterrows():
-            name = f"{row['Node']} (Demand)"
-            bus = row['bus_id']
-            p_mw = row['demand']
-            q_mvar = p_mw * -0.1 # 10% mvar injection applied based on average winter P/Q ratio
-            pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=q_mvar, const_z_percent=0, const_i_percent=0, name=name,
-                           scaling=1)
+        def create_demand():
+            # create demand for net
+            for index, row in self.gsp_demand_filtered.iterrows():
+                name = f"{row['Node']} (Demand)"
+                bus = row['bus_id']
+                p_mw = row['demand']
+                q_mvar = p_mw * -0.1 # 10% mvar injection applied based on average winter P/Q ratio
+                pp.create_load(self.net, bus=bus, p_mw=p_mw, q_mvar=q_mvar, const_z_percent=0, const_i_percent=0, name=name,
+                               scaling=1)
 
-        # NEED TO ENSURE BUS ID IS SORTED IN ORDER OF VOLTAGE OR CORRECT BUS ID IS DEFINED IN BUS_ID COLUMN
-        for index, row in self.all_gen_register.iterrows():
-            name = f"{row['Generator Name']}"
-            bus = row['bus_id'][0]
-            type = row['Gen_Type']
-            max_p_mw = row['MW Effective - Import']
-            scaling = 1
-            p_mw = abs(row['MW Dispatch'])
-            if row['MW Dispatch'] >= 0:
-                max_p_mw = row['MW Import - Total']
-                pp.create_sgen(net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
-                               in_service=True, max_p_mw=max_p_mw)
-            else:
-                max_d_mw = row['MW Export - Total']
-                pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=0, const_z_percent=0, const_i_percent=0, name=name,
-                           scaling=1)
+        def create_gen():
+            # NEED TO ENSURE BUS ID IS SORTED IN ORDER OF VOLTAGE OR CORRECT BUS ID IS DEFINED IN BUS_ID COLUMN
+            scaling = self.gsp_demand_filtered['demand'].sum() / self.all_gen_register['MW Dispatch'].apply(
+                lambda x: x[0]).sum()
+            for index, row in self.all_gen_register.iterrows():
+                name = f"{row['Generator Name']}"
+                bus = row['bus_id'][0]
+                type = row['Gen_Type']
+                p_mw = abs(row['MW Dispatch'][0])
+                if p_mw >= 0:
+                    max_p_mw = row['MW Import - Total']
+                    pp.create_sgen(self.net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
+                                   in_service=True, max_p_mw=max_p_mw)
+                else:
+                    pp.create_load(self.net, bus=bus, p_mw=p_mw, q_mvar=0, const_z_percent=0, const_i_percent=0, name=name,
+                               scaling=scaling)
 
-        # create external grid to serve if scotland reduced
-        pp.create_ext_grid(net, bus=309, vm_pu=1, va_degree=0, name='Slack_Bus') # HEYS41 bus selected for slack
+        def create_slack_gen():
+            # create external grid to serve if scotland reduced
+            for bus_name in self.bus_ids_df['Name']:
+                if bus_name == 'HEYS41':
+                    bus_id = self.bus_ids_df[self.bus_ids_df['Name'] == bus_name]['index'].values[0]
+                    pp.create_ext_grid(self.net, bus=bus_id, vm_pu=1, va_degree=0, name='Slack_Bus') # HEYS41 index 309 bus selected for slack
 
-        self.net = net
+        def create_full_network():
+            create_bus()
+            create_lines()
+            create_transformers()
+            create_demand()
+            create_gen()
+            create_slack_gen()
+            return self.net
 
     def get_imbalance(self):
         pass
