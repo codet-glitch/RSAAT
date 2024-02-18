@@ -162,6 +162,7 @@ class DefineData(network_data_test.TransformData):
                 demand_total = calculate_demand_target()
                 remaining_demand = demand_total
                 b6_effective_value_total = 0
+                b6_effective_value_total_clipped = np.clip(b6_effective_value_total,0, b6_transfer_max)
                 for rank in sorted(self.all_gen_register['Ranking'].unique()):
                     rank_df = self.all_gen_register[self.all_gen_register['Ranking'] == rank]
                     try:
@@ -171,7 +172,8 @@ class DefineData(network_data_test.TransformData):
                     print('b6_effective_capacity:', b6_effective_capacity)
                     b6_effective_value = 0.3758 * b6_effective_capacity
                     print('b6_effective_value:', b6_effective_value)
-                    total_effective_for_scenario = rank_df['Max Dispatchable'].apply(lambda x: x[num]).sum() + (np.clip(b6_effective_value_total + b6_effective_value,0,b6_transfer_max) if self.scotland_reduced else 0)
+                    value = (b6_transfer_max - b6_effective_value_total_clipped) if (b6_effective_value_total_clipped + b6_effective_value) > b6_transfer_max else b6_effective_value
+                    total_effective_for_scenario = rank_df['Max Dispatchable'].apply(lambda x: x[num]).sum() + (value if self.scotland_reduced else 0)
                     print('total_effective_for_scenario:', total_effective_for_scenario)
                     if remaining_demand >= total_effective_for_scenario:
                         print('remaining_demand >= total_effective_for_scenario')
