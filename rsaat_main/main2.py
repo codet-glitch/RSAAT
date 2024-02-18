@@ -1,6 +1,7 @@
 import pandapower as pp
 import pandas as pd
 import numpy as np
+from functools import reduce
 import streamlit as st
 import re
 from datetime import datetime
@@ -112,13 +113,15 @@ class DefineData(network_data_test.TransformData):
             self.gsp_demand_filtered['demand'] = self.gsp_demand_filtered[selected_column[0]].copy()
         except:
             self.gsp_demand_filtered['demand'] = self.gsp_demand_filtered['26/27'].copy()
-        self.gsp_demand_filtered.dropna(subset='demand').reset_index(inplace=True)
+        finally:
+            self.gsp_demand_filtered.dropna(subset='demand').reset_index(inplace=True)
 
     def combine_tec_ic_registers(self):
         tec_register_year_filtered_ = self.tec_register_year_filtered.rename(columns={'MW Effective': 'MW Effective - Import'})
         tec_register_year_filtered_['MW Effective - Export'] = 0
         all_gen_register = pd.concat([tec_register_year_filtered_, self.ic_register_year_filtered], ignore_index=True)
-        all_gen_register = all_gen_register[['Generator Name', 'HOST TO', 'Plant Type', 'Gen_Type', 'Ranking', 'Apportion', 'bus_id', 'MW Effective - Import', 'MW Effective - Export']]
+        all_gen_register['Force MW Dispatch'] = 0
+        all_gen_register = all_gen_register[['Generator Name', 'HOST TO', 'Plant Type', 'Gen_Type', 'Ranking', 'Apportion', 'bus_id', 'MW Effective - Import', 'MW Effective - Export', 'Force MW Dispatch']]
         all_gen_register.sort_values(by='Ranking', inplace=True)
         all_gen_register.reset_index(drop=True, inplace=True)
 
@@ -130,55 +133,110 @@ class DefineData(network_data_test.TransformData):
             demand_total = self.gsp_demand_filtered['demand'].sum()
             return demand_total
 
-        # Initialize an empty list for MW Dispatch to later populate with calculated lists
+        def calculate_b6_transfer_max():
+            b6_transfer_max = self.intra_hvdc.loc[self.intra_hvdc['MW Effective From'] <= self.year, 'B6_Limit'].max()
+            return b6_transfer_max
+
+        # NEED TO ADD CODE TO ACCOUNT FOR FORCE MW DISPATCH
         def set_gen_mw_dispatch():
             def create_max_dispatchable_col(row):
+                # split the apportionment into each component separated by semi-colon.
+                # Each row may have a different number of apportionments - NEED REVIEWING.
+                # multiply apportionment by MW Effective - Import or Export if apportionment <0
                 values = map(float, row['Apportion'].split(';'))  # Split and convert to float
-                multiplied_values = [value * row['MW Effective - Import'] for value in values]  # Multiply
+                multiplied_values = [value * (row['MW Effective - Import'] if value >= 0 else row['MW Effective - Export']) for value in values]
                 return multiplied_values
             self.all_gen_register['Max Dispatchable'] = self.all_gen_register.apply(create_max_dispatchable_col, axis=1)
 
             number_scenarios = len(self.all_gen_register['Apportion'].iloc[0].split(';'))
             self.all_gen_register['MW Dispatch'] = [[0] * number_scenarios for _ in range(len(self.all_gen_register))]
 
+            b6_transfer_max = calculate_b6_transfer_max()
+            print('b6_transfer_max:', b6_transfer_max)
+
+            b6_effective_values = []
+            print(range(number_scenarios))
+
             for num in range(number_scenarios):
+                print('num:', num)
                 demand_total = calculate_demand_target()
                 remaining_demand = demand_total
+                b6_effective_value_total = 0
                 for rank in sorted(self.all_gen_register['Ranking'].unique()):
                     rank_df = self.all_gen_register[self.all_gen_register['Ranking'] == rank]
-                    total_effective_for_scenario = rank_df['Max Dispatchable'].apply(lambda x: x[num]).sum()
+                    try:
+                        b6_effective_capacity = rank_df[rank_df['Gen_Type'] == "Wind"]['Max Dispatchable'].apply(lambda x: x[num]).sum()
+                    except ValueError:
+                        b6_effective_capacity = 0
+                    print('b6_effective_capacity:', b6_effective_capacity)
+                    b6_effective_value = 0.3758 * b6_effective_capacity
+                    print('b6_effective_value:', b6_effective_value)
+                    total_effective_for_scenario = rank_df['Max Dispatchable'].apply(lambda x: x[num]).sum() + (np.clip(b6_effective_value_total + b6_effective_value,0,b6_transfer_max) if self.scotland_reduced else 0)
+                    print('total_effective_for_scenario:', total_effective_for_scenario)
                     if remaining_demand >= total_effective_for_scenario:
+                        print('remaining_demand >= total_effective_for_scenario')
+                        b6_effective_value_total += b6_effective_value
                         for index, row in rank_df.iterrows():
                             self.all_gen_register.at[index, 'MW Dispatch'][num] = row['Max Dispatchable'][num]
                         remaining_demand -= total_effective_for_scenario
                     else:
+                        print('remaining_demand < total_effective_for_scenario')
                         proportion = remaining_demand / total_effective_for_scenario
+                        b6_effective_value_total += (b6_effective_value * proportion)
                         for index, row in rank_df.iterrows():
-                            dispatch_value = round(row['MW Effective - Import'] * proportion, 1)
+                            dispatch_value = round(row['Max Dispatchable'][num] * proportion, 1)
                             self.all_gen_register.at[index, 'MW Dispatch'][num] = dispatch_value
                         break  # stop processing as demand has been met.
+                b6_effective_values.append(np.clip(b6_effective_value_total, 0, b6_transfer_max))
+                print('b6_effective_value_total:', b6_effective_value_total)
+            print('b6_effective_values:', b6_effective_values)
+            print('x[0]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[0]).sum())
+            print('x[1]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[1]).sum())
+            print('x[2]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[2]).sum())
+            return b6_effective_values
         set_gen_mw_dispatch()
 
         def set_b6_transfer():
-            if self.scotland_reduced:
-                pass
-            else:
-                pass
-
-    # code to make any adjustments to MW Dispatch of tec or reduce demand ahead of creating pandapower model
-    def balance_demand_generation(self):
-        total_generation = self.all_gen_register['MW Dispatch'].sum()
-        total_demand = self.gsp_demand_filtered['demand'].sum()
-        b6_limit = None
-        if abs(total_generation-total_demand) > 500:
-            if total_generation > total_demand:
-                x = total_generation - total_demand
-                x1 = x / self.all_gen_register['MW Dispatch'].sum()
-                self.all_gen_register['MW Dispatch'] += self.all_gen_register['MW Dispatch'] * x1
-            else:
-                x = total_demand - total_generation
-                x1 = x / self.gsp_demand_filtered['demand'].sum()
-                self.gsp_demand_filtered['demand'] += self.gsp_demand_filtered['demand'] * x1
+            b6_effective_values = set_gen_mw_dispatch()
+            # create gens at HARK and STEW border nodes and append to gen_register
+            hark_border_nodes_bus_id = []
+            stew_border_nodes_bus_id = []
+            for bus_name in self.bus_ids_df['Name']:
+                selected_rows = self.bus_ids_df[self.bus_ids_df['Name'] == bus_name]
+                if not selected_rows.empty:
+                    if bus_name in ['HAKB4-', 'HAKB4B']:
+                        bus_id = selected_rows['index'].values[0]
+                        hark_border_nodes_bus_id.append(bus_id)
+                    elif bus_name in ['STWB4Q', 'STWB4R']:
+                        bus_id = selected_rows['index'].values[0]
+                        stew_border_nodes_bus_id.append(bus_id)
+            for bus_id in hark_border_nodes_bus_id:
+                b6_effective_values_hark = [item * (0.44/len(hark_border_nodes_bus_id)) for item in b6_effective_values]
+                print(b6_effective_values_hark)
+                self.all_gen_register = pd.concat([self.all_gen_register, pd.DataFrame([{
+                                                                                            'Generator Name': f"HARK Border Node {str(hark_border_nodes_bus_id.index(bus_id))}",
+                                                                                            'HOST TO': 'NGET',
+                                                                                            'Plant Type': 'B6_Transfer',
+                                                                                            'Gen_Type': 'B6_Transfer',
+                                                                                            'bus_id': bus_id,
+                                                                                            'MW Dispatch': b6_effective_values_hark}])],
+                                                  ignore_index=True)
+            for bus_id in stew_border_nodes_bus_id:
+                b6_effective_values_stew = [item * (0.56/len(hark_border_nodes_bus_id)) for item in b6_effective_values]
+                print(b6_effective_values_stew)
+                self.all_gen_register = pd.concat([self.all_gen_register, pd.DataFrame([{
+                                                                                            'Generator Name': f"STEW Border Node {str(stew_border_nodes_bus_id.index(bus_id))}",
+                                                                                            'HOST TO': 'NGET',
+                                                                                            'Plant Type': 'B6_Transfer',
+                                                                                            'Gen_Type': 'B6_Transfer',
+                                                                                            'bus_id': bus_id,
+                                                                                            'MW Dispatch': b6_effective_values_stew}])],
+                                                  ignore_index=True)
+            print(self.all_gen_register['MW Dispatch'].apply(lambda x: x[0]).sum())
+            print(self.all_gen_register['MW Dispatch'].apply(lambda x: x[1]).sum())
+            print(self.all_gen_register['MW Dispatch'].apply(lambda x: x[2]).sum())
+            return self.all_gen_register
+        set_b6_transfer()
 
     def create_pandapower_system(self):
         net = pp.create_empty_network()
@@ -251,7 +309,15 @@ class DefineData(network_data_test.TransformData):
                                                   vn_hv_kv=vn_hv_kv, vn_lv_kv=vn_lv_kv, vkr_percent=vkr_percent,
                                                   vk_percent=vk_percent, pfe_kw=pfe_kw, i0_percent=i0_percent, name=name)
 
-        # create generation from tec reg for net
+        # create demand for net
+        for index, row in self.gsp_demand_filtered.iterrows():
+            name = f"{row['Node']} (Demand)"
+            bus = row['bus_id']
+            p_mw = row['demand']
+            q_mvar = p_mw * -0.1 # 10% mvar injection applied based on average winter P/Q ratio
+            pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=q_mvar, const_z_percent=0, const_i_percent=0, name=name,
+                           scaling=1)
+
         # NEED TO ENSURE BUS ID IS SORTED IN ORDER OF VOLTAGE OR CORRECT BUS ID IS DEFINED IN BUS_ID COLUMN
         for index, row in self.all_gen_register.iterrows():
             name = f"{row['Generator Name']}"
@@ -260,32 +326,13 @@ class DefineData(network_data_test.TransformData):
             max_p_mw = row['MW Effective - Import']
             scaling = 1
             p_mw = abs(row['MW Dispatch'])
-            pp.create_sgen(net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
-                           in_service=True, max_p_mw=max_p_mw)
-
-        # create generation from ic reg for net
-        # for index, row in self.ic_register_year_filtered.iterrows():
-        #     name = f"{row['Generator Name']} (IC)"
-        #     bus = row['bus_id'][0]
-        #     type = row['Gen_Type']
-        #     scaling = 1
-        #     p_mw = abs(row['mw_setpoint'])
-        #     if row['mw_setpoint'] >= 0:
-        #         max_p_mw = row['MW Import - Total']
-        #         pp.create_sgen(net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
-        #                        in_service=True, max_p_mw=max_p_mw)
-        #     else:
-        #         max_d_mw = row['MW Export - Total']
-        #         pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=0, const_z_percent=0, const_i_percent=0, name=name,
-        #                    scaling=1)
-
-        # create demand for net
-        for index, row in self.gsp_demand_filtered.iterrows():
-            name = f"{row['Node']} (Demand)"
-            bus = row['bus_id']
-            p_mw = row['demand']
-            q_mvar = p_mw * -0.1 # 10% mvar injection applied based on average winter P/Q ratio
-            pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=q_mvar, const_z_percent=0, const_i_percent=0, name=name,
+            if row['MW Dispatch'] >= 0:
+                max_p_mw = row['MW Import - Total']
+                pp.create_sgen(net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
+                               in_service=True, max_p_mw=max_p_mw)
+            else:
+                max_d_mw = row['MW Export - Total']
+                pp.create_load(net, bus=bus, p_mw=p_mw, q_mvar=0, const_z_percent=0, const_i_percent=0, name=name,
                            scaling=1)
 
         # create external grid to serve if scotland reduced
@@ -297,7 +344,9 @@ class DefineData(network_data_test.TransformData):
         pass
 
     def run_analysis(self):
-        pass
+        def check_convergence():
+            pass
+
 
     def key_stats(self):
         delete = '../delete/'
@@ -317,7 +366,6 @@ if __name__ == "__main__":
     call.filter_demand_data()
     call.combine_tec_ic_registers()
     call.determine_initial_dispatch_setting()
-    # call.balance_demand_generation()
     # call.create_pandapower_system()
     # call.get_imbalance()
     # call.run_analysis()
