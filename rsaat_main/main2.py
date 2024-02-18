@@ -24,6 +24,7 @@ class DefineData(network_data_test.TransformData):
         self.transform_network_data()
         self.transform_tec_ic_data()
         self.transform_demand_data()
+        self.transform_intrahvdc_data()
 
         self.year = year
 
@@ -152,13 +153,10 @@ class DefineData(network_data_test.TransformData):
             self.all_gen_register['MW Dispatch'] = [[0] * number_scenarios for _ in range(len(self.all_gen_register))]
 
             b6_transfer_max = calculate_b6_transfer_max()
-            print('b6_transfer_max:', b6_transfer_max)
 
             b6_effective_values = []
-            print(range(number_scenarios))
 
             for num in range(number_scenarios):
-                print('num:', num)
                 demand_total = calculate_demand_target()
                 remaining_demand = demand_total
                 b6_effective_value_total = 0
@@ -169,20 +167,15 @@ class DefineData(network_data_test.TransformData):
                         b6_effective_capacity = rank_df[rank_df['Gen_Type'] == "Wind"]['Max Dispatchable'].apply(lambda x: x[num]).sum()
                     except ValueError:
                         b6_effective_capacity = 0
-                    print('b6_effective_capacity:', b6_effective_capacity)
                     b6_effective_value = 0.3758 * b6_effective_capacity
-                    print('b6_effective_value:', b6_effective_value)
                     value = (b6_transfer_max - b6_effective_value_total_clipped) if (b6_effective_value_total_clipped + b6_effective_value) > b6_transfer_max else b6_effective_value
                     total_effective_for_scenario = rank_df['Max Dispatchable'].apply(lambda x: x[num]).sum() + (value if self.scotland_reduced else 0)
-                    print('total_effective_for_scenario:', total_effective_for_scenario)
                     if remaining_demand >= total_effective_for_scenario:
-                        print('remaining_demand >= total_effective_for_scenario')
                         b6_effective_value_total += b6_effective_value
                         for index, row in rank_df.iterrows():
                             self.all_gen_register.at[index, 'MW Dispatch'][num] = row['Max Dispatchable'][num]
                         remaining_demand -= total_effective_for_scenario
                     else:
-                        print('remaining_demand < total_effective_for_scenario')
                         proportion = remaining_demand / total_effective_for_scenario
                         b6_effective_value_total += (b6_effective_value * proportion)
                         for index, row in rank_df.iterrows():
@@ -190,17 +183,14 @@ class DefineData(network_data_test.TransformData):
                             self.all_gen_register.at[index, 'MW Dispatch'][num] = dispatch_value
                         break  # stop processing as demand has been met.
                 b6_effective_values.append(np.clip(b6_effective_value_total, 0, b6_transfer_max))
-                print('b6_effective_value_total:', b6_effective_value_total)
-            print('b6_effective_values:', b6_effective_values)
-            print('x[0]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[0]).sum())
-            print('x[1]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[1]).sum())
-            print('x[2]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[2]).sum())
             return b6_effective_values
         set_gen_mw_dispatch()
 
         # NEED TO ADD CODE TO CONSIDER HVDC LINKS ALSO.
         def set_b6_transfer():
             b6_effective_values = set_gen_mw_dispatch()
+            self.intra_hvdc['MW Dispatch'] = [[0, 0, 0] for _ in range(len(self.intra_hvdc))]
+
             # create gens at HARK and STEW border nodes and append to gen_register
             hark_border_nodes_bus_id = []
             stew_border_nodes_bus_id = []
@@ -213,33 +203,57 @@ class DefineData(network_data_test.TransformData):
                     elif bus_name in ['STWB4Q', 'STWB4R']:
                         bus_id = selected_rows['index'].values[0]
                         stew_border_nodes_bus_id.append(bus_id)
+
+            b6_remaining = []
+
+            for value in range(len(b6_effective_values)):
+                b6_total = b6_effective_values[value]
+                b6_left = b6_total
+                for index, row in self.intra_hvdc.iterrows():
+                    if row['MW Effective From'] <= self.year:
+                        dispatch = np.clip(b6_total * 0.3, 0, min(row['Summer Rating (MVA)'], b6_left))
+                        self.intra_hvdc.at[index, 'MW Dispatch'][value] = int(dispatch)
+                        b6_left -= dispatch
+                b6_remaining.append(b6_left)
+
+            for index, row in self.intra_hvdc.iterrows():
+                if row['MW Effective From'] <= self.year:
+                    self.all_gen_register = pd.concat([self.all_gen_register, pd.DataFrame([{
+                        'Generator Name': f"{str(row['Interconnector Name'])}",
+                        'HOST TO': 'NGET',
+                        'Plant Type': 'B6_Transfer_DC',
+                        'Gen_Type': 'B6_Transfer_DC',
+                        'bus_id': row['bus_id'],
+                        'MW Dispatch': row['MW Dispatch']}])], ignore_index=True)
+
             for bus_id in hark_border_nodes_bus_id:
-                b6_effective_values_hark = [item * (0.44/len(hark_border_nodes_bus_id)) for item in b6_effective_values]
-                print(b6_effective_values_hark)
+                b6_effective_values_hark = [int(item * (0.44 / len(hark_border_nodes_bus_id))) for item in
+                                            b6_remaining]
                 self.all_gen_register = pd.concat([self.all_gen_register, pd.DataFrame([{
-                                                                                            'Generator Name': f"HARK Border Node {str(hark_border_nodes_bus_id.index(bus_id))}",
-                                                                                            'HOST TO': 'NGET',
-                                                                                            'Plant Type': 'B6_Transfer',
-                                                                                            'Gen_Type': 'B6_Transfer',
-                                                                                            'bus_id': bus_id,
-                                                                                            'MW Dispatch': b6_effective_values_hark}])],
-                                                  ignore_index=True)
+                    'Generator Name': f"HARK Border Node {str(hark_border_nodes_bus_id.index(bus_id))}",
+                    'HOST TO': 'NGET',
+                    'Plant Type': 'B6_Transfer_AC',
+                    'Gen_Type': 'B6_Transfer_AC',
+                    'bus_id': bus_id,
+                    'MW Dispatch': b6_effective_values_hark}])], ignore_index=True)
+
             for bus_id in stew_border_nodes_bus_id:
-                b6_effective_values_stew = [item * (0.56/len(hark_border_nodes_bus_id)) for item in b6_effective_values]
-                print(b6_effective_values_stew)
+                b6_effective_values_stew = [int(item * (0.56 / len(hark_border_nodes_bus_id))) for item in
+                                            b6_remaining]
                 self.all_gen_register = pd.concat([self.all_gen_register, pd.DataFrame([{
-                                                                                            'Generator Name': f"STEW Border Node {str(stew_border_nodes_bus_id.index(bus_id))}",
-                                                                                            'HOST TO': 'NGET',
-                                                                                            'Plant Type': 'B6_Transfer',
-                                                                                            'Gen_Type': 'B6_Transfer',
-                                                                                            'bus_id': bus_id,
-                                                                                            'MW Dispatch': b6_effective_values_stew}])],
-                                                  ignore_index=True)
-            print(self.all_gen_register['MW Dispatch'].apply(lambda x: x[0]).sum())
-            print(self.all_gen_register['MW Dispatch'].apply(lambda x: x[1]).sum())
-            print(self.all_gen_register['MW Dispatch'].apply(lambda x: x[2]).sum())
+                    'Generator Name': f"STEW Border Node {str(stew_border_nodes_bus_id.index(bus_id))}",
+                    'HOST TO': 'NGET',
+                    'Plant Type': 'B6_Transfer_AC',
+                    'Gen_Type': 'B6_Transfer_AC',
+                    'bus_id': bus_id,
+                    'MW Dispatch': b6_effective_values_stew}])], ignore_index=True)
+
+            print('x[0]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[0]).sum())
+            print('x[1]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[1]).sum())
+            print('x[2]', self.all_gen_register['MW Dispatch'].apply(lambda x: x[2]).sum())
             return self.all_gen_register
-        set_b6_transfer()
+
+        set_b6_transfer() if self.scotland_reduced else None
 
     def create_pandapower_system(self):
         # PERHAPS CREATE CLASS HERE AND PASS SELF.NET
