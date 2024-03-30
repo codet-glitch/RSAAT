@@ -8,6 +8,8 @@ import sys
 from datetime import datetime
 import pandas as pd
 import requests
+import os
+
 
 class TransformData:
     def __init__(self, api_or_local='local', scotland_reduced=True, consider_ofto=False):
@@ -17,6 +19,7 @@ class TransformData:
         self.ic_reg_sub_map = None
         self.tec_reg_sub_map = None
         self.ranking_order = None
+        self.sub_coordinates = None
         self.intra_hvdc = None
         self.all_trafo_changes = None
         self.all_trafo = None
@@ -32,54 +35,55 @@ class TransformData:
         self.consider_ofto = consider_ofto
 
     def import_network_data(self):
-        sub_coordinates = pd.read_csv('../data/CRM_Sub_Coordinates_WGS84.csv').dropna()
-        intra_hvdc = pd.read_csv('../data/intra_hvdc_etys_2022_curated.csv').dropna()
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        sub_coordinates = pd.read_csv(os.path.join(project_root, 'data', 'CRM_Sub_Coordinates_WGS84.csv')).dropna()
+        intra_hvdc = pd.read_csv(os.path.join(project_root, 'data', 'intra_hvdc_etys_2022_curated.csv')).dropna()
+        etys_file_path = os.path.join(project_root, 'data', 'Appendix B 2022.xlsx')
+
+        self.sub_coordinates = sub_coordinates
         self.intra_hvdc = intra_hvdc
 
-        etys_file_name = '../data/Appendix B 2022.xlsx'
+        shet_substations = pd.read_excel(etys_file_path, sheet_name="B-1-1a", skiprows=[0])
+        spt_substations = pd.read_excel(etys_file_path, sheet_name="B-1-1b", skiprows=[0])
+        nget_substations = pd.read_excel(etys_file_path, sheet_name="B-1-1c", skiprows=[0])
+        ofto_substations = pd.read_excel(etys_file_path, sheet_name="B-1-1d", skiprows=[0])
 
-        shet_substations = pd.read_excel(etys_file_name, sheet_name="B-1-1a", skiprows=[0])
-        spt_substations = pd.read_excel(etys_file_name, sheet_name="B-1-1b", skiprows=[0])
-        nget_substations = pd.read_excel(etys_file_name, sheet_name="B-1-1c", skiprows=[0])
-        ofto_substations = pd.read_excel(etys_file_name, sheet_name="B-1-1d", skiprows=[0])
+        shet_circuits = pd.read_excel(etys_file_path, sheet_name="B-2-1a", skiprows=[0])
+        shet_circuit_changes = pd.read_excel(etys_file_path, sheet_name="B-2-2a", skiprows=[0])
+        shet_tx = pd.read_excel(etys_file_path, sheet_name="B-3-1a", skiprows=[0])
+        shet_tx_changes = pd.read_excel(etys_file_path, sheet_name="B-3-2a", skiprows=[0])
 
-        shet_circuits = pd.read_excel(etys_file_name, sheet_name="B-2-1a", skiprows=[0])
-        shet_circuit_changes = pd.read_excel(etys_file_name, sheet_name="B-2-2a", skiprows=[0])
-        shet_tx = pd.read_excel(etys_file_name, sheet_name="B-3-1a", skiprows=[0])
-        shet_tx_changes = pd.read_excel(etys_file_name, sheet_name="B-3-2a", skiprows=[0])
+        spt_circuits = pd.read_excel(etys_file_path, sheet_name="B-2-1b", skiprows=[0])
+        spt_circuit_changes = pd.read_excel(etys_file_path, sheet_name="B-2-2b", skiprows=[0])
+        spt_tx = pd.read_excel(etys_file_path, sheet_name="B-3-1b", skiprows=[0])
+        spt_tx_changes = pd.read_excel(etys_file_path, sheet_name="B-3-2b", skiprows=[0])
 
-        spt_circuits = pd.read_excel(etys_file_name, sheet_name="B-2-1b", skiprows=[0])
-        spt_circuit_changes = pd.read_excel(etys_file_name, sheet_name="B-2-2b", skiprows=[0])
-        spt_tx = pd.read_excel(etys_file_name, sheet_name="B-3-1b", skiprows=[0])
-        spt_tx_changes = pd.read_excel(etys_file_name, sheet_name="B-3-2b", skiprows=[0])
+        nget_circuits = pd.read_excel(etys_file_path, sheet_name="B-2-1c", skiprows=[0])
+        nget_circuit_changes = pd.read_excel(etys_file_path, sheet_name="B-2-2c", skiprows=[0])
+        nget_tx = pd.read_excel(etys_file_path, sheet_name="B-3-1c", skiprows=[0])
+        nget_tx_changes = pd.read_excel(etys_file_path, sheet_name="B-3-2c", skiprows=[0])
 
-        nget_circuits = pd.read_excel(etys_file_name, sheet_name="B-2-1c", skiprows=[0])
-        nget_circuit_changes = pd.read_excel(etys_file_name, sheet_name="B-2-2c", skiprows=[0])
-        nget_tx = pd.read_excel(etys_file_name, sheet_name="B-3-1c", skiprows=[0])
-        nget_tx_changes = pd.read_excel(etys_file_name, sheet_name="B-3-2c", skiprows=[0])
+        ofto_circuits = (pd.read_excel(etys_file_path, sheet_name="B-2-1d", skiprows=[0])).ffill(axis=0)
+        ofto_circuit_changes = (pd.read_excel(etys_file_path, sheet_name="B-2-2d", skiprows=[0])).ffill(axis=0)
+        ofto_tx = (pd.read_excel(etys_file_path, sheet_name="B-3-1d", skiprows=[0])).ffill(axis=0)
+        ofto_tx_changes = (pd.read_excel(etys_file_path, sheet_name="B-3-2d", skiprows=[0])).ffill(axis=0)
 
-        ofto_circuits = (pd.read_excel(etys_file_name, sheet_name="B-2-1d", skiprows=[0])).ffill(axis=0)
-        ofto_circuit_changes = (pd.read_excel(etys_file_name, sheet_name="B-2-2d", skiprows=[0])).ffill(axis=0)
-        ofto_tx = (pd.read_excel(etys_file_name, sheet_name="B-3-1d", skiprows=[0])).ffill(axis=0)
-        ofto_tx_changes = (pd.read_excel(etys_file_name, sheet_name="B-3-2d", skiprows=[0])).ffill(axis=0)
+        network_df_dict_comp = {
+            'nget_circuits': nget_circuits,
+            'nget_circuit_changes': nget_circuit_changes,
+            'nget_tx': nget_tx,
+            'nget_tx_changes': nget_tx_changes
+        }
 
-        def define_network_df_dict():
-            network_df_dict_comp = {
-                'nget_circuits': nget_circuits,
-                'nget_circuit_changes': nget_circuit_changes,
-                'nget_tx': nget_tx,
-                'nget_tx_changes': nget_tx_changes
-            }
+        network_df_dict_subs = {
+            'shet_substations': shet_substations,
+            'spt_substations': spt_substations,
+            'nget_substations': nget_substations,
+            'ofto_substations': ofto_substations,
+        }
 
-            network_df_dict_subs = {
-                'shet_substations': shet_substations,
-                'spt_substations': spt_substations,
-                'nget_substations': nget_substations,
-                'ofto_substations': ofto_substations,
-            }
-
-            if not self.scotland_reduced:
-                network_df_dict_comp.update({
+        if not self.scotland_reduced:
+            network_df_dict_comp.update({
                 'shet_circuits': shet_circuits,
                 'shet_circuit_changes': shet_circuit_changes,
                 'shet_tx': shet_tx,
@@ -88,28 +92,25 @@ class TransformData:
                 'spt_circuit_changes': spt_circuit_changes,
                 'spt_tx': spt_tx,
                 'spt_tx_changes': spt_tx_changes
-                })
+            })
 
-            if self.consider_ofto:
-                network_df_dict_comp.update({
-                    'ofto_circuits': ofto_circuits,
-                    'ofto_circuit_changes': ofto_circuit_changes,
-                    'ofto_tx': ofto_tx,
-                    'ofto_tx_changes': ofto_tx_changes
-                })
-
-            return network_df_dict_comp, network_df_dict_subs
-
-        network_df_dict_comp, network_df_dict_subs = define_network_df_dict()
+        if self.consider_ofto:
+            network_df_dict_comp.update({
+                'ofto_circuits': ofto_circuits,
+                'ofto_circuit_changes': ofto_circuit_changes,
+                'ofto_tx': ofto_tx,
+                'ofto_tx_changes': ofto_tx_changes
+            })
 
         # pass the dictionary to subsequent functions.
         self.network_df_dict_comp = network_df_dict_comp
         self.network_df_dict_subs = network_df_dict_subs
 
     def import_tec_ic_demand_data(self):
-        tec_reg_sub_map = pd.read_csv('../data/tec_reg_sub_map.csv')
-        ic_reg_sub_map = pd.read_csv('../data/ic_reg_sub_map.csv')
-        ranking_order = pd.read_csv('../data/Plant_Ranking_Order.csv')
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        tec_reg_sub_map = pd.read_csv(os.path.join(project_root, 'data', 'tec_reg_sub_map.csv'))
+        ic_reg_sub_map = pd.read_csv(os.path.join(project_root, 'data', 'ic_reg_sub_map.csv'))
+        ranking_order = pd.read_csv(os.path.join(project_root, 'data', 'Plant_Ranking_Order.csv'))
         self.tec_reg_sub_map = tec_reg_sub_map
         self.ic_reg_sub_map = ic_reg_sub_map
         self.ranking_order = ranking_order
@@ -129,8 +130,8 @@ class TransformData:
                     NGET_Subs = pd.read_excel(response.content, sheet_name="B-1-1c", skiprows=[0])
                     NGET_Tx = pd.read_excel(response.content, sheet_name="B-3-1c", skiprows=[0])
                     NGET_Tx_Changes = pd.read_excel(response.content, sheet_name="B-3-2c", skiprows=[0])
-                    NGET_Reactive = pd.read_excel(response.content, sheet_name = "B-4-1c", skiprows=[0])
-                    NGET_Reactive_Changes = pd.read_excel(response.content, sheet_name = "B-4-2c", skiprows=[0])
+                    NGET_Reactive = pd.read_excel(response.content, sheet_name="B-4-1c", skiprows=[0])
+                    NGET_Reactive_Changes = pd.read_excel(response.content, sheet_name="B-4-2c", skiprows=[0])
                 else:
                     print(
                         "Failed to download ETYS Appendix B file from https://www.nationalgrideso.com/document/275586/download")
@@ -195,8 +196,9 @@ class TransformData:
 
             elif self.api_or_local == "local":
                 # import TEC and IC data from local path
-                tec_register = pd.read_csv('../data/tec-register-02-02-2024_curated.csv')
-                ic_register = pd.read_csv('../data/interconnector-register-02-02-2024_curated.csv')
+                tec_register = pd.read_csv(os.path.join(project_root, 'data', 'tec-register-02-02-2024_curated.csv'))
+                ic_register = pd.read_csv(
+                    os.path.join(project_root, 'data', 'interconnector-register-02-02-2024_curated.csv'))
                 self.tec_register = tec_register
                 self.ic_register = ic_register
                 success = True
@@ -204,7 +206,7 @@ class TransformData:
             else:
                 sys.exit()
 
-            gsp_demand = pd.read_csv('../data/ETYS23_Appendix G_Dem.csv')
+            gsp_demand = pd.read_csv(os.path.join(project_root, 'data', 'ETYS23_Appendix G_Dem.csv'))
             self.gsp_demand = gsp_demand
 
         except:
@@ -244,11 +246,10 @@ class TransformData:
         dict_voltage = {'1': '132', '2': '275', '3': '33', '4': '400', '5': '11', '6': '66', '7': '25', '8': '22'}
         bus_ids_df['voltage'] = bus_ids_df['Name'].str[4].map(dict_voltage)
 
-        def set_voltage_col_to_int(site_df, col_name):
-            site_df[col_name] = pd.to_numeric(site_df[col_name], errors='coerce').fillna(pd.NA).round().astype('Int64')
-
-        set_voltage_col_to_int(all_subs, 'Voltage (kV)')
-        set_voltage_col_to_int(bus_ids_df, 'voltage')
+        all_subs['Voltage (kV)'] = pd.to_numeric(all_subs['Voltage (kV)'], errors='coerce').fillna(
+            pd.NA).round().astype('Int64')
+        bus_ids_df['voltage'] = pd.to_numeric(bus_ids_df['voltage'], errors='coerce').fillna(pd.NA).round().astype(
+            'Int64')
 
         # merging on Name and Voltage to avoid merge resulting in duplicates. Only Monk Fryston & Monk Fryston New are_
         # the duplicates - can be fixed by changing MONF code to like MONN for one of the subs, however this will affect_
@@ -275,7 +276,7 @@ class TransformData:
 
         self.bus_ids_df = bus_ids_df
 
-        # """add coordinates to bus_ids dataframe - decided not required and will continue to be handled by Homepage.py"""
+        # """add coordinates to bus_ids dataframe - decided not required and will continue to be handled by 01_Homepage.py"""
 
     def transform_network_data(self):
         for df_name, df in self.network_df_dict_comp.items():
@@ -543,16 +544,16 @@ class TransformData:
                     self.intra_hvdc.at[index1, 'region'] = row2['Region']
 
     def key_stats(self):
-        delete = '../delete/'
-        self.gsp_demand.to_csv(delete + 'gsp_demand.csv')
-        self.intra_hvdc.to_csv(delete + 'intra_hvdc.csv')
-        self.ic_register.to_csv(delete + 'ic_register.csv')
-        self.tec_register.to_csv(delete + 'tec_register.csv')
-        self.all_trafo_changes.to_csv(delete + 'all_trafo_changes.csv')
-        self.all_trafo.to_csv(delete + 'all_trafo.csv')
-        self.all_circuits_changes.to_csv(delete + 'all_circuits_changes.csv')
-        self.all_circuits.to_csv(delete + 'all_circuits.csv')
-        self.bus_ids_df.to_csv(delete + 'bus_ids_df.csv')
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.gsp_demand.to_csv(os.path.join(project_root, 'delete', 'gsp_demand.csv'))
+        self.intra_hvdc.to_csv(os.path.join(project_root, 'delete', 'intra_hvdc.csv'))
+        self.ic_register.to_csv(os.path.join(project_root, 'delete', 'ic_register.csv'))
+        self.tec_register.to_csv(os.path.join(project_root, 'delete', 'tec_register.csv'))
+        self.all_trafo_changes.to_csv(os.path.join(project_root, 'delete', 'all_trafo_changes.csv'))
+        self.all_trafo.to_csv(os.path.join(project_root, 'delete', 'all_trafo.csv'))
+        self.all_circuits_changes.to_csv(os.path.join(project_root, 'delete', 'all_circuits_changes.csv'))
+        self.all_circuits.to_csv(os.path.join(project_root, 'delete', 'all_circuits.csv'))
+        self.bus_ids_df.to_csv(os.path.join(project_root, 'delete', 'bus_ids_df.csv'))
 
         if __name__ == "__main__":
             print('If Scotland reduced: TEC Register has match on: ' + str(
@@ -563,7 +564,8 @@ class TransformData:
                 self.tec_register['bus_name_guess'].ne('').sum()) + '/' + str(
                 self.tec_register['bus_name'].ne('').sum()) + ' out of ' + str(
                 self.tec_register['Project Name'].notna().sum()) + ' generators.\n')
-            print('All components list has ' + str((self.all_comp.shape[0])) + ' components. Individual lists have ' + str(
+            print('All components list has ' + str(
+                (self.all_comp.shape[0])) + ' components. Individual lists have ' + str(
                 (self.all_circuits.shape[0]) + (self.all_circuits_changes.shape[0]) + (self.all_trafo.shape[0]) + (
                     self.all_trafo_changes.shape[0])) + ' components')
 

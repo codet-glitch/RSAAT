@@ -6,9 +6,9 @@
 import pandapower as pp
 import pandas as pd
 import numpy as np
-import network_data
+from rsaat_main.network_data import TransformData
+import os
 import copy
-import numba
 import re
 from datetime import datetime
 import sys
@@ -19,19 +19,19 @@ import requests
 # import json
 # from PIL import Image
 
-class DefineData(network_data.TransformData):
-    def __init__(self, year: int):
-        super().__init__()
+class DefineData:  # (network_data.TransformData)
+    def __init__(self):
+        instance_transform_data = TransformData()
+        instance_transform_data.import_network_data()
+        instance_transform_data.import_tec_ic_demand_data()
+        instance_transform_data.create_bus_id()
+        instance_transform_data.transform_network_data()
+        instance_transform_data.transform_tec_ic_data()
+        instance_transform_data.transform_demand_data()
+        instance_transform_data.transform_intrahvdc_data()
+        self.__dict__.update(instance_transform_data.__dict__)
 
-        self.import_network_data()
-        self.import_tec_ic_demand_data()
-        self.create_bus_id()
-        self.transform_network_data()
-        self.transform_tec_ic_data()
-        self.transform_demand_data()
-        self.transform_intrahvdc_data()
-
-        self.year = year
+        self.year = None
 
         self.ic_register_year_filtered = None
         self.tec_register_year_filtered = None
@@ -42,64 +42,34 @@ class DefineData(network_data.TransformData):
         self.net = None
 
     # apply year filter to GB data
-    def filter_network_data(self):
-        # filter circuit data by self.year
-        def apply_circuit_changes():
-            self.all_circuits_changes = self.all_circuits_changes[
-                pd.to_numeric(self.all_circuits_changes['Year'], errors='coerce') <= self.year]
-            for index, row in self.all_circuits_changes.iterrows():
-                status = row['Status']
-                if 'addition' in status.lower():
-                    # Convert row to DataFrame before concatenating
-                    row_df = pd.DataFrame([row])
-                    self.all_circuits = pd.concat([self.all_circuits, row_df], ignore_index=True)
-                elif 'remove' in status.lower():
-                    for index1, row1 in self.all_circuits.iterrows():
-                        if (row1['Node 1'] == row['Node 1']) & (row1['Node 2'] == row['Node 2']):
-                            self.all_circuits.drop(index1, inplace=True)
-                            break
-                elif 'change' in status.lower():
-                    for index2, row2 in self.all_circuits.iterrows():
-                        if (row2['Node 1'] == row['Node 1']) & (row2['Node 2'] == row['Node 2']):
-                            self.all_circuits.drop(index2, inplace=True)
-                            # Convert row to DataFrame before concatenating
-                            row_df = pd.DataFrame([row])
-                            self.all_circuits = pd.concat([self.all_circuits, row_df], ignore_index=True)
-                            break
-                else:
-                    print(f"Warning: Status of row {index} "
-                          f"in Circuit Changes data needs checking. Ignored from 'for' loop.")
-            return self.all_circuits
-
-        self.all_circuits_year_filtered = apply_circuit_changes()
-
-        # filter transformer data by self.year
-        def apply_trafo_changes():
-            self.all_trafo_changes = self.all_trafo_changes[
-                pd.to_numeric(self.all_trafo_changes['Year'], errors='coerce') <= self.year]
-            for index, row in self.all_trafo_changes.iterrows():
+    def filter_network_data(self, year: int):
+        # filter circuit and transformer data by self.year
+        self.year = year
+        def filter_circuit_trafo_data(data, changes):
+            changes = changes[pd.to_numeric(changes['Year'], errors='coerce') <= self.year]
+            for index, row in changes.iterrows():
                 status = row['Status']
                 if 'addition' in status.lower():
                     row_df = pd.DataFrame([row])
-                    self.all_trafo = pd.concat([self.all_trafo, row_df], ignore_index=True)
+                    data = pd.concat([data, row_df], ignore_index=True)
                 elif 'remove' in status.lower():
-                    for index1, row1 in self.all_trafo.iterrows():
+                    for index1, row1 in data.iterrows():
                         if (row1['Node 1'] == row['Node 1']) & (row1['Node 2'] == row['Node 2']):
-                            self.all_trafo.drop(index1, inplace=True)
+                            data.drop(index1, inplace=True)
                             break
                 elif 'change' in status.lower():
-                    for index2, row2 in self.all_trafo.iterrows():
+                    for index2, row2 in data.iterrows():
                         if (row2['Node 1'] == row['Node 1']) & (row2['Node 2'] == row['Node 2']):
-                            self.all_trafo.drop(index2, inplace=True)
+                            data.drop(index2, inplace=True)
                             row_df = pd.DataFrame([row])
-                            self.all_trafo = pd.concat([self.all_trafo, row_df], ignore_index=True)
+                            data = pd.concat([data, row_df], ignore_index=True)
                             break
                 else:
-                    print(f"Warning: Status of row {index} "
-                          f"in Transformer Changes data needs checking. Ignored from 'for' loop.")
-            return self.all_trafo
+                    print(f"Warning: Status of row {index} needs checking. Ignored from 'for' loop.")
+            return data
 
-        self.all_trafo_year_filtered = apply_trafo_changes()
+        self.all_circuits_year_filtered = filter_circuit_trafo_data(self.all_circuits, self.all_circuits_changes)
+        self.all_trafo_year_filtered = filter_circuit_trafo_data(self.all_trafo, self.all_trafo_changes)
 
     # filter tec & ic data by self.year
     def filter_tec_ic_data(self):
@@ -180,7 +150,8 @@ class DefineData(network_data.TransformData):
                     except ValueError:
                         b6_effective_capacity = 0
                     b6_effective_value = 0.3758 * b6_effective_capacity
-                    value = (b6_transfer_max - b6_effective_value_total_clipped) if (b6_effective_value_total_clipped + b6_effective_value) > b6_transfer_max else b6_effective_value
+                    value = (b6_transfer_max - b6_effective_value_total_clipped) if (
+                                                                                                b6_effective_value_total_clipped + b6_effective_value) > b6_transfer_max else b6_effective_value
                     total_effective_for_scenario = rank_df['Max Dispatchable'].apply(lambda x: x[num]).sum() + (
                         value if self.scotland_reduced else 0)
                     if remaining_demand >= total_effective_for_scenario:
@@ -270,10 +241,11 @@ class DefineData(network_data.TransformData):
         # PERHAPS CREATE CLASS HERE AND PASS SELF.NET
         def create_net():
             net = pp.create_empty_network()
-            return net
+            self.net = net
+            # return net
 
-        net = create_net()
-        self.net = net
+        # net = create_net()
+        # self.net = net
 
         def create_bus():
             # create bus nodes for net
@@ -312,7 +284,7 @@ class DefineData(network_data.TransformData):
                             100 * length_km)) or 0.0001  # divide by 100 to convert % value to per unit value
                     c_nf_per_km = length_km and ((
                                                          row['B (% on 100MVA)'] / ((
-                                                                                               base_voltage ** 2) * 2 * 3.14159265359 * 50 * length_km)) * 10 ** 9) or 10
+                                                                                           base_voltage ** 2) * 2 * 3.14159265359 * 50 * length_km)) * 10 ** 9) or 10
                     pp.create_line_from_parameters(self.net, from_bus=from_bus, to_bus=to_bus, length_km=length_km,
                                                    r_ohm_per_km=r_ohm_per_km, x_ohm_per_km=x_ohm_per_km,
                                                    c_nf_per_km=c_nf_per_km, max_i_ka=max_i_ka, name=name)
@@ -346,7 +318,7 @@ class DefineData(network_data.TransformData):
                 vn_hv_kv = row['Voltage (kV) Node 1']
                 vn_lv_kv = row['Voltage (kV) Node 2']
                 vkr_percent = row['R (% on 100MVA)']
-                vk_percent = max(5, min(35, row['X (% on 100MVA)'])) # set bounds of 5-35% on X.
+                vk_percent = max(5, min(35, row['X (% on 100MVA)']))  # set bounds of 5-35% on X.
                 pfe_kw = 0
                 i0_percent = 0
                 pp.create_transformer_from_parameters(self.net, hv_bus=hv_bus, lv_bus=lv_bus, sn_mva=sn_mva,
@@ -373,7 +345,7 @@ class DefineData(network_data.TransformData):
                 name = f"{row['Generator Name']}"
                 bus = row['bus_id'][0]  # referring only to the first value in bus_id column in gen register.
                 type = row['Gen_Type']
-                p_mw = row['MW Dispatch'][0] # referring only to the first value in bus_id column in gen register.
+                p_mw = row['MW Dispatch'][0]  # referring only to the first value in bus_id column in gen register.
                 if p_mw >= 0:
                     max_p_mw = row['MW Effective - Import'] if isinstance(row['MW Effective - Import'],
                                                                           (int, float)) else 9999
@@ -392,8 +364,8 @@ class DefineData(network_data.TransformData):
                     pp.create_ext_grid(self.net, bus=bus_id, vm_pu=1, va_degree=0,
                                        name='Slack_Bus')  # HEYS41 index 309 bus selected for slack
 
-
         def create_full_network():
+            create_net()
             create_bus()
             create_lines()
             create_transformers()
@@ -405,12 +377,12 @@ class DefineData(network_data.TransformData):
         self.net = create_full_network()
 
     def get_imbalance(self):
-        pp.rundcpp(self.net, numba=True)
+        pp.rundcpp(self.net, numba=False)
         slack_gen = self.net['res_ext_grid']['p_mw']
         print(slack_gen)
 
         # net1 = copy.deepcopy(self.net)
-        # pp.rundcpp(net1, numba=True)
+        # pp.rundcpp(net1, numba=False)
         # slack_gen1 = net1['res_ext_grid']['p_mw']
         # print(slack_gen1)
 
@@ -419,19 +391,19 @@ class DefineData(network_data.TransformData):
             pass
 
     def key_stats(self):
-        delete = '../delete/'
-        self.ic_register_year_filtered.to_csv(delete + 'ic_register_year_filtered.csv')
-        self.tec_register_year_filtered.to_csv(delete + 'tec_register_year_filtered.csv')
-        self.all_trafo_year_filtered.to_csv(delete + 'all_trafo_year_filtered.csv')
-        self.all_circuits_year_filtered.to_csv(delete + 'all_circuits_year_filtered.csv')
-        self.gsp_demand_filtered.to_csv(delete + 'gsp_demand_filtered.csv')
-        self.all_gen_register.to_csv(delete + 'all_gen_register.csv')
-        pp.to_excel(self.net, delete + 'net_pp.xlsx')
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.ic_register_year_filtered.to_csv(os.path.join(project_root, 'delete', 'ic_register_year_filtered.csv'))
+        self.tec_register_year_filtered.to_csv(os.path.join(project_root, 'delete', 'tec_register_year_filtered.csv'))
+        self.all_trafo_year_filtered.to_csv(os.path.join(project_root, 'delete', 'all_trafo_year_filtered.csv'))
+        self.all_circuits_year_filtered.to_csv(os.path.join(project_root, 'delete', 'all_circuits_year_filtered.csv'))
+        self.gsp_demand_filtered.to_csv(os.path.join(project_root, 'delete', 'gsp_demand_filtered.csv'))
+        self.all_gen_register.to_csv(os.path.join(project_root, 'delete', 'all_gen_register.csv'))
+        pp.to_excel(self.net, os.path.join(project_root, 'delete', 'net_pp.xlsx'))
 
 
 if __name__ == "__main__":
-    call = DefineData(2028)
-    call.filter_network_data()
+    call = DefineData()
+    call.filter_network_data(2028)
     call.filter_tec_ic_data()
     call.filter_demand_data()
     call.combine_tec_ic_registers()

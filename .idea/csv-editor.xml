@@ -45,6 +45,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\CRM_Sub_Coordinates_WGS84.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\tec-register-02-02-2024_curated.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\tec_reg_sub_map.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\delete\all_gen_register.csv">
           <value>
             <Attribute>
@@ -52,7 +73,42 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\delete\bus_ids_df.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\delete\gsp_demand.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\delete\gsp_demand_filtered.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\delete\ic_register.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\delete\tec_register.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\delete\tec_register_year_filtered.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
