@@ -32,12 +32,27 @@ class RunApp:
             st.image(image_rsaat1, use_column_width="always")
         st.divider()
 
-        def show_gen_and_dem_capacity_and_default_dispatch_table():
-            # Access self.initialise_apply_data.all_gen_register here
-            tec_register = self.initialise_apply_data.tec_register
-            edited_tec_register = st.data_editor(tec_register)
+        with st.container():
+            col1, col2 = st.columns([1, 1], gap="small")
 
-        show_gen_and_dem_capacity_and_default_dispatch_table()
+            with col1:
+                st.subheader("Generation Background", divider='green')
+                tab1, tab2, tab3 = st.tabs(['Generators', 'Interconnectors', 'Scale All Generation'])
+                with tab1:
+                    tec_register = st.dataframe(self.initialise_apply_data.tec_register[['Generator Name', 'MW Effective', 'bus_name', 'Plant Type', 'MW Effective From', 'Project Status', 'Agreement Type', 'HOST TO']], height=300)
+                with tab2:
+                    ic_register = st.dataframe(self.initialise_apply_data.ic_register[['Generator Name', 'MW Effective - Import', 'MW Effective - Export', 'bus_name', 'MW Effective From', 'Project Status', 'HOST TO']], height=300)
+                with tab3:
+                    ranking_order = st.data_editor(self.initialise_apply_data.ranking_order, height=300)
+
+            with col2:
+                st.subheader("Demand Background", divider='blue')
+                tab1, tab2 = st.tabs(['Demand', 'Scale Demand'])
+                with tab1:
+                    gsp_demand = st.dataframe(self.initialise_apply_data.gsp_demand, height=300)
+                with tab2:
+                    scale_demand = st.data_editor(pd.DataFrame({'Demand': ['England & Wales', 'Scotland'], 'Scale Value': [1.0, 0.8]}), height=300)
+
 
         def show_key_network_values_table():
             pass
