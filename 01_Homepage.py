@@ -7,104 +7,176 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 import folium
+import streamlit.components.v1 as components
 from rsaat_main import apply_data
 
-class RunApp:
-    def __init__(self):
-        self.initialise_apply_data = None
 
-    def set_page_config(self):
-        st.set_page_config(
-            page_title="Rapid System Access Analysis Tool",
-            page_icon="⚡",
-            layout="wide"
-        )
+def set_page_config():
+    st.set_page_config(
+        page_title="Rapid System Access Analysis Tool",
+        page_icon="⚡",
+        layout="wide"
+    )
 
-    def import_methods(self):
-        self.initialise_apply_data = apply_data.DefineData()
-        return self.initialise_apply_data
 
-    def create_homepage(self):
-        # """ create homepage header."""
-        # add title logo
+@st.cache_data
+def import_methods():
+    initialise_apply_data = apply_data.DefineData()
+    return initialise_apply_data
+
+
+def create_homepage(initialise_apply_data):
+    # """ create homepage header."""
+    # add title logo
+    with st.container():
+        image_rsaat1 = Image.open('images/RSAAT_Logo.png')
+        st.image(image_rsaat1, use_column_width="always")
+    st.divider()
+
+    with st.container():
         with st.container():
-            image_rsaat1 = Image.open('images/RSAAT_Logo.png')
-            st.image(image_rsaat1, use_column_width="always")
-        st.divider()
-
-        with st.container():
-            col1, col2 = st.columns([1, 1], gap="small")
+            col1, col2 = st.columns([1, 1], gap="large")
 
             with col1:
-                st.subheader("Generation Background", divider='green')
-                tab1, tab2, tab3 = st.tabs(['Generators', 'Interconnectors', 'Scale All Generation'])
+                st.subheader("Generation Background", divider='red')
+                tab1, tab2, tab3 = st.tabs(['Generators', 'Interconnectors', 'Generation Map'])
                 with tab1:
-                    tec_register = st.dataframe(self.initialise_apply_data.tec_register[['Generator Name', 'MW Effective', 'bus_name', 'Plant Type', 'MW Effective From', 'Project Status', 'Agreement Type', 'HOST TO']], height=300)
+                    tec_register = initialise_apply_data.tec_register[
+                        initialise_apply_data.tec_register['HOST TO'] == 'NGET'][
+                        ['Generator Name', 'Connection Site', 'bus_name', 'MW Effective', 'Plant Type',
+                         'MW Effective From', 'Project Status', 'Agreement Type']]
+                    tec_register_sorted = tec_register.sort_values(by='Generator Name')
+                    st.dataframe(tec_register_sorted, height=500, hide_index=True,
+                                 column_config={"bus_name": "ETYS Substation",
+                                                "MW Effective From": st.column_config.DateColumn(format='DD-MM-YYYY')})
                 with tab2:
-                    ic_register = st.dataframe(self.initialise_apply_data.ic_register[['Generator Name', 'MW Effective - Import', 'MW Effective - Export', 'bus_name', 'MW Effective From', 'Project Status', 'HOST TO']], height=300)
+                    ic_register = initialise_apply_data.ic_register[
+                        initialise_apply_data.ic_register['HOST TO'] == 'NGET'][['Generator Name',
+                                                                                 'Connection Site', 'bus_name',
+                                                                                 'MW Effective - Import',
+                                                                                 'MW Effective - Export',
+                                                                                 'MW Effective From', 'Project Status']]
+                    ic_register_sorted = ic_register.sort_values(by='Generator Name')
+                    st.dataframe(ic_register_sorted, height=500, hide_index=True,
+                                 column_config={"bus_name": "ETYS Substation", "Generator Name": "Interconnector Name",
+                                                "MW Effective From": st.column_config.DateColumn(format='DD-MM-YYYY')})
                 with tab3:
-                    ranking_order = st.data_editor(self.initialise_apply_data.ranking_order, height=300)
+                    components.iframe("https://www.energydashboard.co.uk/map", height=500)
 
             with col2:
                 st.subheader("Demand Background", divider='blue')
-                tab1, tab2 = st.tabs(['Demand', 'Scale Demand'])
+                tab1, tab2 = st.tabs(['GSP Demand', 'Total Demand'])
                 with tab1:
-                    gsp_demand = st.dataframe(self.initialise_apply_data.gsp_demand, height=300)
+                    gsp_demand = initialise_apply_data.gsp_demand[
+                        initialise_apply_data.gsp_demand['region'] == 'nget']
+                    gsp_demand = gsp_demand.drop(['region', 'bus_id'], axis=1)
+                    gsp_demand_sorted = gsp_demand.sort_values(by='Node')
+                    st.dataframe(gsp_demand_sorted, height=500, hide_index=True,
+                                 column_config={"bus_name": "ETYS Substation"})
                 with tab2:
-                    scale_demand = st.data_editor(pd.DataFrame({'Demand': ['England & Wales', 'Scotland'], 'Scale Value': [1.0, 0.8]}), height=300)
+                    columns_to_sum = gsp_demand_sorted.select_dtypes(include=[int, float]).columns
+                    st.dataframe((gsp_demand_sorted[columns_to_sum].sum(axis=0)), height=500)
+
+        with st.container():
+            st.header("Inputs", divider='grey')
+            col1, col2 = st.columns([1, 1], gap="large")
+            with col1:
+                st.subheader("Outage Background", divider='orange')
+                tab1, tab2 = st.tabs(['Select Circuits', 'Select Transformers'])
+                with tab1:
+                    initialise_apply_data.all_circuits.insert(0, 'Select', False)
+                    all_circuits = st.data_editor(initialise_apply_data.all_circuits, height=450, column_config={
+                        "Select": st.column_config.CheckboxColumn("Select", help="Select **outages**", default=False)},
+                                               hide_index=True)
+                    co_1 = st.button(':red[Add Selected Circuit Outages]', type='secondary', use_container_width=True)
+                    if co_1:
+                        pass
+                with tab2:
+                    initialise_apply_data.all_trafo.insert(0, 'Select', False)
+                    all_trafo = st.data_editor(initialise_apply_data.all_trafo, height=450, column_config={
+                        "Select": st.column_config.CheckboxColumn("Select", help="Select **outages**", default=False)},
+                                               hide_index=True)
+                    to_1 = st.button(':red[Add Selected Transformer Outages]', type='secondary', use_container_width=True)
+                    if to_1:
+                        pass
+            with col2:
+                st.subheader("Generation and Demand Background", divider='violet')
+                tab1, tab2 = st.tabs(['Scale Plant', 'Scale Demand'])
+                with tab1:
+                    ranking_order = st.data_editor(initialise_apply_data.ranking_order, height=450)
+                    sp_1 = st.button(':red[Save Plant Scaling]', type='secondary', use_container_width=True)
+                    if sp_1:
+                        pass
+                with tab2:
+                    scale_demand = st.data_editor(
+                        pd.DataFrame({'Demand': ['England & Wales', 'Scotland'], 'Scale Value': [1.0, 0.8]}),
+                        height=450)
+                    sd_1 = st.button(':red[Save Demand Scaling]', type='secondary', use_container_width=True)
+                    if sd_1:
+                        pass
+
+    with st.container():
+        pass
+
+    def show_key_network_values_table():
+        pass
 
 
-        def show_key_network_values_table():
-            pass
+def define_year_of_study():
+    year = 2028
+    return year
 
-    def define_year_of_study(self):
-        year = 2028
-        return year
 
-    def define_outages(self):
-        outage_list = []
-        return outage_list
+def define_outages():
+    outage_list = []
+    return outage_list
 
-    def scale_dem(self):
-        demand_scale = 1
-        return demand_scale
 
-    def scale_gen(self):
-        plant_ranking_order_modified = pd.DataFrame
-        gen_units_scale = {}
-        return plant_ranking_order_modified, gen_units_scale
+def scale_dem():
+    demand_scale = 1
+    return demand_scale
 
-    def check_convergence(self):
-        slack_value = 0
-        return slack_value
 
-    def run_analysis(self):
-        self.initialise_apply_data.filter_network_data(2028)
-        self.initialise_apply_data.filter_tec_ic_data()
-        self.initialise_apply_data.filter_demand_data()
-        self.initialise_apply_data.combine_tec_ic_registers()
-        self.initialise_apply_data.determine_initial_dispatch_setting()
+def scale_gen():
+    plant_ranking_order_modified = pd.DataFrame
+    gen_units_scale = {}
+    return plant_ranking_order_modified, gen_units_scale
 
-    def initialisation(self):
-        self.import_methods()
-        self.create_homepage()
 
-    def store_user_input(self):
-        year = self.define_year_of_study()
-        outage_list = self.define_outages()
-        demand_scale = self.scale_dem()
-        plant_ranking_order_modified, gen_units_scale = self.scale_gen()
-        return year, outage_list, demand_scale, plant_ranking_order_modified
+def check_convergence():
+    slack_value = 0
+    return slack_value
 
-    def power_flow_analysis(self):
-        slack_value = self.check_convergence()
-        self.run_analysis()
+
+def run_analysis(initialise_apply_data):
+    initialise_apply_data.filter_network_data(2028)
+    initialise_apply_data.filter_tec_ic_data()
+    initialise_apply_data.filter_demand_data()
+    initialise_apply_data.combine_tec_ic_registers()
+    initialise_apply_data.determine_initial_dispatch_setting()
+
+
+def initialisation():
+    initialise_apply_data = import_methods()
+    create_homepage(initialise_apply_data)
+
+
+def store_user_input():
+    year = define_year_of_study()
+    outage_list = define_outages()
+    demand_scale = scale_dem()
+    plant_ranking_order_modified, gen_units_scale = scale_gen()
+    return year, outage_list, demand_scale, plant_ranking_order_modified
+
+
+def power_flow_analysis(initialise_apply_data):
+    slack_value = check_convergence()
+    run_analysis(initialise_apply_data)
+
 
 if __name__ == "__main__":
-    tool = RunApp()
-    tool.set_page_config()
-    tool.initialisation()
-
+    set_page_config()
+    initialisation()
 
 
 def old_code():

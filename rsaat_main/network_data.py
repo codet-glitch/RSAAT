@@ -196,9 +196,9 @@ class TransformData:
 
             elif self.api_or_local == "local":
                 # import TEC and IC data from local path
-                tec_register = pd.read_csv(os.path.join(project_root, 'data', 'tec-register-02-02-2024_curated.csv'))
+                tec_register = pd.read_csv(os.path.join(project_root, 'data', 'tec-register-02-02-2024_curated.csv'), parse_dates=['MW Effective From'])
                 ic_register = pd.read_csv(
-                    os.path.join(project_root, 'data', 'interconnector-register-02-02-2024_curated.csv'))
+                    os.path.join(project_root, 'data', 'interconnector-register-02-02-2024_curated.csv'), parse_dates=['MW Effective From'])
                 self.tec_register = tec_register
                 self.ic_register = ic_register
                 success = True
@@ -464,7 +464,6 @@ class TransformData:
 
         # account for where tec mw inc/dec is not 0 for Built units (ie Built unit is changing TEC in future year)
         new_rows = []
-
         def update_cumulative_capacity(row_tec):
             if row_tec['Project Status'] == 'Built' and row_tec['MW Increase / Decrease'] != 0:
                 row_tec['MW Effective'] = row_tec['MW Connected']
@@ -483,6 +482,7 @@ class TransformData:
         self.tec_register['MW Effective From'] = pd.to_datetime(self.tec_register['MW Effective From'])
         self.tec_register['MW Effective From'] = self.tec_register['MW Effective From'].dt.date
 
+        # DEPRECATED
         # define the Gen_Type for TEC Register based on Plant Type and Generator Name columns.
         # set all in IC Register to Gen_Type = Interconnector
         self.ic_register[['Gen_Type', 'Plant Type']] = "Interconnector"

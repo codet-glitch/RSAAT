@@ -17,13 +17,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/delete/all_gen_register.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/delete/all_trafo.csv">
           <value>
             <Attribute>
@@ -66,13 +59,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\delete\all_gen_register.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\delete\bus_ids_df.csv">
           <value>
             <Attribute>
@@ -87,13 +73,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\delete\gsp_demand_filtered.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\delete\ic_register.csv">
           <value>
             <Attribute>
@@ -102,20 +81,6 @@
           </value>
         </entry>
         <entry key="\delete\tec_register.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\delete\tec_register_year_filtered.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\rsaat_main\line_pp.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
