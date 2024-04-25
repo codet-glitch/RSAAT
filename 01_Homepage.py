@@ -24,6 +24,12 @@ def import_methods():
     initialise_apply_data = apply_data.DefineData()
     return initialise_apply_data
 
+def initialise_session_states(initialise_apply_data):
+    st.session_state.year = 2028
+    st.session_state.circuit_outages = []
+    st.session_state.trafo_outages = []
+    st.session_state.ranking_order = initialise_apply_data.ranking_order
+    st.session_state.scale_demand = pd.DataFrame({'Demand': ['England & Wales', 'Scotland'], 'Scale Value': [1.0, 0.8]})
 
 def create_homepage(initialise_apply_data):
     # """ create homepage header."""
@@ -78,69 +84,83 @@ def create_homepage(initialise_apply_data):
                     st.dataframe((gsp_demand_sorted[columns_to_sum].sum(axis=0)), height=500)
 
         with st.container():
-            st.header("Inputs", divider='grey')
-            col1, col2 = st.columns([1, 1], gap="large")
-            with col1:
-                st.subheader("Outage Background", divider='orange')
-                tab1, tab2 = st.tabs(['Select Circuits', 'Select Transformers'])
-                with tab1:
-                    initialise_apply_data.all_circuits.insert(0, 'Select', False)
-                    all_circuits = st.data_editor(initialise_apply_data.all_circuits, height=450, column_config={
-                        "Select": st.column_config.CheckboxColumn("Select", help="Select **outages**", default=False)},
-                                               hide_index=True)
-                    co_1 = st.button(':red[Add Selected Circuit Outages]', type='secondary', use_container_width=True)
-                    if co_1:
-                        pass
-                with tab2:
-                    initialise_apply_data.all_trafo.insert(0, 'Select', False)
-                    all_trafo = st.data_editor(initialise_apply_data.all_trafo, height=450, column_config={
-                        "Select": st.column_config.CheckboxColumn("Select", help="Select **outages**", default=False)},
-                                               hide_index=True)
-                    to_1 = st.button(':red[Add Selected Transformer Outages]', type='secondary', use_container_width=True)
-                    if to_1:
-                        pass
-            with col2:
-                st.subheader("Generation and Demand Background", divider='violet')
-                tab1, tab2 = st.tabs(['Scale Plant', 'Scale Demand'])
-                with tab1:
-                    ranking_order = st.data_editor(initialise_apply_data.ranking_order, height=450)
-                    sp_1 = st.button(':red[Save Plant Scaling]', type='secondary', use_container_width=True)
-                    if sp_1:
-                        pass
-                with tab2:
-                    scale_demand = st.data_editor(
-                        pd.DataFrame({'Demand': ['England & Wales', 'Scotland'], 'Scale Value': [1.0, 0.8]}),
-                        height=450)
-                    sd_1 = st.button(':red[Save Demand Scaling]', type='secondary', use_container_width=True)
-                    if sd_1:
-                        pass
+            with st.container():
+                st.header("Inputs", divider='grey')
+                col1, col2 = st.columns([1, 1], gap="large")
+                with col1:
+                    st.subheader("Outage Background", divider='orange')
+                with col2:
+                    st.subheader("Generation and Demand Background", divider='violet')
+            with st.container():
+                col1, col2 = st.columns([1, 1], gap="large")
+                with col1:
+                    tab1, tab2 = st.tabs(['Select Circuits', 'Select Transformers'])
+                    with tab1:
+                        initialise_apply_data.all_circuits.insert(0, 'Select', False)
+                        all_circuits = st.data_editor(initialise_apply_data.all_circuits, height=450, column_config={
+                            "Select": st.column_config.CheckboxColumn("Select", help="Select **outages**", default=False)},
+                                                   hide_index=True)
+                    with tab2:
+                        initialise_apply_data.all_trafo.insert(0, 'Select', False)
+                        all_trafo = st.data_editor(initialise_apply_data.all_trafo, height=450, column_config={
+                            "Select": st.column_config.CheckboxColumn("Select", help="Select **outages**", default=False)},
+                                                   hide_index=True)
+
+                with col2:
+                    tab1, tab2 = st.tabs(['Scale Plant', 'Scale Demand'])
+                    with tab1:
+                        ranking_order = st.data_editor(initialise_apply_data.ranking_order, height=450)
+                    with tab2:
+                        scale_demand_default = pd.DataFrame({'Demand': ['England & Wales', 'Scotland'], 'Scale Value': [1.0, 0.8]})
+                        scale_demand = st.data_editor(scale_demand_default, height=450)
+                co_1 = st.button(':red[Save Outages and Background]', type='secondary', use_container_width=True)
+                if co_1:
+                    st.subheader("Selected Background Summary", divider='grey')
+                    col1, col2, col3 = st.columns([1,1,1], gap='small')
+                    with col1:
+                        st.markdown(':grey[Outages]')
+                        selected_co_1 = list(all_circuits[all_circuits['Select'] == True].index.values)
+                        selected_to_1 = list(all_trafo[all_trafo['Select'] == True].index.values)
+                        all_circuits_trafo = pd.merge(all_circuits[all_circuits['Select'] == True][['Node 1', 'Node 2']], all_trafo[all_trafo['Select'] == True][['Node 1', 'Node 2']], how="outer")
+                        st.dataframe(all_circuits_trafo.reset_index())
+                    with col2:
+                        st.markdown(':grey[User initiated changes to Ranking Order]')
+                        st.dataframe(pd.concat([ranking_order, initialise_apply_data.ranking_order]).drop_duplicates(keep=False))
+                    with col3:
+                        st.markdown(':grey[User initiated changes to Demand Scaling]')
+                        st.dataframe(pd.concat([scale_demand, scale_demand_default]).drop_duplicates(keep=False))
+                    st.session_state.year = year
+                    st.session_state.circuit_outages = selected_co_1
+                    st.session_state.trafo_outages = selected_to_1
+                    st.session_state.ranking_order = ranking_order
+                    st.session_state.scale_demand = scale_demand
+
+    with st.sidebar:
+        # image1 = Image.open('images/National_Grid_Logo_White.png')
+        # st.image(image1, use_column_width="always")
+        year = st.selectbox('Select Year', [2024, 2025, 2026])
+        if st.selectbox:
+            if st.button("⚡  **Run DC Power Flow Analysis**  ⚡"):
+                pass
+
 
     with st.container():
         pass
 
-    def show_key_network_values_table():
-        pass
+    #REVIEW DUE TO NOT VERY CONCISE.
+    if not co_1:
+        st.session_state.year = 2028
+        st.session_state.circuit_outages = []
+        st.session_state.trafo_outages = []
+        st.session_state.ranking_order = initialise_apply_data.ranking_order
+        st.session_state.scale_demand = pd.DataFrame({'Demand': ['England & Wales', 'Scotland'], 'Scale Value': [1.0, 0.8]})
 
-
-def define_year_of_study():
-    year = 2028
-    return year
-
-
-def define_outages():
-    outage_list = []
-    return outage_list
-
-
-def scale_dem():
-    demand_scale = 1
-    return demand_scale
-
-
-def scale_gen():
-    plant_ranking_order_modified = pd.DataFrame
-    gen_units_scale = {}
-    return plant_ranking_order_modified, gen_units_scale
+    else:
+        st.session_state.year = year
+        st.session_state.circuit_outages = selected_co_1
+        st.session_state.trafo_outages = selected_to_1
+        st.session_state.ranking_order = ranking_order
+        st.session_state.scale_demand = scale_demand
 
 
 def check_convergence():
@@ -158,6 +178,7 @@ def run_analysis(initialise_apply_data):
 
 def initialisation():
     initialise_apply_data = import_methods()
+    initialise_session_states(initialise_apply_data)
     create_homepage(initialise_apply_data)
 
 
