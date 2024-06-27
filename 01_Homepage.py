@@ -33,9 +33,9 @@ def initialise_session_states(initialise_apply_data):
 
 def create_homepage(initialise_apply_data):
     """ create homepage header """
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    sub_coords = pd.read_csv(os.path.join(project_root, 'RSAAT/data', 'CRM_Sub_Coordinates_WGS84.csv'))
-    st.session_state.coord = sub_coords
+    # project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # sub_coords = pd.read_csv(os.path.join(project_root, 'RSAAT/data', 'CRM_Sub_Coordinates_WGS84.csv'))
+    # st.session_state.coord = sub_coords
 
     # add title logo
     with st.container():
