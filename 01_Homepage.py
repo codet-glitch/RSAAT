@@ -6,7 +6,6 @@
 import pandas as pd
 import streamlit as st
 from PIL import Image
-import folium
 import streamlit.components.v1 as components
 from rsaat_main import apply_data
 import os
@@ -189,117 +188,117 @@ def create_homepage(initialise_apply_data):
                 st.session_state.critical_lines = critical_lines
                 st.session_state.line_tx_results_pre_sorted = line_tx_results_pre_sorted
 
-    with tab_results:
-        with st.container():
-            st.title("View Results")
-        st.text('\n')
-
-        # message if PFA has not been run yet
-        if 'line_tx_results_pre_int_sorted' not in st.session_state:
-            st.markdown("**:orange[Please come back to view results after running DC Power Flow Analysis.]**")
-
-        # if PFA has been run then show results
-        else:
-            tab1, tab2 = st.tabs(["Post-fault results", "Pre-fault results"])
-            with tab1:
-                col1, col2 = st.columns(2, gap="large")
-                with col1:
-                    with st.container():
-                        list_outages = ""
-                        for i in st.session_state.circuit_outages:
-                            list_outages += "- " + f":blue[{i}]" + "\n"
-                        for i in st.session_state.trafo_outages:
-                            list_outages += "- " + f":blue[{i}]" + "\n"
-                        list_critical = ""
-                        for i in st.session_state.critical_lines:
-                            list_critical += "- " + f":red[{i}]" + "\n"
-                        st.subheader(":blue[Outages applied]")
-                        if len(list_outages) < 2:
-                            list_outages = 'None'
-                        st.markdown(list_outages)
-                        st.text('\n')
-                        st.subheader(":blue[Post-fault loadings]")
-                        st.markdown("★ _with outages applied_ ★")
-                        st.dataframe(st.session_state.overall_result_sorted, use_container_width=True)
-
-                        st.text('\n')
-                        st.subheader(":blue[Critical contingencies]")
-                        st.markdown("★ _Contingencies resulting in an overload (>100%) of a circuit_ ★")
-                        st.markdown(list_critical)
-
-                with col2:
-                    with st.container():
-                        st.subheader(":blue[Map of overloads]")
-                        mask = st.session_state.overall_result_sorted['loading_percent'] > 100
-                        point_names = "_".join(st.session_state.overall_result_sorted.loc[mask, 'name'].tolist())
-                        map_center = [st.session_state.coord['latitude'].mean(),
-                                      st.session_state.coord['longitude'].mean()]
-                        m = folium.Map(location=map_center, zoom_start=10, tiles='cartodbpositron')
-                        show_overload_markers_only = st.checkbox(":red[_Show only overloads_]")
-
-                        for index, row in st.session_state.coord.iterrows():
-                            if row['Site Code'] in point_names:
-                                color = 'red'
-                            else:
-                                color = 'blue'
-                            if not show_overload_markers_only or color == 'red':
-                                tooltip_content = f"{row['Site Name']}<br>Additional Info"
-                                folium.CircleMarker(
-                                    location=[row['latitude'], row['longitude']],
-                                    radius=5,
-                                    fill=True,
-                                    fill_opacity=0.7,
-                                    tooltip=tooltip_content,
-                                    color=color
-                                ).add_to(m)
-
-                        m.fit_bounds(m.get_bounds())
-
-                        # set map to be equal width of container
-                        map_width_str = "100%"
-                        map_height_str = "500px"
-                        map_styling = f"width: {map_width_str}; height: {map_height_str}; margin: 0 auto;"
-
-                        map_html = f'<div style="{map_styling}">{m.get_root().render()}</div>'
-                        st.components.v1.html(map_html, height=500)
-
-                        # if "set map to be equal width of container" not used then use folium_static(m) below
-                        # folium_static(m)
-
-                        if show_overload_markers_only:
-                            st.write(
-                                ":red[**Only showing nodes connected to lines where loading > 100% pre / post-fault**]")
-
-            with tab2:
-                col3, col4 = st.columns(2, gap="large")
-                with col3:
-                    st.subheader(":blue[Pre-fault intact line loadings]")
-                    st.dataframe(st.session_state.line_tx_results_pre_int_sorted, use_container_width=True)
-                    st.text('\n')
-                    st.subheader(":blue[Pre-fault line loadings (outages applied)]")
-                    st.dataframe(st.session_state.line_tx_results_pre_sorted, use_container_width=True)
-                    st.text('\n')
-                    st.subheader(":blue[Line ratings information]")
-                    st.dataframe(st.session_state.line_info, use_container_width=True)
-                    st.text('\n')
-                with col4:
-                    st.subheader(":blue[All generators]")
-                    st.dataframe(st.session_state.gen_info, use_container_width=True)
-                    st.text('\n')
-                    st.subheader(":blue[All loads]")
-                    st.dataframe(st.session_state.load_info, use_container_width=True)
-                    st.text('\n')
-                    st.subheader(":blue[All buses]")
-                    st.dataframe(st.session_state.bus_info, use_container_width=True)
-                    st.text('\n')
-                with st.container():
-                    col5, col6, col7 = st.columns(3)
-                    with col5:
-                        st.metric(":orange[Sum of generation]", f"{int((st.session_state.gen_info['p_mw']).sum())} MW")
-                    with col6:
-                        st.metric(":orange[Sum of loads]", f"{int((st.session_state.load_info['p_mw']).sum())} MW")
-                    with col7:
-                        st.metric(":orange[Number of buses (nodes)]", f"{st.session_state.bus_info.shape[0]}")
+    # with tab_results:
+    #     with st.container():
+    #         st.title("View Results")
+    #     st.text('\n')
+    #
+    #     # message if PFA has not been run yet
+    #     if 'line_tx_results_pre_int_sorted' not in st.session_state:
+    #         st.markdown("**:orange[Please come back to view results after running DC Power Flow Analysis.]**")
+    #
+    #     # if PFA has been run then show results
+    #     else:
+    #         tab1, tab2 = st.tabs(["Post-fault results", "Pre-fault results"])
+    #         with tab1:
+    #             col1, col2 = st.columns(2, gap="large")
+    #             with col1:
+    #                 with st.container():
+    #                     list_outages = ""
+    #                     for i in st.session_state.circuit_outages:
+    #                         list_outages += "- " + f":blue[{i}]" + "\n"
+    #                     for i in st.session_state.trafo_outages:
+    #                         list_outages += "- " + f":blue[{i}]" + "\n"
+    #                     list_critical = ""
+    #                     for i in st.session_state.critical_lines:
+    #                         list_critical += "- " + f":red[{i}]" + "\n"
+    #                     st.subheader(":blue[Outages applied]")
+    #                     if len(list_outages) < 2:
+    #                         list_outages = 'None'
+    #                     st.markdown(list_outages)
+    #                     st.text('\n')
+    #                     st.subheader(":blue[Post-fault loadings]")
+    #                     st.markdown("★ _with outages applied_ ★")
+    #                     st.dataframe(st.session_state.overall_result_sorted, use_container_width=True)
+    #
+    #                     st.text('\n')
+    #                     st.subheader(":blue[Critical contingencies]")
+    #                     st.markdown("★ _Contingencies resulting in an overload (>100%) of a circuit_ ★")
+    #                     st.markdown(list_critical)
+    #
+    #             with col2:
+    #                 with st.container():
+    #                     st.subheader(":blue[Map of overloads]")
+    #                     mask = st.session_state.overall_result_sorted['loading_percent'] > 100
+    #                     point_names = "_".join(st.session_state.overall_result_sorted.loc[mask, 'name'].tolist())
+    #                     map_center = [st.session_state.coord['latitude'].mean(),
+    #                                   st.session_state.coord['longitude'].mean()]
+    #                     m = folium.Map(location=map_center, zoom_start=10, tiles='cartodbpositron')
+    #                     show_overload_markers_only = st.checkbox(":red[_Show only overloads_]")
+    #
+    #                     for index, row in st.session_state.coord.iterrows():
+    #                         if row['Site Code'] in point_names:
+    #                             color = 'red'
+    #                         else:
+    #                             color = 'blue'
+    #                         if not show_overload_markers_only or color == 'red':
+    #                             tooltip_content = f"{row['Site Name']}<br>Additional Info"
+    #                             folium.CircleMarker(
+    #                                 location=[row['latitude'], row['longitude']],
+    #                                 radius=5,
+    #                                 fill=True,
+    #                                 fill_opacity=0.7,
+    #                                 tooltip=tooltip_content,
+    #                                 color=color
+    #                             ).add_to(m)
+    #
+    #                     m.fit_bounds(m.get_bounds())
+    #
+    #                     # set map to be equal width of container
+    #                     map_width_str = "100%"
+    #                     map_height_str = "500px"
+    #                     map_styling = f"width: {map_width_str}; height: {map_height_str}; margin: 0 auto;"
+    #
+    #                     map_html = f'<div style="{map_styling}">{m.get_root().render()}</div>'
+    #                     st.components.v1.html(map_html, height=500)
+    #
+    #                     # if "set map to be equal width of container" not used then use folium_static(m) below
+    #                     # folium_static(m)
+    #
+    #                     if show_overload_markers_only:
+    #                         st.write(
+    #                             ":red[**Only showing nodes connected to lines where loading > 100% pre / post-fault**]")
+    #
+    #         with tab2:
+    #             col3, col4 = st.columns(2, gap="large")
+    #             with col3:
+    #                 st.subheader(":blue[Pre-fault intact line loadings]")
+    #                 st.dataframe(st.session_state.line_tx_results_pre_int_sorted, use_container_width=True)
+    #                 st.text('\n')
+    #                 st.subheader(":blue[Pre-fault line loadings (outages applied)]")
+    #                 st.dataframe(st.session_state.line_tx_results_pre_sorted, use_container_width=True)
+    #                 st.text('\n')
+    #                 st.subheader(":blue[Line ratings information]")
+    #                 st.dataframe(st.session_state.line_info, use_container_width=True)
+    #                 st.text('\n')
+    #             with col4:
+    #                 st.subheader(":blue[All generators]")
+    #                 st.dataframe(st.session_state.gen_info, use_container_width=True)
+    #                 st.text('\n')
+    #                 st.subheader(":blue[All loads]")
+    #                 st.dataframe(st.session_state.load_info, use_container_width=True)
+    #                 st.text('\n')
+    #                 st.subheader(":blue[All buses]")
+    #                 st.dataframe(st.session_state.bus_info, use_container_width=True)
+    #                 st.text('\n')
+    #             with st.container():
+    #                 col5, col6, col7 = st.columns(3)
+    #                 with col5:
+    #                     st.metric(":orange[Sum of generation]", f"{int((st.session_state.gen_info['p_mw']).sum())} MW")
+    #                 with col6:
+    #                     st.metric(":orange[Sum of loads]", f"{int((st.session_state.load_info['p_mw']).sum())} MW")
+    #                 with col7:
+    #                     st.metric(":orange[Number of buses (nodes)]", f"{st.session_state.bus_info.shape[0]}")
 
 def run_analysis(initialise_apply_data):
     initialise_apply_data.filter_network_data(st.session_state.year)
