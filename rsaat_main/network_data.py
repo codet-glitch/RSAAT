@@ -374,12 +374,12 @@ class TransformData:
             def create_bus_name_bus_id_cols(df, bus_ids_df):
                 df[['bus_name_guess', 'bus_id_guess', 'bus_name', 'bus_id']] = ""
 
-                # for bus_name_guess and bus_id_guess
                 for index1, row1 in df.iterrows():
                     conn_site = str(row1['Connection Site']).strip()
                     conn_sub = str(row1['etys_sub_map']).strip()
                     subs_name_id_guess, subs_name_id, subs_name_id_backup, subs_name_id_backup_2 = [], [], [], []
                     if not (row1['Connection Site'] == "" or pd.isnull(row1['Connection Site'])):
+                        # for bus_name_guess and bus_id_guess
                         for index2, row2 in bus_ids_df.iterrows():
                             bus_site_name = (str(row2['Site Name']).strip()).upper()
                             bus_site_code = (str(row2['Name']).strip()).upper()

@@ -32,6 +32,7 @@ class DefineData:  # (network_data.TransformData)
         self.__dict__.update(instance_transform_data.__dict__)
 
         self.year = None
+        self.scale_demand = None
 
         self.ic_register_year_filtered = None
         self.tec_register_year_filtered = None
@@ -80,17 +81,19 @@ class DefineData:  # (network_data.TransformData)
         self.ic_register_year_filtered = self.ic_register[
             self.ic_register['MW Effective From'].apply(lambda x: x.year <= int(self.year))]
 
-    # filter demand data by self.year
-    def filter_demand_data(self):
+    # filter demand data by self.year and multiply by self.scale_demand
+    def filter_demand_data(self, scale_demand: float):
+        self.scale_demand = scale_demand
         self.gsp_demand_filtered = self.gsp_demand[self.gsp_demand['bus_id'] != ""]
         try:
             selected_column = [col for col in self.gsp_demand_filtered.columns if
                                col.startswith(str(int(self.year))[-2:])]
-            self.gsp_demand_filtered['demand'] = self.gsp_demand_filtered[selected_column[0]].copy()
+            self.gsp_demand_filtered['Demand'] = self.gsp_demand_filtered[selected_column[0]].copy()
         except:
-            self.gsp_demand_filtered['demand'] = self.gsp_demand_filtered['26/27'].copy()
+            self.gsp_demand_filtered['Demand'] = self.gsp_demand_filtered['26/27'].copy()
         finally:
-            self.gsp_demand_filtered.dropna(subset='demand').reset_index(inplace=True)
+            self.gsp_demand_filtered['Demand'] = (self.gsp_demand_filtered['Demand']*self.scale_demand).astype(int)
+            self.gsp_demand_filtered.dropna(subset='Demand').reset_index(inplace=True)
 
     def combine_tec_ic_registers(self):
         tec_register_year_filtered_ = self.tec_register_year_filtered.rename(
@@ -109,7 +112,7 @@ class DefineData:  # (network_data.TransformData)
     # code to determine initial dispatch setting for tec and ic
     def determine_initial_dispatch_setting(self):
         def calculate_demand_target():
-            demand_total = self.gsp_demand_filtered['demand'].sum()
+            demand_total = self.gsp_demand_filtered['Demand'].sum()
             return demand_total
 
         def calculate_b6_transfer_max():
@@ -328,19 +331,20 @@ class DefineData:  # (network_data.TransformData)
 
         def create_demand():
             # create demand for net
+            print(self.gsp_demand_filtered['Demand'].sum())
+            print(self.all_gen_register['MW Dispatch'].apply(lambda x: x[0]).sum())
             for index, row in self.gsp_demand_filtered.iterrows():
+                scaling = self.gsp_demand_filtered['Demand'].sum() / self.all_gen_register['MW Dispatch'].apply(
+                    lambda x: x[0]).sum()
                 name = f"{row['Node']} (Demand)"
                 bus = row['bus_id']
-                p_mw = row['demand']
+                p_mw = row['Demand'] / scaling
                 q_mvar = p_mw * -0.1  # 10% mvar injection applied based on average winter P/Q ratio
                 pp.create_load(self.net, bus=bus, p_mw=p_mw, q_mvar=q_mvar, const_z_percent=0, const_i_percent=0,
-                               name=name,
-                               scaling=1)
+                               name=name, scaling=1)
 
         def create_gen():
             # NEED TO ENSURE BUS ID IS SORTED IN ORDER OF VOLTAGE OR CORRECT BUS ID IS DEFINED IN BUS_ID COLUMN
-            scaling = self.gsp_demand_filtered['demand'].sum() / self.all_gen_register['MW Dispatch'].apply(
-                lambda x: x[0]).sum()
             for index, row in self.all_gen_register.iterrows():
                 name = f"{row['Generator Name']}"
                 bus = row['bus_id'][0]  # referring only to the first value in bus_id column in gen register.
@@ -349,12 +353,11 @@ class DefineData:  # (network_data.TransformData)
                 if p_mw >= 0:
                     max_p_mw = row['MW Effective - Import'] if isinstance(row['MW Effective - Import'],
                                                                           (int, float)) else 9999
-                    pp.create_sgen(self.net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=scaling,
+                    pp.create_sgen(self.net, bus=bus, p_mw=p_mw, q_mvar=0, name=name, type=type, scaling=1,
                                    in_service=True, max_p_mw=max_p_mw)
                 else:
                     pp.create_load(self.net, bus=bus, p_mw=p_mw, q_mvar=0, const_z_percent=0, const_i_percent=0,
-                                   name=name,
-                                   scaling=scaling)
+                                   name=name, scaling=1)
 
         def create_slack_gen():
             # create external grid to serve if scotland reduced
@@ -372,23 +375,134 @@ class DefineData:  # (network_data.TransformData)
             create_demand()
             create_gen()
             create_slack_gen()
-            return self.net
+            net = self.net
+            return net
+        net = create_full_network()
 
-        self.net = create_full_network()
 
-    def get_imbalance(self):
+    def run_analysis(self, circuit_outages, trafo_outages, study_type, analysis_method):
+        pp.rundcpp(self.net, numba=False)
+        line_results_pre_int = self.net['res_line'].copy()
+        tx_results_pre_int = self.net['res_trafo'].copy()
+        tx_results_pre_int["ind"] = tx_results_pre_int.index
+        line_results_pre_int["ind"] = line_results_pre_int.index
+        tx_results_pre_int["name"] = self.net.trafo.loc[tx_results_pre_int["ind"], "name"]
+        line_results_pre_int["name"] = self.net.line.loc[line_results_pre_int["ind"], "name"]
+        tx_results_pre_int.rename(columns={'p_hv_mw': 'p_to_mw', 'q_hv_mvar': 'q_to_mvar'}, inplace=True)
+        line_tx_results_pre_int = pd.concat([line_results_pre_int, tx_results_pre_int])
+        line_tx_results_pre_int.reset_index(drop=True, inplace=True)
+        line_tx_results_pre_int_sorted = (
+            line_tx_results_pre_int.sort_values(by="loading_percent", ascending=False)).drop_duplicates(
+            subset="name", keep="first")
+        line_tx_results_pre_int_sorted = line_tx_results_pre_int_sorted[
+            ["name", "p_to_mw", "q_to_mvar", "loading_percent"]]
+        line_tx_results_pre_int_sorted[["p_to_mw", "q_to_mvar", "loading_percent"]] = line_tx_results_pre_int_sorted[
+            ["p_to_mw", "q_to_mvar", "loading_percent"]].round(1)
+        line_tx_results_pre_int_sorted.reset_index(drop=True, inplace=True)
+
+        outage_line_indx = []
+        outage_trafo_infx = []
+        for string in circuit_outages:
+            if string in self.net.line['name'].tolist():
+                outage_line_indx.append(self.net.line[self.net.line['name'] == string].index[0])
+        for string in trafo_outages:
+            if string in self.net.trafo['name'].tolist():
+                outage_trafo_infx.append(self.net.trafo[self.net.trafo['name'] == string].index[0])
+
+        line_loading_max = 100
+        critical_lines = []
+        critical_lines_indx = []
+        line_results_sorted = pd.DataFrame()
+        tx_results_sorted = pd.DataFrame()
+
+        self.net.line.loc[outage_line_indx, 'in_service'] = False
+        self.net.line.loc[outage_trafo_infx, 'in_service'] = False
         pp.rundcpp(self.net, numba=False)
         slack_gen = self.net['res_ext_grid']['p_mw']
         print(slack_gen)
+        line_results_pre = self.net['res_line'].copy()
+        tx_results_pre = self.net['res_trafo'].copy()
 
-        # net1 = copy.deepcopy(self.net)
-        # pp.rundcpp(net1, numba=False)
-        # slack_gen1 = net1['res_ext_grid']['p_mw']
-        # print(slack_gen1)
+        tx_results_pre["ind"] = tx_results_pre.index
+        line_results_pre["ind"] = line_results_pre.index
+        tx_results_pre["name"] = self.net.trafo.loc[tx_results_pre["ind"], "name"]
+        line_results_pre["name"] = self.net.line.loc[line_results_pre["ind"], "name"]
+        tx_results_pre.rename(columns={'p_hv_mw': 'p_to_mw', 'q_hv_mvar': 'q_to_mvar'}, inplace=True)
+        line_tx_results_pre = pd.concat([line_results_pre, tx_results_pre])
+        line_tx_results_pre.reset_index(drop=True, inplace=True)
+        line_tx_results_pre_sorted = (
+            line_tx_results_pre.sort_values(by="loading_percent", ascending=False)).drop_duplicates(
+            subset="name", keep="first")
+        line_tx_results_pre_sorted = line_tx_results_pre_sorted[["name", "p_to_mw", "q_to_mvar", "loading_percent"]]
+        line_tx_results_pre_sorted[["p_to_mw", "q_to_mvar", "loading_percent"]] = line_tx_results_pre_sorted[
+            ["p_to_mw", "q_to_mvar", "loading_percent"]].round(1)
+        line_tx_results_pre_sorted.reset_index(drop=True, inplace=True)
 
-    def run_analysis(self):
-        def check_convergence():
-            pass
+        lines = self.net.line.index
+        for l in lines:
+            self.net.line.loc[l, 'in_service'] = False
+            self.net.line.loc[outage_line_indx, 'in_service'] = False
+            self.net.line.loc[outage_trafo_infx, 'in_service'] = False
+            pp.rundcpp(self.net, numba=False)
+            line_results = self.net.res_line
+            line_results["ind"] = line_results.index
+            line_results["name"] = self.net.line.loc[line_results["ind"], "name"]
+            line_results = line_results.sort_values(by="loading_percent", ascending=False)
+            line_results = line_results.drop_duplicates(subset="name", keep="first")
+            line_results["loading_percent"] = line_results["loading_percent"].round(1)
+            line_results["result"] = line_results["name"] + ": " + line_results["loading_percent"].astype(str) + "%"
+            line_results_sorted = pd.concat([line_results_sorted, line_results], ignore_index=True)
+            tx_results = self.net.res_trafo
+            tx_results["ind"] = tx_results.index
+            tx_results["name"] = self.net.trafo.loc[tx_results["ind"], "name"]
+            tx_results = tx_results.sort_values(by="loading_percent", ascending=False)
+            tx_results = tx_results.drop_duplicates(subset="name", keep="first")
+            tx_results["loading_percent"] = tx_results["loading_percent"].round(1)
+            tx_results["result"] = tx_results["name"] + ": " + tx_results["loading_percent"].astype(str) + "%"
+            tx_results_sorted = pd.concat([tx_results_sorted, tx_results], ignore_index=True)
+            if (self.net.res_line.loading_percent.max() > line_loading_max):
+                critical_lines.append(self.net.line.loc[l, "name"])
+                critical_lines_indx.append(l)
+            self.net.line.loc[l, 'in_service'] = True
+
+        line_results_sorted_a = pd.DataFrame()
+        tx_results_sorted_a = pd.DataFrame()
+        if len(line_results_sorted) > 1:
+            line_results_sorted_a = (line_results_sorted.sort_values(by="loading_percent", ascending=False)).drop_duplicates(
+                subset="name", keep="first")
+        if len(tx_results_sorted_a) > 1:
+            tx_results_sorted_a = (tx_results_sorted.sort_values(by="loading_percent", ascending=False)).drop_duplicates(
+                subset="name", keep="first")
+
+        overall_result = pd.concat([line_results_sorted_a, tx_results_sorted_a])
+        if len(overall_result) > 1:
+            overall_result_sorted = (overall_result.sort_values(by="loading_percent", ascending=False)).drop_duplicates(
+                subset="name", keep="first")
+            overall_result_sorted = overall_result_sorted[["name", "p_to_mw", "q_to_mvar", "loading_percent"]]
+            overall_result_sorted["p_to_mw"] = overall_result_sorted["p_to_mw"].round(1)
+            overall_result_sorted["q_to_mvar"] = overall_result_sorted["q_to_mvar"].round(1)
+        else:
+            overall_result_sorted = pd.DataFrame()
+        print(overall_result_sorted)
+        critical_lines = list(dict.fromkeys(critical_lines))
+        critical_lines_indx = list(dict.fromkeys(critical_lines_indx))
+
+        self.net.sgen.drop(self.net.sgen.index[0:], inplace=True)
+        self.net.load.drop(self.net.load.index[0:], inplace=True)
+        self.net.ext_grid.drop(self.net.ext_grid.index[0:], inplace=True)
+
+        overall_result_sorted.reset_index(drop=True, inplace=True)
+
+        net = self.net
+
+        return net, line_tx_results_pre_int_sorted, overall_result_sorted, circuit_outages, trafo_outages, critical_lines, line_tx_results_pre_sorted
+
+        lists_to_delete = [line_results_sorted, tx_results_sorted, line_results_sorted_a, tx_results_sorted_a, overall_result,
+                   overall_result_sorted]
+
+        for each in lists_to_delete:
+            del globals()[each]
+
 
     def key_stats(self):
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -405,10 +519,8 @@ if __name__ == "__main__":
     call = DefineData()
     call.filter_network_data(2028)
     call.filter_tec_ic_data()
-    call.filter_demand_data()
+    call.filter_demand_data(1)
     call.combine_tec_ic_registers()
     call.determine_initial_dispatch_setting()
     call.create_pandapower_system()
-    call.get_imbalance()
-    call.run_analysis()
     call.key_stats()
