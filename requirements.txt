@@ -1,7 +1,7 @@
 numpy
 pandapower
 pandas
-Pillow
+pillow
 requests
 streamlit
 folium
